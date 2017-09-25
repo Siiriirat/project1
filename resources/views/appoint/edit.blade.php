@@ -1,48 +1,48 @@
-@extends('template')
+@extends('template1')
 @section('title','Appointment')
 @section('content')
 <br><br>
+<a href="/appoints" class="btn btn-outline-success"><img src="/image/return.png" width="30" height="30"> </a>
+<br><br>
 <form method="post" action="/appoints/{{$appoint->id}}">
-	<div class="col align-center">
-        <div class="card" style="width: 50rem;">
-          <div class="card-body">
+          <div class="card card-container">
           <form method="post" action="/appoints">
-          <h4 class="card-title">แก้ไขรายการจอง</h4>
-          <p class="card-text">
+          <div class="container">
+          <legend>แก้ไขรายการจอง</legend>
           <div class="form-group">
           <label for="tel">เบอร์โทรศัพท์ : <input type="text" name="tel" class="form-control" value="{{$appoint->tel}}"></label>
           </div> 
           
-		 
+     
           <div class="form-group">
           <label for="gender">ระบุเพศของท่าน :</label><br>
           <label class="custom-control custom-radio">
-          @if($appoint->gender == 'male')
-          <input id="gender" name="gender" type="radio" value="male" class="custom-control-input" checked>
+          @if($appoint->gender == 'เพศชาย')
+          <input id="gender" name="gender" type="radio" value="เพศชาย" class="custom-control-input" checked>
           <span class="custom-control-indicator"></span>
           <span class="custom-control-description">
             <img src="/image/male.png" width="10%">
           </span>
-		  @else
-		  <input id="gender" name="gender" type="radio" value="male" class="custom-control-input">
+      @else
+      <input id="gender" name="gender" type="radio" value="เพศชาย" class="custom-control-input">
           <span class="custom-control-indicator"></span>
           <span class="custom-control-description">
             <img src="/image/male.png" width="10%">
           </span>
-		  @endif
+      @endif
           </label><br><br>
           <label class="custom-control custom-radio">
-          @if($appoint->gender == 'female')
-          <input id="gender" name="gender" type="radio" value="female" class="custom-control-input" checked>
+          @if($appoint->gender == 'เพศหญิง')
+          <input id="gender" name="gender" type="radio" value="เพศหญิง" class="custom-control-input" checked>
           <span class="custom-control-indicator"></span>
           <span class="custom-control-description">
-            <img src="/image/female.png" width="28%">
+            <img src="/image/female.png" width="10%">
           </span>
           @else
-          <input id="gender" name="gender" type="radio" value="female" class="custom-control-input">
+          <input id="gender" name="gender" type="radio" value="เพศหญิง" class="custom-control-input">
           <span class="custom-control-indicator"></span>
           <span class="custom-control-description">
-            <img src="/image/female.png" width="28%">
+            <img src="/image/female.png" width="10%">
           </span>
           @endif
           </label>
@@ -50,61 +50,61 @@
 
           <div class="form-group">
           <label for="service" class="col-sm-0" class= "control-label">บริการ : <br>
-			
+      
           <select  name="service" id="service" class="custom-select">
 
           <option value="">--- เลือกประเภทบริการ ---</option>
           <optgroup label="หน้า" data-max-options="3">
-          @if($appoint->service == 'makeup')
-          <option value="makeup" selected>แต่งหน้า</option>
+          @if($appoint->service == 'แต่งหน้า')
+          <option value="แต่งหน้า" selected>แต่งหน้า</option>
           @else
-          <option value="makeup">แต่งหน้า</option>
+          <option value="แต่งหน้า">แต่งหน้า</option>
           @endif
-          @if($appoint->service == 'mask')
-          <option value="mask" selected>มาร์กหน้า</option>
+          @if($appoint->service == 'มาร์กหน้า')
+          <option value="มาร์กหน้า" selected>มาร์กหน้า</option>
           @else
-          <option value="mask">มาร์กหน้า</option>
+          <option value="มาร์กหน้า">มาร์กหน้า</option>
           @endif
           </optgroup>
           <optgroup label="ผม" data-max-options="3">
-          @if($appoint->service == 'cut')
-          <option value="cut" selected>ตัดผม</option>
+          @if($appoint->service == 'ตัดผม')
+          <option value="ตัดผม" selected>ตัดผม</option>
           @else
-          <option value="cut">ตัดผม</option>
-		  @endif
-		  @if($appoint->service == 'dry')
-          <option value="dry" selected>สระไดร์</option>
-		  @else
-          <option value="dry">สระไดร์</option>
+          <option value="ตัดผม">ตัดผม</option>
+      @endif
+      @if($appoint->service == 'สระไดร์')
+          <option value="สระไดร์" selected>สระไดร์</option>
+      @else
+          <option value="สระไดร์">สระไดร์</option>
           @endif
-          @if($appoint->service == 'color')
-          <option value="color" selected>ทำสีผม</option>
-		  @else
-          <option value="color">ทำสีผม</option>
+          @if($appoint->service == 'ทำสีผม')
+          <option value="ทำสีผม" selected>ทำสีผม</option>
+      @else
+          <option value="ทำสีผม">ทำสีผม</option>
           @endif
-		  @if($appoint->service == 'rebond')
-          <option value="rebond" selected>ยืดผม</option>
-		  @else
-          <option value="rebond">ยืดผม</option>
+      @if($appoint->service == 'ยืดผม')
+          <option value="ยืดผม" selected>ยืดผม</option>
+      @else
+          <option value="ยืดผม">ยืดผม</option>
           @endif
-          @if($appoint->service == 'curl')
-          <option value="curl" selected>ดัดผม</option>
-		  @else
-          <option value="curl">ดัดผม</option>
+          @if($appoint->service == 'ดัดผม')
+          <option value="ดัดผม" selected>ดัดผม</option>
+      @else
+          <option value="ดัดผม">ดัดผม</option>
           @endif
           </optgroup>
           <optgroup label="เล็บ" data-max-options="3">
-          @if($appoint->service == 'hand')
-          <option value="hand" selected>ทำเล็บมือ</option>
+          @if($appoint->service == 'ทำเล็บมือ')
+          <option value="ทำเล็บมือ" selected>ทำเล็บมือ</option>
           @else
-          <option value="hand">ทำเล็บมือ</option>
+          <option value="ทำเล็บมือ">ทำเล็บมือ</option>
           @endif
 
-          @if($appoint->service == 'foot')
-          <option value="foot" selected>ทำเล็บเท้า</option>
+          @if($appoint->service == 'ทำเล็บเท้า')
+          <option value="ทำเล็บเท้า" selected>ทำเล็บเท้า</option>
           @else
-          <option value="foot">ทำเล็บเท้า</option>
-		  @endif
+          <option value="ทำเล็บเท้า">ทำเล็บเท้า</option>
+      @endif
           </optgroup>
           </select>
           </label>
@@ -158,28 +158,27 @@
 
 
           
-	<div class="form-group">
-		<label for="detail">รายละเอียดเพิ่มเติม :</label>
-		<textarea name="detail" class="form-control" rows="4">{{$appoint->detail}}</textarea>
-	</div>
+  <div class="form-group">
+    <label for="detail">รายละเอียดเพิ่มเติม :</label>
+    <textarea name="detail" class="form-control" rows="4">{{$appoint->detail}}</textarea>
+  </div>
 
-	
+  
 
 
-	<b>From: </b> {{ Auth::user()->name}} <br>
-	<input type="hidden" name="user_id" value="{{Auth::user()->id}}">
-	<input type="hidden" name="ip" value="{{Request::getClientIp()}}">
+  <b>From: </b> {{ Auth::user()->name}} <br>
+  <input type="hidden" name="user_id" value="{{Auth::user()->id}}">
+  <input type="hidden" name="ip" value="{{Request::getClientIp()}}">
  
 
-	<input type="hidden" name="_method" value="PUT">
-	{{csrf_field()}}	
-	<button type="submit" class="btn btn-primary">Submit</button>
+  <input type="hidden" name="_method" value="PUT">
+  {{csrf_field()}}  
+  <button type="submit" class="btn btn-primary">Submit</button>
+  </div>
 </form>
 <br>
-
-          </div>
-       </div>
-    </div>
+</div>
+     
 
 
 
@@ -191,15 +190,5 @@
 
 
 
-
-
-
-
-
-
-
-
-
-<a href="/appoints">Home</a>
 @endsection
 

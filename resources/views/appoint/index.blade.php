@@ -2,16 +2,17 @@
 @section('title','Appointment')
 @section('content')
 <br>
-<table class="table table-bordered">
-          <thead>
+<div style="overflow-x:auto;">
+<table class="table table-border">
+          <thead class="thead-inverse">
            <tr>
-           <th>index</th>
-           <th>service</th>
-           <th>staff</th>
-           <th>date</th>
-		   <th>time</th>
-           <th>name</th>
-           <th>option</th>
+           <th>Index</th>
+           <th>Service</th>
+           <th>Staff</th>
+           <th>Date</th>
+		   <th>Time</th>
+           <th>Name</th>
+           <th>Option</th>
            </tr>
           </thead>
 @foreach( $appoints as  $index => $item )
@@ -23,25 +24,28 @@
 		<td><p>{{$item->date}}</p></td>
 		<td><p>{{$item->time}}</p></td>
 		<td><b>{{$item->user()->get()[0]->name}}</b> </td>
+		
 		@can('show',$item)
 			<form method="post" action="appoints/{{$item->id}}" class="form-inline">
-
-				<td><a href="appoints/{{$item->id}}" class="btn btn-default"><img src="image/show.png" width="30" height="30"></a>
-				<a href="appoints/{{$item->id}}/edit" class="btn btn-default"><img src="image/edit.png" width="30" height="30"></a> 		
+				<td><a href="appoints/{{$item->id}}" class="btn btn-outline-default"><img src="image/show.png" width="30" height="30"></a>
+				<a href="appoints/{{$item->id}}/edit" class="btn btn-outline-default"><img src="image/edit.png" width="30" height="30"></a> 		
 				<input type="hidden" name="_method" value="Delete">
 				<button class="btn btn-default"><img src="image/delete.png" width="30" height="30"></button> </td>
 				{{csrf_field()}}
 			</form>
 		@endcan
+	
 	    </tr>
       </tbody>
 @endforeach
 </table>
+</div>
 {{ $appoints->links() }}
 <br><br>
 
 @if ( !Auth::guest() )
-	<a href="appoint">Create new appoint</a>
+	<a href="appoint" class="btn btn-outline-success"><img src="image/add.png" width="20" height="20"> Add </a>
+	<br>
 	<br>
 @endif
 

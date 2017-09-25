@@ -32,7 +32,7 @@ Route::get('/appoint', function () {
     return view('appoint.appoint');
 });
 Route::resource('appoints','Appoints\\AppointsController');
-
+Route::resource('services','Services\\ServicesController');
 
 });
 

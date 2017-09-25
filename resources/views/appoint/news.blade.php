@@ -17,8 +17,8 @@
        <div class="card" style="width: 20rem;">
           <img class="card-img-top" src="image/1.jpg" alt="Card image cap">
           <div class="card-body">
-          <h4 class="card-title">10 วิธีดูแลเส้นผมสุดเบสิก</h4>
-          <p class="card-text">คงไม่มีผู้หญิงคนไหนที่ไม่อยากให้ผมของตัวเองดูนุ่มสลวยเงางามหรอกใช่ไหมล่ะคะ แต่การที่จะมีผมสวยได้แบบนั้น ก็อาจจะต้องมีวินัยในการหมั่นบำรุงดูแลผม ซึ่งสาว ๆ หลายคนคิดว่าเป็นเรื่องสิ้นเปลืองหรืออ้างว่าไม่มีเวลา แต่ทว่าการบำรุงผมไม่จำเป็นต้องใช้เวลาหรือเม็ดเงินมากมายอย่างที่คิด เพราะถ้าหากคุณลองเปลี่ยนพฤติกรรมทำร้ายผมเดิม ๆ ที่ทำลงไปโดยไม่รู้ตัว รับรองว่าผมจะดีขึ้นแน่นอน วันนี้จึงขอนำ 10 วิธีดูแลเส้นผมสุดเบสิกมาฝากสาว ๆ ทุกคนค่ะ</p>
+          <h4 class="card-title">12 อาหารบำรุงเส้นผม</h4>
+          <p class="card-text">เส้นผมของคนเรามีวงจรการงอกใหม่และผลัดผมเก่าออกวนเวียนกันอยู่ภายในช่วง 2 เดือน สำหรับกระบวนทั้งหมดของแต่ละเส้น เป็นเรื่องปกติที่คนเราจะมีผมร่วงทุกวัน แต่เราสามารถทำให้ผมกลับมายาวและสวยได้อย่างเดิมด้วยอาหาร 12 ชนิด</p>
           <a href="#" class="btn btn-outline-danger">อ่านต่อ</a>
           </div>
        </div>
@@ -27,8 +27,8 @@
         <div class="card" style="width: 20rem;">
           <img class="card-img-top" src="image/2.jpg" alt="Card image cap">
           <div class="card-body">
-          <h4 class="card-title">Card title</h4>
-          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+          <h4 class="card-title">10 เมคอัพทริค ที่สาวรักการแต่งหน้าห้ามพลาด</h4>
+          <p class="card-text">Do & Don't 10 ข้อ ที่ควรรู้ เพราะการแต่งหน้าก็มีสิ่งที่ควรหลีกเลี่ยง สิ่งไหนควรทำ สิ่งไหนไม่ควรทำ ไปดูกันค่ะ</p>
           <a href="#" class="btn btn-outline-danger">อ่านต่อ</a>
           </div>
        </div>
@@ -37,8 +37,8 @@
       <div class="card" style="width: 20rem;">
           <img class="card-img-top" src="image/3.jpg" alt="Card image cap">
           <div class="card-body">
-          <h4 class="card-title">Card title</h4>
-          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+          <h4 class="card-title">ทาเล็บสีอะไรดี ให้เข้ากับสีผิวมากที่สุด</h4>
+          <p class="card-text">เล็บถือเป็นเสน่ห์แบบหนึ่งเลยก็ว่าได้นะสำหรับสาวๆ อย่างเราๆ ค่ะ เพราะมันสามารถแต่งเติมสีสัน ลวดลายลงไปบนเล็บมือได้ แต่ก็หลายครั้งนะเวลาจะทาสีเล็บทั้งทีก็ไม่รู้จะทาสีอะไร ทาไปแล้วมันจะเข้ากับนิ้วมือเรา สีผิวเราไหม วันนี้ทางร้านมีเทคนิคการเลือกสีเล็บให้เข้ากับสีผิวมาฝากกันค่ะ</p>
           <a href="#" class="btn btn-outline-danger">อ่านต่อ</a>
           </div>
        </div>

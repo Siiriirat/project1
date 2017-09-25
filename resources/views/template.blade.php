@@ -11,16 +11,6 @@
     
 
 
-
-
-
-
-
-
-
-
-
-
 	<link rel="stylesheet" type="text/css" href="/css/app.css">
     <!-- Scripts -->
     <meta charset="utf-8">
@@ -53,18 +43,18 @@
                     </li>&nbsp
 
                     <li class="nav-item">
-                    <a class="btn btn-outline-danger nav-link" href="service">Service</a>
+                    <a class="btn btn-outline-danger nav-link" href="services">Service</a>
                     </li>&nbsp
                     
                     <li class="nav-item">
                     <a class="btn btn-outline-danger nav-link" href="appoint">Appointment</a>
                    </li>&nbsp
 
-                    @if (Auth::user()->level == "admin")
+                    <!--@if (Auth::user()->level == "admin")
                     <li class="nav-item">
                     <a class="btn btn-outline-danger nav-link" href="service">Setting</a>
                     </li>&nbsp
-                    @endif
+                    @endif-->
                 </ul>
 
                 <div class="navbar-expand-lg navbar-dark bg-dark" id="app-navbar-collapse">
