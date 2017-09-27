@@ -12,7 +12,7 @@ class AppointsController extends Controller
     // }
     
     public function index(Request $request)    {
-        $NUM_PAGE = 3;
+        $NUM_PAGE = 6;
         $appoints = Appoint::orderBy('updated_at','desc')->paginate($NUM_PAGE);
         $page = $request->input('page');
         $page = ($page != null)?$page:1;
@@ -51,4 +51,6 @@ class AppointsController extends Controller
         Appoint::destroy($id);
         return redirect('appoints');
     }
+    
+
 }

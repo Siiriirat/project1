@@ -2,6 +2,22 @@
 @section('title','Appointment')
 @section('content')
 <br>
+<form action="{{url('search')}}" method="post" >
+{{csrf_field()}}
+<div class="row">
+<div class="col-md-4"></div>
+<div class="col-md-4"></div>
+<div class="col-md-4">
+<div class="form-inline">
+<div class="form-group">
+<input type="text" name="name" id="name" class="form-control" style="width:220px;"></input> &nbsp
+    <button type="submit" class="btn btn-default">
+    	<img src="image/search.png" width="30" height="30">
+    </button>
+ </form>
+    <br>
+</div>
+</div></div></div>
 <div style="overflow-x:auto;">
 <table class="table table-border">
           <thead class="thead-inverse">
@@ -44,7 +60,7 @@
 <br><br>
 
 @if ( !Auth::guest() )
-	<a href="appoint" class="btn btn-outline-success"><img src="image/add.png" width="20" height="20"> Add </a>
+	<a href="appoint" class="btn btn-outline-success"><img src="image/add.png" width="20" height="20"> เพิ่มรายการ </a>
 	<br>
 	<br>
 @endif

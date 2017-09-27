@@ -49,3 +49,5 @@ Route::get('change-password', function() {
 	return view('appoint.change-password'); 
 });
 Route::post('change-password', 'Auth\UpdatePasswordController@update');
+
+Route::post('/search','SearchController@search');

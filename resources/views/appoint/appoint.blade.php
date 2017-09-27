@@ -7,7 +7,7 @@
 <br>
 <div align="right">
         
-          <a href="/appoints" class="btn btn-primary"><img src="image/icon2.png" width="30" height="30">ตารางนัด</a>
+          <a href="/appoints" class="btn btn-primary"><img src="image/icon2.png" width="30" height="30">ตารางการเข้าใช้บริการ</a>
           
 </div>
 <br><br>
