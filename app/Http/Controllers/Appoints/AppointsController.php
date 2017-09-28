@@ -3,6 +3,7 @@ namespace App\Http\Controllers\Appoints;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Appoint;
+use DB;
 
 class AppointsController extends Controller
 {
@@ -24,10 +25,17 @@ class AppointsController extends Controller
         return view('appoint.appoint');
     }
     public function store(Request $request)    {
-        
+        $temp_app = DB::table('appoints')->where('date',$request->date)->where('time',$request->time)->get();
+        if(count($temp_app)==0)
+        {
         Appoint::create( $request->all() );
         $appoint = Appoint::all()->last();
         return redirect('appoints');
+        }
+        else
+        {
+            return redirect('appoint')->with('errors','วันที่ '.$request->date.' เวลา '.$request->time.' มีคนจองแล้วค่ะ '. 'กรุณากรอกข้อมูลใหม่่');
+        }
     }
     public function show($id)
     {

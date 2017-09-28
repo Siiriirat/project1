@@ -4,12 +4,19 @@
     <link href="dist/DateTimePicker.css" rel="stylesheet"/>
 </head>
 @section('content')
+
 <br>
 <div align="right">
         
-          <a href="/appoints" class="btn btn-primary"><img src="image/icon2.png" width="30" height="30">ตารางการเข้าใช้บริการ</a>
-          
-</div>
+          <a href="/appoints" class="btn btn-primary"><img src="image/icon2.png" width="30" height="30">ตารางการเข้าใช้บริการ</a>    
+</div><br>
+@if (count($errors) > 0)
+    <div class="alert alert-danger">
+        <ul>
+            {{$errors}}
+        </ul>
+    </div>
+@endif
 <br><br>
 
     <div class="card card-container">
