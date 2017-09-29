@@ -13,17 +13,17 @@
 @if (count($errors) > 0)
     <div class="alert alert-danger">
         <ul>
-            {{$errors}}
+           <i class="fa fa-exclamation-triangle"></i>
+           {{$errors}}
         </ul>
     </div>
 @endif
-<br><br>
+<br>
 
     <div class="card card-container">
           <form method="post" action="/appoints">
           <div class="container">
           <legend>ระบบจองคิว</legend>
-          
           <div class="form-group">
           <label for="tel">เบอร์โทรศัพท์ : <input type="text" name="tel" class="form-control" required></label>
           </div> 
@@ -128,7 +128,8 @@
 
 
         </p>
-         <button type="submit" class="btn btn-primary">Submit</button>
+         <button type="submit" class="btn btn-success"><i class="fa fa-check-square"> จอง </i>
+         </button>
          </div>
         </form>
 

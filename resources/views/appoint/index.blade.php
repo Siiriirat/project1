@@ -11,7 +11,7 @@
 <div class="form-inline">
 <div class="form-group">
             <div class="input-append">
-                <input type="text" name="name" id="name" class="search-query form-control" placeholder="Search" >
+                <input type="text" name="name" id="name" class="search-query form-control" placeholder="Search for service" >
                 <button type="submit" class="btn">Search</button>
             </div>
         </form>
@@ -22,7 +22,7 @@
 </div>
 <br>
 <div style="overflow-x:auto;">
-<table class="table table-border">
+<table class="table table-bordered">
           <thead class="thead-inverse">
            <tr>
            <th>Index</th>
@@ -37,19 +37,20 @@
 @foreach( $appoints as  $index => $item )
 		<tbody>
         <tr> 
-		<td><p>{{$NUM_PAGE*($page-1) + $index+1}}</p></td>
-		<td><p>{{$item->service}}</p></td>
-		<td><p>{{$item->staff}}</p></td>
-		<td><p>{{$item->date}}</p></td>
-		<td><p>{{$item->time}}</p></td>
-		<td><b>{{$item->user()->get()[0]->name}}</b> </td>
-		
+		<td>{{$NUM_PAGE*($page-1) + $index+1}}</td>
+		<td>{{$item->service}}</td>
+		<td>{{$item->staff}}</td>
+		<td>{{$item->date}}</td>
+		<td>{{$item->time}}</td>
+		<td>{{$item->user()->get()[0]->name}}</td>
+
+        
 		@can('show',$item)
 			<form method="post" action="appoints/{{$item->id}}" class="form-inline">
-				<td><a href="appoints/{{$item->id}}" class="btn btn-outline-default"><img src="image/show.png" width="30" height="30"></a>
-				<a href="appoints/{{$item->id}}/edit" class="btn btn-outline-default"><img src="image/edit.png" width="30" height="30"></a> 		
+				<td><a href="appoints/{{$item->id}}" class="btn btn-info"><i class="fa fa-eye"></i> แสดง</a>
+				<a href="appoints/{{$item->id}}/edit" class="btn btn-warning"><i class="fa fa-edit"></i> แก้ไข</a>		
 				<input type="hidden" name="_method" value="Delete">
-				<button class="btn btn-default"><img src="image/delete.png" width="30" height="30"></button> </td>
+				<button class="btn btn-danger btn-xs"><i class="fa fa-ban"></i> ยกเลิก</button> </td>
 				{{csrf_field()}}
 			</form>
 		@endcan
@@ -63,7 +64,7 @@
 <br>
 
 @if ( !Auth::guest() )
-	<a href="appoint" class="btn btn-outline-success"><img src="image/add.png" width="20" height="20"> เพิ่มรายการ </a>
+	<a href="appoint" class="btn btn-success"> <i class="fa fa-plus-circle"></i> เพิ่มรายการ </a>
 	<br>
 	<br>
 @endif

@@ -3,7 +3,7 @@
 @section('content')
 <br>
 <div style="overflow-x:auto;">
-<table class="table table-border">
+<table class="table table-bordered">
           <thead class="thead-inverse">
            <tr>
            <th>Index</th>
@@ -18,17 +18,18 @@
 @foreach( $services as  $index => $item )
 		<tbody>
         <tr> 
-		<td><p>{{$index+1}}</p></td>
-		<td><p>{{$item->name_ser}}</p></td>
-		<td><p>{{$item->type}}</p></td>
-		<td><p>{{$item->cost}} ฿</p></td>
+		<td>{{$index+1}}</td>
+		<td>{{$item->name_ser}}</td>
+		<td>{{$item->type}}</td>
+		<td>{{$item->cost}} ฿</td>
 		@if (Auth::user()->level == "admin")
 			<form method="post" action="services/{{$item->id_ser}}" class="form-inline">
 
-				<td><a href="services/{{$item->id_ser}}" class="btn btn-outline-default"><img src="image/show.png" width="30" height="30"></a>
-				<a href="services/{{$item->id_ser}}/edit" class="btn btn-outline-default"><img src="image/edit.png" width="30" height="30"></a> 		
+				<td><a href="services/{{$item->id_ser}}" class="btn btn-info"><i class="fa fa-eye"></i> แสดง</a>
+				<a href="services/{{$item->id_ser}}/edit" class="btn btn-warning"><i class="fa fa-edit"></i> แก้ไข</a> 		
 				<input type="hidden" name="_method" value="Delete">
-				<button class="btn btn-default"><img src="image/delete.png" width="30" height="30"></button> </td>
+				<button class="btn btn-danger btn-xs"><i class="fa fa-ban"></i> ยกเลิก</button> 
+				</td>
 				{{csrf_field()}}
 			</form>
 		@endif
@@ -37,10 +38,10 @@
 @endforeach
 </table>
 </div>
-<br><br>
+<br>
 
 @if (Auth::user()->level == "admin")
-	<a href="service" class="btn btn-outline-success"><img src="image/add.png" width="20" height="20"> Add </a>
+	<a href="service" class="btn btn-success"><i class="fa fa-plus-circle"></i> เพิ่มบริการ </a>
 	<br>
 @endif
 

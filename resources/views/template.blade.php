@@ -7,11 +7,14 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-alpha/css/bootstrap.css" rel="stylesheet" />
     <link href="http://weareoutman.github.io/clockpicker/dist/jquery-clockpicker.min.css" rel="stylesheet" />
     <script src="http://weareoutman.github.io/clockpicker/dist/jquery-clockpicker.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     
     
-
-
-	<link rel="stylesheet" type="text/css" href="/css/app.css">
+    <link rel="stylesheet" type="text/css" href="css/font-awesome.css">
+    <link rel="stylesheet" type="text/css" href="css/font-awesome-min.css">
+    <link rel="stylesheet" type="text/css" href="css/bootstrap-min.css">
+	<link rel="stylesheet" type="text/css" href="css/bootstrap.css">
+    <!--<link rel="stylesheet" type="text/css" href="css/app.css">-->
     <!-- Scripts -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -36,24 +39,26 @@
                 </div>
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item active">
-                    <a class="btn btn-outline-danger nav-link" href="{{url('home1')}}">Home<span class="sr-only"></span></a>
+                    <a class="btn btn-outline-danger nav-link " href="{{url('home1')}}"><i class="fa fa-home"></i> Home<span class="sr-only"></span>
+                    
+                    </a>
                     </li>&nbsp
                     <li class="nav-item">
-                    <a class="btn btn-outline-danger nav-link" href="{{url('news')}}">News</a>
+                    <a class="btn btn-outline-danger nav-link" href="{{url('news')}}"><i class="fa fa-newspaper-o"></i> News</a>
                     </li>&nbsp
 
                     @if (Auth::user()->level == "admin")
                     <li class="nav-item">
-                    <a class="btn btn-outline-danger nav-link" href="{{url('service')}}">Service</a>
+                    <a class="btn btn-outline-danger nav-link" href="{{url('service')}}"><i class="fa fa-th-list"></i> Service</a>
                     </li>&nbsp
                     @else
                     <li class="nav-item">
-                    <a class="btn btn-outline-danger nav-link" href="{{url('/services')}}">Service</a>
+                    <a class="btn btn-outline-danger nav-link" href="{{url('/services')}}"><i class="fa fa-th-list"></i> Service</a>
                     </li>&nbsp
                     @endif
                     
                     <li class="nav-item">
-                    <a class="btn btn-outline-danger nav-link" href="{{url('appoint')}}">Appointment</a>
+                    <a class="btn btn-outline-danger nav-link" href="{{url('appoint')}}"><i class="fa fa-calendar-plus-o"></i> Appointment</a>
                    </li>&nbsp
 
                     <!--@if (Auth::user()->level == "admin")
@@ -73,7 +78,7 @@
                         @else
                             <li class="dropdown">
                                 <a href="#" class="btn btn-danger dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-                                    {{ Auth::user()->name }} <span class="caret"></span>
+                                    <i class="fa fa-user-circle"></i> {{ Auth::user()->name }} <span class="caret"></span>
                                 </a>
 
                                 <ul class="dropdown-menu" role="menu">
@@ -81,7 +86,7 @@
                                         <a href="{{ route('logout') }}"
                                             onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
-                                            Logout
+                                            &nbsp<i class="fa fa-power-off"></i> Logout
                                         </a>
 
                                         <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
@@ -90,8 +95,8 @@
                                     </li>
                                     <li>
                                        <a href="change-password">
-                                            Change password
-                                        </a>
+                                         &nbsp<i class="fa fa-cog"></i> Change password
+                                       </a>
  
                                     </li>
                                 </ul>
