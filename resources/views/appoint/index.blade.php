@@ -10,14 +10,17 @@
 <div class="col-md-4">
 <div class="form-inline">
 <div class="form-group">
-<input type="text" name="name" id="name" class="form-control" style="width:220px;"></input> &nbsp
-    <button type="submit" class="btn btn-default">
-    	<img src="image/search.png" width="30" height="30">
-    </button>
+            <div class="input-append">
+                <input type="text" name="name" id="name" class="search-query form-control" placeholder="Search" >
+                <button type="submit" class="btn">Search</button>
+            </div>
+        </form>
  </form>
-    <br>
 </div>
-</div></div></div>
+</div>
+</div>
+</div>
+<br>
 <div style="overflow-x:auto;">
 <table class="table table-border">
           <thead class="thead-inverse">
@@ -57,7 +60,7 @@
 </table>
 </div>
 {{ $appoints->links() }}
-<br><br>
+<br>
 
 @if ( !Auth::guest() )
 	<a href="appoint" class="btn btn-outline-success"><img src="image/add.png" width="20" height="20"> เพิ่มรายการ </a>

@@ -12,7 +12,6 @@ class ServicesController extends Controller
     // {
     //     $this->middleware('auth');
     // }
-    
     public function index(Request $request)    {
         $services = Service::orderBy('updated_at','asc')->get();
         return view('appoint.index_ser')->with('services',$services);

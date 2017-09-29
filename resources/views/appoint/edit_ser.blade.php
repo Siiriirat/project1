@@ -3,14 +3,16 @@
 @section('content')
 <br><br>
 <a href="/services" class="btn btn-outline-success"><img src="/image/return.png" width="30" height="30"> </a>
-<br><br>
-<div class="col-md-8">
- <div class="col align-center">
-        <div class="card" style="width: 40rem;">
-          <div class="card-body">
-          <form method="post" action="/services">
-          <h4 class="card-title">เพิ่มบริการ</h4>
-          <p class="card-text">
+<br>
+<div align="right">         
+          <a href="/services" class="btn btn-outline-warning"><img src="/image/list.png" width="30" height="30">รายการบริการ</a>
+                
+</div>
+<br>
+<div class="card card-container">
+      <form method="post" action="/services">
+        <div class="container">
+          <legend>เพิ่มบริการ</legend>
           <div class="form-group">
           <label for="name_ser">ชื่อบริการ : <input type="text" name="name_ser" class="form-control" value="{{$service->name_ser}}"></label>
           </div> 
@@ -26,25 +28,18 @@
           </div>
 
           {{csrf_field()}}  
-
-
-
-
-        </p>
-         <button type="submit" class="btn btn-outline-success"><img src="/image/edit1.png" width="20" height="20"> Edit</button>
-        </form>
-
-          </div>
-       </div>
-    </div>
+         <button type="submit" class="btn btn-outline-success"><img src="/image/edit1.png" width="20" height="20"> Edit
+         </button>
+         
+        </div>
+        <br>
+      </form>
 </div>
-<div class="col align-right">
-          
-          
-          <a href="/services" class="btn btn-outline-warning"><img src="/image/list.png" width="30" height="30">รายการบริการ</a>
-          
-       
-</div>
+
+
+
+
+
 <br>
 
 @endsection

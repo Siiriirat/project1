@@ -155,15 +155,11 @@
           </div>
           
 
-
-
           
   <div class="form-group">
     <label for="detail">รายละเอียดเพิ่มเติม :</label>
     <textarea name="detail" class="form-control" rows="4">{{$appoint->detail}}</textarea>
   </div>
-
-  
 
 
   <b>From: </b> {{ Auth::user()->name}} <br>
@@ -175,6 +171,7 @@
   {{csrf_field()}}  
   <button type="submit" class="btn btn-primary">Submit</button>
   </div>
+<br>
 </form>
 <br>
 </div>

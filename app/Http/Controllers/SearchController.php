@@ -10,7 +10,7 @@ class SearchController extends Controller
     public function search(Request $request)
     {
     	$name = $request->get('name');
-    	$NUM_PAGE = 6;
+    	$NUM_PAGE = 4;
         $appoints = Appoint::Where('service',$name)->paginate($NUM_PAGE);
         $page = $request->input('page');
         $page = ($page != null)?$page:1;

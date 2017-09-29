@@ -13,7 +13,7 @@ class AppointsController extends Controller
     // }
     
     public function index(Request $request)    {
-        $NUM_PAGE = 6;
+        $NUM_PAGE = 4;
         $appoints = Appoint::orderBy('updated_at','desc')->paginate($NUM_PAGE);
         $page = $request->input('page');
         $page = ($page != null)?$page:1;
@@ -25,7 +25,9 @@ class AppointsController extends Controller
         return view('appoint.appoint');
     }
     public function store(Request $request)    {
-        $temp_app = DB::table('appoints')->where('date',$request->date)->where('time',$request->time)->get();
+        $temp_app = DB::table('appoints')->where('date',$request->date)
+                                         ->where('time',$request->time)
+                                         ->where('staff',$request->staff)->get();
         if(count($temp_app)==0)
         {
         Appoint::create( $request->all() );
@@ -34,7 +36,7 @@ class AppointsController extends Controller
         }
         else
         {
-            return redirect('appoint')->with('errors','วันที่ '.$request->date.' เวลา '.$request->time.' มีคนจองแล้วค่ะ '. 'กรุณากรอกข้อมูลใหม่่');
+            return redirect('appoint')->with('errors','วันที่ '.$request->date.' เวลา '.$request->time.' มีคนจองแล้วค่ะ '. 'กรุณากรอกข้อมูลใหม่');
         }
     }
     public function show($id)

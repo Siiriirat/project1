@@ -31,23 +31,29 @@
                 <div class="navbar-header">
                     <!-- Branding Image -->
                     <a class="navbar-brand" href="home1">
-                    <img src="image/icon1.png" width="30" height="30" class="d-inline-block align-top" alt=""> Appointment
+                    <img src="image/icon2.png" width="30" height="30" class="d-inline-block align-top" alt=""> Appointment
                     </a>
                 </div>
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item active">
-                    <a class="btn btn-outline-danger nav-link" href="home1">Home<span class="sr-only"></span></a>
+                    <a class="btn btn-outline-danger nav-link" href="{{url('home1')}}">Home<span class="sr-only"></span></a>
                     </li>&nbsp
                     <li class="nav-item">
-                    <a class="btn btn-outline-danger nav-link" href="news">News</a>
+                    <a class="btn btn-outline-danger nav-link" href="{{url('news')}}">News</a>
                     </li>&nbsp
 
+                    @if (Auth::user()->level == "admin")
                     <li class="nav-item">
-                    <a class="btn btn-outline-danger nav-link" href="services">Service</a>
+                    <a class="btn btn-outline-danger nav-link" href="{{url('service')}}">Service</a>
                     </li>&nbsp
+                    @else
+                    <li class="nav-item">
+                    <a class="btn btn-outline-danger nav-link" href="{{url('/services')}}">Service</a>
+                    </li>&nbsp
+                    @endif
                     
                     <li class="nav-item">
-                    <a class="btn btn-outline-danger nav-link" href="appoint">Appointment</a>
+                    <a class="btn btn-outline-danger nav-link" href="{{url('appoint')}}">Appointment</a>
                    </li>&nbsp
 
                     <!--@if (Auth::user()->level == "admin")
