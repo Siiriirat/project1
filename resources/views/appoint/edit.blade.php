@@ -2,7 +2,7 @@
 @section('title','Appointment')
 @section('content')
 <br><br>
-<a href="/appoints" class="btn btn-outline-success"><img src="/image/return.png" width="30" height="30"> </a>
+<a href="/appoints" class="btn btn-danger"><img src="/image/return1.png" width="30" height="30"> </a>
 <br><br>
 <form method="post" action="/appoints/{{$appoint->id}}">
           <div class="card card-container">
@@ -169,23 +169,13 @@
 
   <input type="hidden" name="_method" value="PUT">
   {{csrf_field()}}  
-  <button type="submit" class="btn btn-primary">Submit</button>
-  </div>
-<br>
+  <br>
+  <button type="submit" class="btn btn-warning">แก้ไขข้อมูล</button>
+  <br><br>
+</div>
+
 </form>
 <br>
 </div>
-     
-
-
-
-
-
-
-
-
-
-
-
 @endsection
 

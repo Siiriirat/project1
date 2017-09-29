@@ -31,7 +31,7 @@
                 <div class="navbar-header">
                     <!-- Branding Image -->
                     <a class="navbar-brand" href="/home1">
-                    <img src="/image/icon1.png" width="30" height="30" class="d-inline-block align-top" alt=""> Appointment
+                    <img src="/image/icon2.png" width="30" height="30" class="d-inline-block align-top" alt=""> Appointment
                     </a>
                 </div>
                 <ul class="navbar-nav mr-auto">

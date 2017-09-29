@@ -76,37 +76,43 @@
                             <li><a href="{{ route('login') }}" class = "btn btn-success">Login</a></li>
                             <li><a href="{{ route('register') }}">Register</a></li>
                         @else
-                            <li class="dropdown">
-                                <a href="#" class="btn btn-danger dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-                                    <i class="fa fa-user-circle"></i> {{ Auth::user()->name }} <span class="caret"></span>
-                                </a>
-
-                                <ul class="dropdown-menu" role="menu">
-                                    <li>
-                                        <a href="{{ route('logout') }}"
+                          <div class="btn-group" role="group">
+                             <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <i class="fa fa-user-circle"></i> {{ Auth::user()->name }}
+                                <span class="caret"></span>
+                             </button>
+                             <ul class="dropdown-menu">
+                             <li>
+                                 <a href="{{ route('logout') }}"
                                             onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
                                             &nbsp<i class="fa fa-power-off"></i> Logout
-                                        </a>
-
-                                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                 </a>
+                                 <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                             {{ csrf_field() }}
-                                        </form>
-                                    </li>
-                                    <li>
-                                       <a href="change-password">
+                                 </form>
+
+                              </li>
+                              <li>
+                              <a href="change-password">
                                          &nbsp<i class="fa fa-cog"></i> Change password
-                                       </a>
- 
-                                    </li>
-                                </ul>
-                            </li>
-                        @endif
+                              </a>
+                              </li>
+                              </ul>
+                           </div>
+                         @endif
                     </ul>
                 </div>
             </div>
         </nav>
     </div>
+
+
+
+
+
+
+               
 <!-- <div class="panel panel-default">
 	<div class="container">
 		<h1>@yield('title')</h1>

@@ -12,6 +12,10 @@
     <title>Login</title>
 
     <!-- Styles -->
+    <link rel="stylesheet" type="text/css" href="css/font-awesome.css">
+    <link rel="stylesheet" type="text/css" href="css/font-awesome-min.css">
+    <link rel="stylesheet" type="text/css" href="css/bootstrap-min.css">
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 
     <!-- Scripts -->
