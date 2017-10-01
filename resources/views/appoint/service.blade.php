@@ -3,11 +3,7 @@
 @section('content')
 <br><br>
 <div align="right">
-          
-          
-          <a href="/services" class="btn btn-outline-warning"><img src="image/list.png" width="30" height="30">รายการบริการ</a>
-          
-       
+          <a href="/services" class="btn btn-warning"><i class="fa fa-plus-square-o" aria-hidden="true"></i> รายการบริการ</a>
 </div>
 <br>
  <div class="card card-container">
@@ -29,7 +25,7 @@
           </div>
           {{csrf_field()}} 
           <div class="form-group">
-          <button type="submit" class="btn btn-outline-success"><img src="image/add.png" width="20" height="20"> Add
+          <button type="submit" class="btn btn-success"><i class="fa fa-plus-circle"></i> เพิ่มบริการ
           </button> 
           </div>
           </div>

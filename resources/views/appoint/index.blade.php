@@ -48,7 +48,7 @@
 		@can('show',$item)
 			<form method="post" action="appoints/{{$item->id}}" class="form-inline">
 				<td><a href="appoints/{{$item->id}}" class="btn btn-info"><i class="fa fa-eye"></i> แสดง</a>
-				<a href="appoints/{{$item->id}}/edit" class="btn btn-warning"><i class="fa fa-edit"></i> แก้ไข</a>		
+				<a href="appoints/{{$item->id}}/edit" class="btn btn-warning"><i class="fa fa-edit"></i> แก้ไข</a>
 				<input type="hidden" name="_method" value="Delete">
 				<button class="btn btn-danger btn-xs"><i class="fa fa-ban"></i> ยกเลิก</button> </td>
 				{{csrf_field()}}
