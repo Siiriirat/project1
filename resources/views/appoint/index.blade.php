@@ -25,13 +25,13 @@
 <table class="table table-bordered">
           <thead class="thead-inverse">
            <tr>
-           <th>Index</th>
-           <th>Service</th>
-           <th>Staff</th>
-           <th>Date</th>
-		   <th>Time</th>
-           <th>Name</th>
-           <th>Option</th>
+           <th>ลำดับที่</th>
+           <th>ชื่อบริการ</th>
+           <th>ช่างผู้ให้บริการ</th>
+           <th>วันที่จอง</th>
+		   <th>เวลาที่จอง</th>
+           <th>ชื่อผู้จอง</th>
+           <th>ตัวเลือก</th>
            </tr>
           </thead>
 @foreach( $appoints as  $index => $item )
@@ -42,9 +42,7 @@
 		<td>{{$item->staff}}</td>
 		<td>{{$item->date}}</td>
 		<td>{{$item->time}}</td>
-		<td>{{$item->user()->get()[0]->name}}</td>
-
-        
+		<td>{{$item->user()->get()[0]->name}}</td>	
 		@can('show',$item)
 			<form method="post" action="appoints/{{$item->id}}" class="form-inline">
 				<td><a href="appoints/{{$item->id}}" class="btn btn-info"><i class="fa fa-eye"></i> แสดง</a>

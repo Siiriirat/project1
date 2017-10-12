@@ -39,28 +39,33 @@
                 </div>
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item active">
-                    <a class="btn btn-outline-danger nav-link " href="{{url('home1')}}"><i class="fa fa-home"></i> Home<span class="sr-only"></span>
+                    <a class="btn btn-outline-danger nav-link " href="{{url('home1')}}"><i class="fa fa-home"></i> หน้าหลัก<span class="sr-only"></span>
                     
                     </a>
                     </li>&nbsp
                     <li class="nav-item">
-                    <a class="btn btn-outline-danger nav-link" href="{{url('news')}}"><i class="fa fa-newspaper-o"></i> News</a>
+                    <a class="btn btn-outline-danger nav-link" href="{{url('news')}}"><i class="fa fa-newspaper-o"></i> ข่าวสาร</a>
                     </li>&nbsp
 
                     @if (Auth::user()->level == "admin")
+
                     <li class="nav-item">
-                    <a class="btn btn-outline-danger nav-link" href="{{url('service')}}"><i class="fa fa-th-list"></i> Service</a>
+                    <a class="btn btn-outline-danger nav-link" href="{{url('service')}}"><i class="fa fa-th-list"></i> รายการบริการ</a>
                     </li>&nbsp
                     @else
                     <li class="nav-item">
-                    <a class="btn btn-outline-danger nav-link" href="{{url('/services')}}"><i class="fa fa-th-list"></i> Service</a>
+                    <a class="btn btn-outline-danger nav-link" href="{{url('/services')}}"><i class="fa fa-th-list"></i> รายการบริการ</a>
                     </li>&nbsp
                     @endif
-                    
+                    @if (Auth::user()->level == "admin")
                     <li class="nav-item">
-                    <a class="btn btn-outline-danger nav-link" href="{{url('appoint')}}"><i class="fa fa-calendar-plus-o"></i> Appointment</a>
-                   </li>&nbsp
-
+                    <a class="btn btn-outline-danger nav-link" href="{{url('appoints')}}"><i class="fa fa-calendar-plus-o"></i> จองคิวบริการ</a>
+                    </li>&nbsp
+                    @else
+                    <li class="nav-item">
+                    <a class="btn btn-outline-danger nav-link" href="{{url('/appoint')}}"><i class="fa fa-calendar-plus-o"></i> จองคิวบริการ</a>
+                    </li>&nbsp
+                    @endif
                     <!--@if (Auth::user()->level == "admin")
                     <li class="nav-item">
                     <a class="btn btn-outline-danger nav-link" href="service">Setting</a>

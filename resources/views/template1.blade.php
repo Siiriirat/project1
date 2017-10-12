@@ -8,6 +8,17 @@
     <link href="http://weareoutman.github.io/clockpicker/dist/jquery-clockpicker.min.css" rel="stylesheet" />
     <script src="http://weareoutman.github.io/clockpicker/dist/jquery-clockpicker.min.js"></script>
     
+
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-alpha/css/bootstrap.css" rel="stylesheet" />
+    <link href="http://weareoutman.github.io/clockpicker/dist/jquery-clockpicker.min.css" rel="stylesheet" />
+    <script src="http://weareoutman.github.io/clockpicker/dist/jquery-clockpicker.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    
+    
+    <link rel="stylesheet" type="text/css" href="/css/font-awesome.css">
+    <link rel="stylesheet" type="text/css" href="/css/font-awesome-min.css">
+    <link rel="stylesheet" type="text/css" href="/css/bootstrap-min.css">
+    <link rel="stylesheet" type="text/css" href="/css/bootstrap.css">
     
 
 
@@ -36,25 +47,33 @@
                 </div>
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item active">
-                    <a class="btn btn-outline-danger nav-link" href="/home1">Home<span class="sr-only"></span></a>
-                    </li>&nbsp
-                    <li class="nav-item">
-                    <a class="btn btn-outline-danger nav-link" href="/news">News</a>
-                    </li>&nbsp
-
-                    <li class="nav-item">
-                    <a class="btn btn-outline-danger nav-link" href="/services">Service</a>
-                    </li>&nbsp
+                    <a class="btn btn-outline-danger nav-link " href="{{url('/home1')}}"><i class="fa fa-home"></i> หน้าหลัก<span class="sr-only"></span>
                     
-                    <li class="nav-item">
-                    <a class="btn btn-outline-danger nav-link" href="/appoint">Appointment</a>
-                   </li>&nbsp
-
-                    <!--@if (Auth::user()->level == "admin")
-                    <li class="nav-item">
-                    <a class="btn btn-outline-danger nav-link" href="service">Setting</a>
+                    </a>
                     </li>&nbsp
-                    @endif-->
+                    <li class="nav-item">
+                    <a class="btn btn-outline-danger nav-link" href="{{url('/news')}}"><i class="fa fa-newspaper-o"></i> ข่าวสาร</a>
+                    </li>&nbsp
+
+                    @if (Auth::user()->level == "admin")
+
+                    <li class="nav-item">
+                    <a class="btn btn-outline-danger nav-link" href="{{url('service')}}"><i class="fa fa-th-list"></i> รายการบริการ</a>
+                    </li>&nbsp
+                    @else
+                    <li class="nav-item">
+                    <a class="btn btn-outline-danger nav-link" href="{{url('/services')}}"><i class="fa fa-th-list"></i> รายการบริการ</a>
+                    </li>&nbsp
+                    @endif
+                    @if (Auth::user()->level == "admin")
+                    <li class="nav-item">
+                    <a class="btn btn-outline-danger nav-link" href="{{url('appoint')}}"><i class="fa fa-calendar-plus-o"></i> จองคิวบริการ</a>
+                    </li>&nbsp
+                    @else
+                    <li class="nav-item">
+                    <a class="btn btn-outline-danger nav-link" href="{{url('/appoints')}}"><i class="fa fa-calendar-plus-o"></i> จองคิวบริการ</a>
+                    </li>&nbsp
+                    @endif
                 </ul>
 
                 <div class="navbar-expand-lg navbar-dark bg-dark" id="app-navbar-collapse">
