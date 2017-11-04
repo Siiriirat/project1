@@ -64,14 +64,13 @@
 		<td>{{$item->date}}</td>
 		<td>{{$item->time}}</td>
 		<td>
-			
-		<?php
+			{{$item->time_e}}
+		<!--<?php
 			echo (int) ($item->time[0]);
 			echo (int) ($item->time[1]);
 			echo (int) ($item->time[3]); 
 			echo (int) ($item->time[4]); 
-		?>
-{{$item->ntime}}
+		?>-->
 </td>
 		<td>{{$item->user()->get()[0]->name}}</td>	
 		<td><?php 

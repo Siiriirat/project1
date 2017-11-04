@@ -28,16 +28,17 @@ class AppointsController extends Controller
         return view('appoint.appoint');
     }
     public function store(Request $request)    {
-        //$ntime = (int) $request->get('time');
+        //$ntime = (int) $request->get('time');        
+        $time_e =$request->get('time_e');
         $idser  = (int) $request->get('id_ser');
         $nser = DB::table('services')->where('id_ser',$idser)->get();
-    
+        
         $ntime = $request->get('time');
         $sptime = explode(':', $ntime);
         //dd($sptime[0]);
         $ctime1 = (int) $sptime[0];
         $ctime2 = (int) $sptime[1];
-        $sum = $ctime2 + 2;
+        //$sum = $ctime2 + 2;
         //dd($ctime2);
         //$ntime = $request->get('time');
         //dd($nser[0]->sp_time);
@@ -67,14 +68,16 @@ class AppointsController extends Controller
               $t2 = (string) $timee_m1;
               $t3 = '0'.$t2;
               $t4 = $t1.':'.$t3;
-              dd($t4);  
+              $time_e = $t4;
+              //dd($time_e);  
             }
             elseif($timee_m1 > 9)
             {
               $t1 = (string) $timee_h1;
               $t2 = (string) $timee_m1;
               $t3 = $t1.':'.$t2 ;
-              dd($t3);  
+              $time_e = $t3;
+              //dd($time_e);  
             }
         }
         elseif ($timee_m < 60) {
@@ -84,17 +87,44 @@ class AppointsController extends Controller
             $t3 = (string) $timee_h;
             $t4 = (string) $timee_m;
             $t5 = $t3.':'.$t4 ;
-            dd($t5);
+            $time_e = $t5;
+            //dd($time_e);
         }
-
+        /*$data = new Appoint;
+        $data->time_e = $time_e;
+        $data->tel = $request->get('tel');
+        $data->gender = $request->get('gender');
+        $data->date = $request->get('date');
+        $data->time = $request->get('time');
+        $data->staff = $request->get('staff');
+        $data->detail = $request->get('detail');
+        $data->user_id = $request->get('user_id');
+        $data->id_ser = $request->get('id_ser');
+        $data->ip = $request->get('ip');
+       
+        $data->save();*/
         $temp_app = DB::table('appoints')->where('date',$request->date)
                                          ->where('time',$request->time)
                                          ->where('staff',$request->staff)->get();
+                                 
         if(count($temp_app)==0)
         {
-        Appoint::create( $request->all() );
-        $appoint = Appoint::all()->last();
-        return redirect('appoints');
+        /*Appoint::create( $request->all() );
+        $appoint = Appoint::all()->last();*/
+        $data = new Appoint;
+        $data->time_e = $time_e;
+        $data->tel = $request->get('tel');
+        $data->gender = $request->get('gender');
+        $data->date = $request->get('date');
+        $data->time = $request->get('time');
+        $data->staff = $request->get('staff');
+        $data->detail = $request->get('detail');
+        $data->user_id = $request->get('user_id');
+        $data->id_ser = $request->get('id_ser');
+        $data->ip = $request->get('ip');
+       
+        $data->save();
+        return redirect('appoints')->with('time_e',$data->time_e);
         }
         else
         {
