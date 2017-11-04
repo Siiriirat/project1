@@ -46,29 +46,30 @@
           </div> 
           <div class="form-group">
           <label for="service"   class= "control-label" >บริการ : <br>
-          <select  name="service" id="service" class="custom-select" required>
+          <select  name="id_ser" id="id_ser" class="custom-select" required>
           <option value="" required>--- เลือกประเภทบริการ ---</option>
           <optgroup label="หน้า" data-max-options="3">
-          <option value="แต่งหน้า" required>แต่งหน้า</option>
-          <option value="มาร์กหน้า" required>มาร์กหน้า</option>
+          <option value="1" required>แต่งหน้า</option>
+          <option value="2" required>มาร์กหน้า</option>
           </optgroup>
 
           <optgroup label="ผม" data-max-options="3">
-          <option value="ตัดผม" required>ตัดผม</option>
-          <option value="สระไดร์" required>สระไดร์</option>
-          <option value="ทำสีผม" required>ทำสีผม</option>
-          <option value="ยืดผม" required>ยืดผม</option>
-          <option value="ดัดผม" required>ดัดผม</option>
+          <option value="3" required>ตัดผม</option>
+          <option value="4" required>สระไดร์</option>
+          <option value="5" required>ทำสีผม</option>
+          <option value="6" required>ยืดผม</option>
+          <option value="7" required>ดัดผม</option>
           </optgroup>
 
           
           <optgroup label="เล็บ" data-max-options="3">
-          <option value="ทำเล็บมือ" required>ทำเล็บมือ</option>
-          <option value="ทำเล็บเท้า" required>ทำเล็บเท้า</option>
+          <option value="8" required>ทำเล็บมือ</option>
+          <option value="9" required>ทำเล็บเท้า</option>
           </optgroup>
           </select>
           </label>
           </div>
+          
           <div class="form-group">
           <label for="staff" class= "control-label">ผู้ให้บริการ : <br>
           <select  name="staff" id="staff" class="custom-select" required> 
@@ -120,7 +121,7 @@
           <div>
           <b>From: </b> {{ Auth::user()->name}} <br>
             <input type="hidden" name="user_id" value="{{Auth::user()->id}}">
-          <input type="hidden" name="ip" value="{{Request::getClientIp()}}">
+            <input type="hidden" name="ip" value="{{Request::getClientIp()}}">
           </div>
           {{csrf_field()}}  
 

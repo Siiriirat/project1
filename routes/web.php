@@ -31,6 +31,9 @@ Route::get('/service', function () {
 Route::get('/appoint', function () {
     return view('appoint.appoint');
 });
+Route::get('/contact', function () {
+    return view('appoint.contact');
+});
 Route::resource('appoints','Appoints\\AppointsController');
 Route::resource('services','Services\\ServicesController');
 

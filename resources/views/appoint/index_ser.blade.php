@@ -10,6 +10,7 @@
            <th>ชื่อบริการ</th>
            <th>ชนิดบริการ</th>
            <th>ราคาของบริการ</th>
+           <th>เวลที่ใช้ (ชั่วโมง.นาที)</th>
            @if (Auth::user()->level == "admin")
            <th>ตัวเลือก</th>
            @endif
@@ -22,6 +23,7 @@
 		<td>{{$item->name_ser}}</td>
 		<td>{{$item->type}}</td>
 		<td>{{$item->cost}} ฿</td>
+		<td>{{$item->sp_time}}</td>
 		@if (Auth::user()->level == "admin")
 			<form method="post" action="services/{{$item->id_ser}}" class="form-inline">
 

@@ -19,6 +19,9 @@
           <div class="form-group" style="width:230px;">
           <label for="cost">ราคาของบริการ : <input type="number" name="cost" class="form-control"></label>
           </div>
+          <div class="form-group" style="width:230px;">
+          <label for="sp_time">เวลาที่ใช้ : <input type="text" name="sp_time" class="form-control"></label>
+          </div> 
           <div class="form-group">
           <label for="detail">รายละเอียดบริการ :</label>
           <textarea name="detail" class="form-control" rows="4" placeholder="Enter text here"></textarea>

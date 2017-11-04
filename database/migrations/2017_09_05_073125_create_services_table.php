@@ -19,6 +19,7 @@ class CreateServicesTable extends Migration
             $table->string('type');
             $table->float('cost');
             $table->string('detail',10000);
+            $table->float('sp_time');
             $table->rememberToken();
             $table->timestamps();
         });

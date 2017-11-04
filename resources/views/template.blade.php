@@ -60,12 +60,17 @@
                     @if (Auth::user()->level == "admin")
                     <li class="nav-item">
                     <a class="btn btn-outline-danger nav-link" href="{{url('appoints')}}"><i class="fa fa-calendar-plus-o"></i> จองคิวบริการ</a>
-                    </li>&nbsp
+                    </li>
                     @else
                     <li class="nav-item">
                     <a class="btn btn-outline-danger nav-link" href="{{url('/appoint')}}"><i class="fa fa-calendar-plus-o"></i> จองคิวบริการ</a>
-                    </li>&nbsp
+                    </li>
                     @endif
+                    </li>&nbsp
+                    <li class="nav-item">
+                    <a class="btn btn-outline-danger nav-link" href="{{url('contact')}}"><i class="fa fa-newspaper-o"></i> ติดต่อเรา</a>
+                    </li>&nbsp
+
                     <!--@if (Auth::user()->level == "admin")
                     <li class="nav-item">
                     <a class="btn btn-outline-danger nav-link" href="service">Setting</a>
