@@ -11,7 +11,10 @@
          <h5>{{$appoint->user_id}} {{ Auth::user()->name}}</h5>
          <p>เบอร์โทรศัพท์ : {{$appoint->tel}}</p>
          <p>เพศ : {{$appoint->gender}}</p>
-         <p>บริการ : {{$appoint->service}}</p>
+         <p>บริการ : <?php 
+          echo (DB::table('services')->where('id_ser',$appoint->id_ser)->value('name_ser'));
+         ?>
+         </p>
          <p>วันและเวลาที่จอง : {{$appoint->date}} : {{$appoint->time}}</p>
          <p>ช่างผู้ให้บริการ : {{$appoint->staff}}</p>
          @if ($appoint->detail == "NULL")
