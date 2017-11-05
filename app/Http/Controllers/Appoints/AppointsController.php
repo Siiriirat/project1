@@ -54,15 +54,15 @@ class AppointsController extends Controller
             $timee_m1 = 0 + $m2;
             if($timee_m1 <= 9 && $timee_h1 <= 9)
             {   
-              $time_e = ('0'.(string) $timee_h1).':'.'0'. (string) $timee_m1; dd($time_e);   
+              $time_e = ('0'.(string) $timee_h1).':'.'0'. (string) $timee_m1; //dd($time_e);   
             }
             elseif($timee_m1 <= 9 && $timee_h1 >= 9)
             { 
-              $time_e = (string) $timee_h1.':'.'0'.(string) $timee_m1;dd($time_e);
+              $time_e = (string) $timee_h1.':'.'0'.(string) $timee_m1;//dd($time_e);
             }
             elseif($timee_m1 >= 9 && $timee_h1 <= 9)
             { 
-              $time_e = '0'.(string) $timee_h1.':'.(string) $timee_m1; dd($time_e);   
+              $time_e = '0'.(string) $timee_h1.':'.(string) $timee_m1;// dd($time_e);   
             }  
         }
         elseif($timee_m >= 60 && $timee_h < 24)
