@@ -32,7 +32,7 @@ class AppointsController extends Controller
         $time_e =$request->get('time_e');
         $idser  = (int) $request->get('id_ser');
         $nser = DB::table('services')->where('id_ser',$idser)->get();
-        
+        // dd($nser[0]->name_ser);
         $ntime = $request->get('time');
         $sptime = explode(':', $ntime);
         

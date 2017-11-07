@@ -38,7 +38,7 @@
                     </a>
                 </div>
                 <ul class="navbar-nav mr-auto">
-                    <li class="nav-item active">
+                    <li class="nav-item">
                     <a class="btn btn-outline-danger nav-link " href="{{url('home1')}}"><i class="fa fa-home"></i> หน้าหลัก<span class="sr-only"></span>
                     
                     </a>

@@ -18,11 +18,13 @@
         </ul>
     </div>
 @endif
-<br>
+
 
     <div class="card card-container">
           <form method="post" action="/appoints">
           <div class="container">
+           <div class="row">
+                <div class="col-md-6">
           <legend>ระบบจองคิว</legend>
           <div class="form-group">
           <label for="tel">เบอร์โทรศัพท์ : <input type="text" name="tel" class="form-control" required></label>
@@ -80,8 +82,10 @@
           </select> 
           </label>
           </div>
+         </div>
 
-
+          <div class="col-md-6">
+          <br><br>
           <div class="form-group">   
           <label for="time">ระบุวันและเวลา :</label><br> 
    
@@ -126,18 +130,18 @@
           {{csrf_field()}}  
 
 
-
-
         </p>
          <button type="submit" class="btn btn-success"><i class="fa fa-check-square"> จอง </i>
          </button>
          </div>
+       </div>
+     </div>
         </form>
 
          
 </div>
 
-<br>
+
     <script>
       $('.clockpicker').clockpicker({
         'default': DisplayCurrentTime(),

@@ -14,7 +14,7 @@
          <p>บริการ : <?php 
           echo (DB::table('services')->where('id_ser',$appoint->id_ser)->value('name_ser'));
          ?>
-         </p>
+          </p>
          <p>วันและเวลาที่จอง : {{$appoint->date}} : {{$appoint->time}}</p>
          <p>ช่างผู้ให้บริการ : {{$appoint->staff}}</p>
          @if ($appoint->detail == "NULL")
@@ -22,7 +22,6 @@
          @else
          <p>รายละเอียดเพิ่มเติม : {{$appoint->detail}}</p>
          @endif
-
           </p>
   
           </div>
