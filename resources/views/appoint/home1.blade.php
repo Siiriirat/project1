@@ -1,4 +1,4 @@
-@extends('template')
+@extends('template_nav')
 @section('title','Appointment')
 @section('content')
   <head>
@@ -6,10 +6,11 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <!-- Bootstrap CSS --> 
+    <link rel="stylesheet" type="text/css" href="{{asset('css/bootstrap-slide.css')}}">
   </head>
   <body>
  <br><br>
- <center>
+ <!-- <center>
    <div id="carouselExampleSlidesOnly" class="carousel slide" data-ride="carousel">
   <div class="carousel-inner">
     <div class="carousel-item active">
@@ -23,11 +24,44 @@
     </div>
   </div>
   </div>
- </center>
-  
+ </center> -->
 
-
-
+<div class="accordian">
+  <ul>
+       <li>
+      <div class="image_title">
+        <a href="#">Beauty and Salon</a>
+      </div>
+      <a href="#">
+     <img src="image/2.jpg">
+      </a>
+    </li>
+          <li>
+      <div class="image_title">
+        <a href="#">Beauty and Salon</a>
+      </div>
+      <a href="#">
+     <img src="image/3.jpg">
+      </a>
+    </li>
+             <li>
+      <div class="image_title">
+        <a href="#">Beauty and Salon</a>
+      </div>
+      <a href="#">
+     <img src="image/6.png">
+      </a>
+    </li>
+                <li>
+      <div class="image_title">
+        <a href="#">Beauty and Salon</a>
+      </div>
+      <a href="#">
+     <img src="image/4.jpg">
+      </a>
+    </li>
+  </ul>
+</div>
 
 
 

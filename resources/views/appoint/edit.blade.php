@@ -1,9 +1,21 @@
-@extends('template1')
+@extends('template_nav')
 @section('title','Appointment')
 @section('content')
-<br><br>
-<a href="/appoints" class="btn btn-danger"><img src="/image/return1.png" width="30" height="30"> </a>
-<br><br>
+<div class="row">
+  <div class="col-md-3">
+    <a href="/appoints" class="btn btn-success "><i class="fa fa-hand-o-left" ></i></a>
+  </div>
+  <div class="col-md-3"></div>
+  <div class="col-md-3"></div>
+  <div class="col-md-2"></div>
+  <div class="col-md-1">
+          <a href="/appoints" class="btn btn-warning"><i class="fa fa-plus-square-o"></i> รายการบริการ</a>
+</div>
+</div>
+
+<br>
+<div class="container">
+    <div class="well">
 <form method="post" action="/appoints/{{$appoint->id}}">
           @if (Auth::user()->level == "admin")
           <div class="card card-container">
@@ -55,7 +67,7 @@
           <div class="col-md-6">
           <div class="form-group">
           <label for="service" class="col-sm-0" class= "control-label">บริการ : <br>
-          <select  name="service" id="service" class="custom-select" style="width:225px;">
+          <select  name="service" id="service" class="form-control" style="width:225px;">
 
          <!--  <option value="">--- เลือกประเภทบริการ ---</option> -->
           <optgroup label="หน้า" data-max-options="3">
@@ -115,8 +127,8 @@
           </div>
      
           <div class="form-group">
-          <label for="staff" class="col-sm-0" class= "control-label">ผู้ให้บริการ : <br>
-          <select  name="staff" id="staff" class="custom-select"> 
+          <label for="staff" class="col-sm-0" class= "form-control">ผู้ให้บริการ : <br>
+          <select  name="staff" id="staff" class="form-control" style="width:225px;"> 
               <option value="">--- เลือกช่างผู้ให้บริการ ---</option>
               @if($appoint->staff == 'A')
               <option value="A" selected>- A -</option>
@@ -166,7 +178,8 @@
           </div> --> 
           <!-- 
           {{ Auth::user()->name}} -->
-            <button type="submit" class="btn btn-warning">แก้ไขข้อมูล</button>
+            <button type="submit" class="btn btn-warning"><i class="fa fa-edit"></i> แก้ไข
+         </button>
             <br>
           
         </div>
@@ -245,7 +258,7 @@
           <div class="form-group">
           <label for="service" class="col-sm-0" class= "control-label">บริการ : <br>
       
-          <select  name="service" id="service" class="custom-select" style="width:225px;">
+          <select  name="service" id="service" class="form-control" style="width:225px;">
 
           <!-- <option value="">--- เลือกประเภทบริการ ---</option> -->
           <optgroup label="หน้า" data-max-options="3">
@@ -305,7 +318,7 @@
           </div>
           <div class="form-group">
           <label for="staff" class="col-sm-0" class= "control-label">ผู้ให้บริการ : <br>
-          <select  name="staff" id="staff" class="custom-select"> 
+          <select  name="staff" id="staff" class="form-control" style="width:225px;"> 
               <option value="">--- เลือกช่างผู้ให้บริการ ---</option>
               @if($appoint->staff == 'A')
               <option value="A" selected>- A -</option>
@@ -352,7 +365,7 @@
           
   <div class="form-group">
     <label for="detail">รายละเอียดเพิ่มเติม :</label>
-    <textarea name="detail" class="form-control" rows="4">{{$appoint->detail}}</textarea>
+    <textarea name="detail" class="form-control" style="width:100%;" rows="4" placeholder="Enter text here" value="{{$appoint->detail}}"></textarea>
   </div>
 
 
@@ -364,13 +377,11 @@
   <input type="hidden" name="_method" value="PUT">
   {{csrf_field()}}  
   <br>
-  <button type="submit" class="btn btn-warning">แก้ไขข้อมูล</button>
-  <br><br>
+  <button type="submit" class="btn btn-warning"><i class="fa fa-edit"></i> แก้ไข
+         </button>
+ 
 </div>
 </div>
-
-
-<br>
 </div>
 
 </form>

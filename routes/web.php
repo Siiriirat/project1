@@ -14,10 +14,16 @@
 Route::get('/', function () {
     return view('auth.login');
 });
+
 Route::group(['middleware' => ['auth']], function() {
 Route::get('/home1', function () {
     return view('appoint.home1');
 });
+
+Route::get('/template', function () {
+    return view('template_nav');
+});
+
 Route::get('/temp', function () {
     return view('appoint.template');
 });

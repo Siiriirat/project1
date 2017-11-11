@@ -1,42 +1,52 @@
-@extends('template1')
+@extends('template_nav')
 @section('title','Appointment')
 @section('content')
-<br><br>
-<a href="/services" class="btn btn-outline-success"><img src="/image/return.png" width="30" height="30"> </a>
-<br>
-<div align="right">         
-          <a href="/services" class="btn btn-outline-warning"><img src="/image/list.png" width="30" height="30">รายการบริการ</a>
-                
+<div class="row">
+  <div class="col-md-3">
+    <a href="/services" class="btn btn-success "><i class="fa fa-hand-o-left" ></i></a>
+  </div>
+  <div class="col-md-3"></div>
+  <div class="col-md-3"></div>
+  <div class="col-md-2"></div>
+  <div class="col-md-1">
+          <a href="/services" class="btn btn-warning"><i class="fa fa-plus-square-o"></i> รายการบริการ</a>
 </div>
+</div>
+
 <br>
-<div class="card card-container">
+    <div class="well">
       <form method="post" action="/services">
-        <div class="container">
-          <legend>เพิ่มบริการ</legend>
+          <legend>แก้ไขบริการ</legend>
+          <div class="row">
+            <div class="col-md-6">
           <div class="form-group">
           <label for="name_ser">ชื่อบริการ : <input type="text" name="name_ser" class="form-control" value="{{$service->name_ser}}"></label>
           </div> 
           <div class="form-group">
           <label for="type">ประเภทบริการ : <input type="text" name="type" class="form-control" value="{{$service->type}}"></label>
           </div> 
-          <div class="form-group" style="width:230px;">
+          <div class="form-group" style="width:210px;">
           <label for="cost">ราคาของบริการ : <input type="number" name="cost" class="form-control" value="{{$service->cost}}"></label>
           </div>
-          <div class="form-group">
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
           <label for="detail">รายละเอียดบริการ :</label>
-          <textarea name="detail" class="form-control" rows="4" placeholder="Enter text here" value="{{$service->detail}}"></textarea>
+          <textarea name="detail" class="form-control" style="width:80%;" rows="4" placeholder="Enter text here" value="{{$service->detail}}"></textarea>
           </div>
-
+          <br>
           {{csrf_field()}}  
-         <button type="submit" class="btn btn-outline-success"><img src="/image/edit1.png" width="20" height="20"> Edit
+         <button type="submit" class="btn btn-warning"><i class="fa fa-edit"></i> แก้ไข
          </button>
-         
-        </div>
+            </div>
+          </div>
+       
         <br>
       </form>
+
+
 </div>
-
-
+</div>
 
 
 

@@ -11,7 +11,7 @@ class SearchController extends Controller
     {
     	$name = $request->get('name');
     	$NUM_PAGE = 4;
-        $appoints = Appoint::Where('service',$name)->paginate($NUM_PAGE);
+        $appoints = Appoint::where('staff',$name)->paginate($NUM_PAGE);
         $page = $request->input('page');
         $page = ($page != null)?$page:1;
     	return view('appoint.index')->with('appoints',$appoints)

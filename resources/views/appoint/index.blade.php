@@ -1,25 +1,25 @@
-@extends('template')
+@extends('template_nav')
 @section('title','Appointment')
 @section('content')
 <br>
 <form action="{{url('search')}}" method="post" >
 {{csrf_field()}}
 <div class="row">
-<div class="col-md-4"></div>
-<div class="col-md-4"></div>
-<div class="col-md-4">
+<div class="col-md-3"></div>
+<div class="col-md-3"></div>
+<div class="col-md-3"></div>
+<div class="col-md-3">
 <div class="form-inline">
 <div class="form-group">
             <div class="input-append">
-                <input type="text" name="name" id="name" class="search-query form-control" placeholder="Search for service" >
-                <button type="submit" class="btn">Search</button>
+                <input type="text" name="name" id="name" class="search-query form-control" placeholder="ค้นหาบริการ" >
+                <button type="submit" class="btn"><i class="fa fa-search"></i> ค้นหา</button>
             </div>
-        </form>
- </form>
 </div>
 </div>
 </div>
 </div>
+</form>
 <br>
 @if (Auth::user()->level == "admin")
 <div style="overflow-x:auto;">
@@ -31,6 +31,7 @@
            <th>วันที่จอง</th>
 		   <th>เวลาเริ่มต้น</th>
            <th>เวลาสิ้นสุด</th>
+           <th>ช่างผู้ให้บริการ</th>
            <th>ตัวเลือก</th>
            </tr>
           </thead>
@@ -42,12 +43,13 @@
 		<td>{{$item->date}}</td>
 		<td>{{$item->time}}</td>
 		<td>{{$item->time_e}}</td>
+		<td>{{$item->staff}}</td>
 		@can('show',$item)
 			<form method="post" action="appoints/{{$item->id}}" class="form-inline">
-				<td><a href="appoints/{{$item->id}}" class="btn btn-info"><i class="fa fa-eye"></i> แสดง</a>
-				<a href="appoints/{{$item->id}}/edit" class="btn btn-warning"><i class="fa fa-edit"></i> แก้ไข</a>
+				<td><a href="appoints/{{$item->id}}" class="btn btn-info btn-sm"><i class="fa fa-eye"></i> แสดง</a>
+				<a href="appoints/{{$item->id}}/edit" class="btn btn-warning btn-sm"><i class="fa fa-edit"></i> แก้ไข</a>
 				<input type="hidden" name="_method" value="Delete">
-				<button class="btn btn-danger btn-xs"><i class="fa fa-ban"></i> ยกเลิก</button> </td>
+				<button class="btn btn-danger btn-sm"><i class="fa fa-ban"></i> ยกเลิก</button> </td>
 				{{csrf_field()}}
 			</form>
 		@endcan
@@ -89,10 +91,10 @@
 		?></td>
 		@can('show',$item)
 			<form method="post" action="appoints/{{$item->id}}" class="form-inline">
-				<td><a href="appoints/{{$item->id}}" class="btn btn-info"><i class="fa fa-eye"></i> แสดง</a>
-				<a href="appoints/{{$item->id}}/edit" class="btn btn-warning"><i class="fa fa-edit"></i> แก้ไข</a>
+				<td><a href="appoints/{{$item->id}}" class="btn btn-info btn-sm"><i class="fa fa-eye"></i> แสดง</a>
+				<a href="appoints/{{$item->id}}/edit" class="btn btn-warning btn-sm"><i class="fa fa-edit"></i> แก้ไข</a>
 				<input type="hidden" name="_method" value="Delete">
-				<button class="btn btn-danger btn-xs"><i class="fa fa-ban"></i> ยกเลิก</button> </td>
+				<button class="btn btn-danger btn-sm"><i class="fa fa-ban"></i> ยกเลิก</button> </td>
 				{{csrf_field()}}
 			</form>
 		@endcan

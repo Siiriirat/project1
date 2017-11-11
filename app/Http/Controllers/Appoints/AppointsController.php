@@ -6,6 +6,7 @@ use App\Appoint;
 use DB;
 use App\Service;
 
+
 class AppointsController extends Controller
 {
     // public function __construct()
@@ -14,9 +15,10 @@ class AppointsController extends Controller
     // }
     
     public function index(Request $request)    {
-        $NUM_PAGE = 4;
+        $NUM_PAGE = 8;
         $appoints = Appoint::orderBy('staff','asc')
-                           ->orderBy('time','asc')
+                           ->orderBy('date','desc')
+                           ->orderBy('time','desc')
                            ->paginate($NUM_PAGE);
         $page = $request->input('page');
         $page = ($page != null)?$page:1;

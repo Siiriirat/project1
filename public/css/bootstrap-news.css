@@ -1,0 +1,33 @@
+.news-section {
+    padding: 4em 0 3.5em;
+}
+a.news-btn {
+    color: #000;
+    display: inline-block;
+    font-weight: 700;
+    text-transform: uppercase;
+    text-decoration: none;
+    background:  #3336ff  ;
+    color: #FFF;
+    padding: 0.5em 1em;
+    border-radius: 0.5em;
+}
+a.news-btn:hover {
+    background: #161616;
+}
+
+.news-column h4 {
+    font-size: 1.3em;
+    text-transform: uppercase;
+    color: #000;
+    font-weight: 700;
+    padding: 0.8em 0 0.3em;
+    margin: 0;
+}
+.news-column p {
+    color: #777;
+    line-height: 1.7em;
+    padding: 0.1em 0 0em;
+    display: block;
+    font-size: 1em;
+}

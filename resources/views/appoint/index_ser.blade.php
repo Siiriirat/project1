@@ -1,4 +1,4 @@
-@extends('template')
+@extends('template_nav')
 @section('title','Appointment')
 @section('content')
 <br>
@@ -27,10 +27,10 @@
 		@if (Auth::user()->level == "admin")
 			<form method="post" action="services/{{$item->id_ser}}" class="form-inline">
 
-				<td><a href="services/{{$item->id_ser}}" class="btn btn-info"><i class="fa fa-eye"></i> แสดง</a>
-				<a href="services/{{$item->id_ser}}/edit" class="btn btn-warning"><i class="fa fa-edit"></i> แก้ไขบริการ</a> 		
+				<td><a href="services/{{$item->id_ser}}" class="btn btn-info btn-sm"><i class="fa fa-eye"></i> แสดง</a>
+				<a href="services/{{$item->id_ser}}/edit" class="btn btn-warning btn-sm"><i class="fa fa-edit"></i> แก้ไขบริการ</a> 		
 				<input type="hidden" name="_method" value="Delete">
-				<button class="btn btn-danger btn-xs"><i class="fa fa-ban"></i> ลบบริการ</button> 
+				<button class="btn btn-danger btn-sm"><i class="fa fa-ban"></i> ลบบริการ</button> 
 				</td>
 				{{csrf_field()}}
 			</form>

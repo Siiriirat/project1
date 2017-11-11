@@ -1,15 +1,19 @@
-@extends('template')
+@extends('template_nav')
 @section('title','Appointment')
 <head>
     <link href="dist/DateTimePicker.css" rel="stylesheet"/>
 </head>
 @section('content')
-
+<div class="row">
+  <div class="col-md-3"></div>
+  <div class="col-md-3"></div>
+  <div class="col-md-3"></div>
+  <div class="col-md-1"></div>
+  <div class="col-md-2">
+          <a href="/appoints" class="btn btn-danger"><i class="fa fa-calendar-plus-o"></i> ตารางการเข้าใช้บริการ </a>
+  </div>
+</div>
 <br>
-<div align="right">
-        
-          <a href="/appoints" class="btn btn-primary"><img src="image/icon2.png" width="30" height="30">ตารางการเข้าใช้บริการ</a>    
-</div><br>
 @if (count($errors) > 0)
     <div class="alert alert-danger">
         <ul>
@@ -19,8 +23,9 @@
     </div>
 @endif
 
-
-    <div class="card card-container">
+<div class="container">
+    <div class="well">
+    
           <form method="post" action="/appoints">
           <div class="container">
            <div class="row">
@@ -48,7 +53,7 @@
           </div> 
           <div class="form-group">
           <label for="service"   class= "control-label" >บริการ : <br>
-          <select  name="id_ser" id="id_ser" class="custom-select" required>
+          <select  name="id_ser" id="id_ser" class="form-control" required>
           <option value="" required>--- เลือกประเภทบริการ ---</option>
           <optgroup label="หน้า" data-max-options="3">
           <option value="1" required>แต่งหน้า</option>
@@ -74,7 +79,7 @@
           
           <div class="form-group">
           <label for="staff" class= "control-label">ผู้ให้บริการ : <br>
-          <select  name="staff" id="staff" class="custom-select" required> 
+          <select  name="staff" id="staff" class="form-control" required> 
               <option value="" required>--- เลือกช่างผู้ให้บริการ ---</option>
               <option value="A" required>- A -</option>
               <option value="B" required>- B -</option>
@@ -103,24 +108,10 @@
           });
           </script>
           </div>
-          
-
-
-
-
-
-
-
-
-
-
-          
-  
-
             
           <div class="form-group">
           <label for="detail">รายละเอียดเพิ่มเติม :</label>
-          <textarea name="detail" class="form-control" rows="4" placeholder="Enter text here" ></textarea>
+          <textarea name="detail" style="width:80%;" class="form-control"  rows="4" placeholder="Enter text here" ></textarea>
           </div>
           <div>
           <b>From: </b> {{ Auth::user()->name}} <br>
@@ -140,7 +131,7 @@
 
          
 </div>
-
+</div>
 
     <script>
       $('.clockpicker').clockpicker({
