@@ -10,10 +10,11 @@
   <div class="col-md-3"></div>
   <div class="col-md-1"></div>
   <div class="col-md-2">
-          <a href="/appoints" class="btn btn-danger"><i class="fa fa-calendar-plus-o"></i> ตารางการเข้าใช้บริการ </a>
+          <a href="{{url('/appoints')}}" class="btn btn-danger"><i class="fa fa-calendar-plus-o"></i> ตารางการเข้าใช้บริการ </a>
   </div>
 </div>
 <br>
+<div class="container">
 @if (count($errors) > 0)
     <div class="alert alert-danger">
         <ul>
@@ -22,11 +23,11 @@
         </ul>
     </div>
 @endif
-
+</div>
 <div class="container">
     <div class="well">
     
-          <form method="post" action="/appoints">
+          <form method="post" action="{{url('/appoints')}}">
           <div class="container">
            <div class="row">
                 <div class="col-md-6">
@@ -40,14 +41,14 @@
           <input id="gender" name="gender" type="radio" value="เพศชาย" class="custom-control-input" required> 
           <span class="custom-control-indicator"></span>
           <span class="custom-control-description">
-            <img src="/image/male.png" width="10%">
+            <img src="{{url('/image/male.png')}}" width="10%">
           </span>
           </label><br><br>
           <label class="custom-control custom-radio">
           <input id="gender" name="gender" type="radio" value="เพศหญิง" class="custom-control-input" required>
           <span class="custom-control-indicator"></span>
           <span class="custom-control-description">
-            <img src="/image/female.png" width="10%">
+            <img src="{{url('/image/female.png')}}" width="10%">
           </span>
           </label>
           </div> 
@@ -99,9 +100,9 @@
           <label>ช่วงเวลา</label>
           <input type="text" id="time" name="time" style="width:220px;" data-field="time" class="form-control" required/>
           <div id="dtBox"></div>
-          <script src="js/jquery1.min.js"></script>
-          <script src="dist/DateTimePicker.js"></script>
-          <script src="dist/i18n/DateTimePicker-i18n.js"></script>
+          <script src="/js/jquery1.min.js"></script>
+          <script src="/dist/DateTimePicker.js"></script>
+          <script src="/dist/i18n/DateTimePicker-i18n.js"></script>
           <script>
           $('#dtBox').DateTimePicker({
              dateTimeFormat: "yyyy-mm-dd hh:mm:ss"

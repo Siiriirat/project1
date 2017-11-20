@@ -5,7 +5,7 @@ use App\Http\Controllers\Controller;
 use App\Appoint;
 use DB;
 use App\Service;
-
+use App\User;
 
 class AppointsController extends Controller
 {
@@ -100,7 +100,7 @@ class AppointsController extends Controller
             $timee_h1 = 0 + ((int)($timee_h)%24);
             if($timee_m >= 9 && $timee_h1 <= 9)
             { 
-              $time_e = '0'.(string) $timee_h1.':'.(string) $timee_m; dd($time_e);
+              $time_e = '0'.(string) $timee_h1.':'.(string) $timee_m;// dd($time_e);
             }  
             // elseif($timee_m >= 9 && $timee_h1 >= 9)
             // { 
@@ -157,6 +157,7 @@ class AppointsController extends Controller
         $data->user_id = $request->get('user_id');
         $data->id_ser = $request->get('id_ser');
         $data->ip = $request->get('ip');
+        $data->comment = $request->get('comment');
         $data->save();
         return redirect('appoints')->with('time_e',$data->time_e);
     }
@@ -168,14 +169,178 @@ class AppointsController extends Controller
     public function edit($id)
     {
         $appoint = Appoint::findOrFail($id);
+        // dd($appoint);
         return view('appoint.edit')->with('appoint',$appoint)
                                    ->with('id',$id);
     }
     public function update(Request $request, $id)
-    {
-        $appoint = Appoint::findOrFail($id);      
-        $appoint->update($request->all());
-        return redirect('appoints');
+    {   
+        
+        $service = DB::table('services')->where('name_ser',$request->get('id_ser'))->get();
+        $appoint = Appoint::findOrFail($id);  
+        $time_e = $appoint->time_e;
+        $ntime =  $appoint->time;
+        $sptime = explode(':', $ntime);
+        $ctime1 = (int) $sptime[0];
+        $ctime2 = (int) $sptime[1];
+        $spser = explode('.', $service[0]->sp_time);
+        $cser1 = (int) $spser[0];
+        $cser2 = (int) $spser[1];
+        // dd($cser2);
+        $timee_h = $ctime1 + $cser1;
+        $timee_m = $ctime2 + $cser2;
+        if ($timee_m >= 60 && $timee_h >=24) 
+        {
+            $m1 = $timee_m/60;
+            $cm1 = (int) $m1;
+            $m2 = $timee_m%60;
+            $timee_h1 = 0 + ((int)($timee_h + $cm1)%24);
+            $timee_m1 = 0 + $m2;
+            if($timee_m1 <= 9 && $timee_h1 <= 9)
+            {   
+              $time_e = ('0'.(string) $timee_h1).':'.'0'. (string) $timee_m1; //dd($time_e);   
+            }
+            elseif($timee_m1 <= 9 && $timee_h1 >= 9)
+            { 
+              $time_e = (string) $timee_h1.':'.'0'.(string) $timee_m1;//dd($time_e);
+            }
+            elseif($timee_m1 >= 9 && $timee_h1 <= 9)
+            { 
+              $time_e = '0'.(string) $timee_h1.':'.(string) $timee_m1;//dd($time_e);   
+            }  
+        }
+        elseif($timee_m >= 60 && $timee_h < 24)
+        {
+            $m1 = $timee_m/60;
+
+            $cm1 = (int) $m1;
+            $m2 = $timee_m%60;
+            $timee_h1 = $timee_h + $cm1;
+            $timee_m = 0;
+            $timee_m1 = $timee_m + $m2;
+            //dd($timee_m1);
+            if($timee_m1 <= 9 && $timee_h1 <= 9)
+            {   
+              $time_e = ('0'.(string) $timee_h1).':'.'0'. (string) $timee_m1; //dd($time_e);  
+            }
+            elseif($timee_m1 <= 9 && $timee_h1 >= 9)
+            { 
+              $time_e = (string) $timee_h1.':'.'0'.(string) $timee_m1;//dd($time_e);
+            }
+            elseif($timee_m1 >= 9 && $timee_h1 <= 9)
+            { 
+              $time_e = '0'.(string) $timee_h1.':'.(string) $timee_m1; //dd($time_e);
+            }
+            elseif($timee_m1 >= 9 && $timee_h1 >= 9)
+            { 
+              $time_e = (string) $timee_h1.':'.(string) $timee_m1;//dd($time_e);
+            } 
+        }
+        elseif ($timee_m < 60 && $timee_h >=24) 
+        {
+
+            $timee_h1 = 0 + ((int)($timee_h)%24);
+            if($timee_m >= 9 && $timee_h1 <= 9)
+            { 
+              $time_e = '0'.(string) $timee_h1.':'.(string) $timee_m; //dd($time_e);
+            }  
+            // elseif($timee_m >= 9 && $timee_h1 >= 9)
+            // { 
+            //   $time_e = (string) $timee_h1.':'.(string) $timee_m;
+            // }    
+        }
+        elseif ($timee_m < 60 && $timee_h < 24) 
+        {
+
+            //$timee_h1 = 0 + ((int)($timee_h)%24);
+            if($timee_m >= 9 && $timee_h <= 9)
+            { 
+              $time_e = '0'.(string) $timee_h.':'.(string) $timee_m; //dd($time_e);
+            }  
+            elseif($timee_m >= 9 && $timee_h >= 9)
+            { 
+               $time_e = (string) $timee_h.':'.(string) $timee_m; //dd($time_e);
+            }    
+        }
+        $finds = DB::table('appoints')->get();
+        // dd($finds);
+        foreach ($finds as $find) {
+          $sp_find_b = explode(':', $find->time);
+          // dd($sp_find_b);
+          $c_sp_find_b = ((int)  $sp_find_b[0] * 60) + (int)  $sp_find_b[1];
+          $sp_find_e = explode(':', $find->time_e);
+          $c_sp_find_e = ((int)  $sp_find_e[0] * 60) + (int)  $sp_find_e[1];
+
+          $timeh = $request->get('time');
+          // dd($timeh);
+          $sp_time = explode(':', $timeh);
+          $date = $request->get('date');
+          //เวลาเริ่มต้นที่รับเข้าา
+          $c_sp_time0 = ((int)  $sp_time[0] * 60) + (int)  $sp_time[1];
+          //เวลาสิ้นสุดที่คำนวณค่าจากตอบรับแล้ว
+          $sp_time1 = explode(':', $time_e);
+          //dd($sp_time1);
+          $c_sp_time1 = ((int)  $sp_time1[0] * 60) + (int)  $sp_time1[1]; 
+                 
+          if( (($c_sp_find_b<=$c_sp_time0   &&   $c_sp_find_e >= $c_sp_time0)||
+            ($c_sp_find_b<=$c_sp_time1   &&   $c_sp_find_e >= $c_sp_time1))&&
+            ($request->get('date')==$find->date)&&
+            ($request->get('staff')==$find->staff) && ($find->id != $appoint->id))
+          { 
+            return redirect('appoint')->with('errors','วันที่ '.$request->date.' เวลา '.$request->time.' - '.$find->time_e.' มีคนจองแล้วค่ะ '. 'กรุณากรอกข้อมูลใหม่');
+          }
+        }
+        $users = DB::table('users')->where('id',$request->get('user_id'))->get();
+        foreach ($users as $user){
+                $level = $user->level;
+                if($level == "admin")
+                {
+                     $appoint->update([
+                        'date' => $request->get('date'),
+                        'time' => $request->get('time'),
+                        'time_e' => $time_e,
+                        'staff' => $request->get('staff'),
+                        'detail' => $request->get('detail'),
+                        'id_ser' => $service[0]->id_ser,
+                        'ip' => $request->get('ip'),
+                        'status' => $request->get('status'),
+                        'comment' =>$request->get('comment')]);
+                        return redirect('appoints');
+                }
+                elseif($level == "user")
+                {    
+                     $appoint->update(['tel'=>$request->get('tel'),
+                        'gender' => $request->get('gender'),
+                        'date' => $request->get('date'),
+                        'time' => $request->get('time'),
+                        'time_e' => $time_e,
+                        'staff' => $request->get('staff'),
+                        'detail' => $request->get('detail'),
+                        'id_ser' => $service[0]->id_ser,
+                        'ip' => $request->get('ip'),
+                        'status' => 0,
+                        'comment' =>$request->get('comment')]); 
+                        return redirect('appoints');
+                }
+
+
+        }
+       
+
+
+        // $appoint->update(['tel'=>$request->get('tel'),
+        //                 'gender' => $request->get('gender'),
+        //                 'date' => $request->get('date'),
+        //                 'time' => $request->get('time'),
+        //                 'staff' => $request->get('staff'),
+        //                 'user_id' => $request->get('user_id'),
+        //                 'detail' => $request->get('detail'),
+        //                 'id_ser' => $service[0]->id_ser,
+        //                 'ip' => $request->get('ip'),
+        //                 'status' =>$request->get('status'),
+        //                 'comment' =>$request->get('comment')]);
+        // //dd($appoint);
+        // return redirect('appoints');
     }
     public function destroy($id)
     {

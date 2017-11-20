@@ -1,5 +1,6 @@
 @extends('layouts.app')
 @section('content')
+<br><br><br><br>
 <div class="container">
     <div class="well">
         <legend>เข้าสู่ระบบ</legend>

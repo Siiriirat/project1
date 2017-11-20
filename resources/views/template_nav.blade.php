@@ -27,7 +27,7 @@
         window.Laravel = {!! json_encode([
             'csrfToken' => csrf_token(),
         ]) !!};
-    </script>
+  </script>
 </head>
 <body>
    <nav class="navbar navbar-webmaster">
@@ -79,13 +79,13 @@
               <a href="{{ route('logout') }}"
                                             onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
-                                            &nbsp<i class="fa fa-power-off"></i> Logout
+                                            &nbsp<i class="fa fa-power-off"></i> ออกจากระบบ
               </a>
               <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
               {{ csrf_field() }}
               </form>
             </li>
-            <li><a href="{{url('/change-password')}}">&nbsp<i class="fa fa-cog"></i> Change password</a></li>
+            <li><a href="{{url('/change-password')}}">&nbsp<i class="fa fa-cog"></i> เปลี่ยนรหัสผ่านผู้ใช้</a></li>
           
           </ul>
         </li>

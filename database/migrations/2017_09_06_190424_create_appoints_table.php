@@ -19,6 +19,8 @@ class CreateAppointsTable extends Migration
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
             $table->foreign('id_ser')->references('id_ser')->on('services')->onDelete('cascade')->onUpdate('cascade');
             $table->string('ip',20);
+            $table->enum('status',[0,1,2])->default(0);
+            $table->string('comment',1000);
             $table->timestamps();
         });
     }
