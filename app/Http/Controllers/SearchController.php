@@ -10,11 +10,11 @@ class SearchController extends Controller
 {
     public function search(Request $request)
     {
-    	$name = $request->get('name');
+    	$date = $request->get('name');
     	$NUM_PAGE = 4;
-        $id_user = DB::table('users')->where('name',$name)->value('id');
+        // $id_user = DB::table('users')->where('name',$name)->value('id');
 
-        $appoints = Appoint::where('user_id',$id_user)->paginate($NUM_PAGE);
+        $appoints = Appoint::where('date','LIKE','%'.$date.'%')->paginate($NUM_PAGE);
         $page = $request->input('page');
         $page = ($page != null)?$page:1;
     	return view('appoint.index')->with('appoints',$appoints)

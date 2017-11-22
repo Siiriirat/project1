@@ -12,7 +12,6 @@
 <div class="form-inline">
 <div class="form-group">
             <div class="input-append">
-            	<!-- <input type="text" id="name" name ="name" style="width:220px;" data-field="date" class="form-control" placeholder="ค้นหาวันที่ใช้บริการ"/> -->
                 <input type="text" name="name" id="name" class="search-query form-control" placeholder="ค้นหาผู้ใช้บริการ" >
                 <button type="submit" class="btn"><i class="fa fa-search"></i> ค้นหา</button>
             </div>
@@ -22,44 +21,6 @@
 </div>
 </form>
 <br>
-@if (Auth::user()->level == "admin")
-<div style="overflow-x:auto;">
-<table class="table table-bordered">
-          <thead class="thead-inverse">
-           <tr>
-           <th>ลำดับที่</th>
-           <th>ชื่อผู้จอง</th>
-           <th>วันที่จอง</th>
-		   <th>เวลาเริ่มต้น</th>
-           <th>เวลาสิ้นสุด</th>
-           <th>ช่างผู้ให้บริการ</th>
-           <th>ตัวเลือก</th>
-           </tr>
-          </thead>
-@foreach( $appoints as  $index => $item )
-		<tbody>
-        <tr> 
-		<td>{{$NUM_PAGE*($page-1) + $index+1}}</td>
-		<td>{{$item->user()->get()[0]->name}}</td>
-		<td>{{$item->date}}</td>
-		<td>{{$item->time}}</td>
-		<td>{{$item->time_e}}</td>
-		<td>{{$item->staff}}</td>
-		@can('show',$item)
-			<form method="post" action="/appoints/{{$item->id}}" class="form-inline">
-				<td><a href="/appoints/{{$item->id}}" class="btn btn-info btn-sm"><i class="fa fa-eye"></i> แสดง</a>
-				<a href="/appoints/{{$item->id}}/edit" class="btn btn-warning btn-sm"><i class="fa fa-edit"></i> แก้ไข</a>
-				<input type="hidden" name="_method" value="Delete">
-				<button class="btn btn-danger btn-sm"><i class="fa fa-ban"></i> ยกเลิก</button> </td>
-				{{csrf_field()}}
-			</form>
-		@endcan
-	    </tr>
-      </tbody>
-@endforeach
-</table>
-</div>
-@else
 <div style="overflow-x:auto;">
 <table class="table table-bordered">
           <thead class="thead-inverse">
@@ -77,7 +38,7 @@
            </tr>
           </thead>
 @foreach( $appoints as  $index => $item )
-		
+		@if(Auth::user()->id == $item->user_id)
 		<tbody>
         <tr> 
 		<td>{{$NUM_PAGE*($page-1) + $index+1}}</td>
@@ -99,7 +60,6 @@
 			 <font color="red">ไม่อนุมัติ!</font> 
 			@elseif($item->status == 2)
 			 <font color="green">อนุมัติ</font> 
-
 			@endif
 		</td>
 		@can('show',$item)
@@ -114,11 +74,11 @@
 	    
 	    </tr>
       </tbody>
-
+      @endif
 @endforeach
 </table>
 </div>
-@endif
+
 
 {{ $appoints->links() }}
 <br>

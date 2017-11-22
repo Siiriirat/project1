@@ -26,6 +26,18 @@ class AppointsController extends Controller
                                     ->with('page',$page)
                                     ->with('NUM_PAGE',$NUM_PAGE);
     }
+    public function index1(Request $request)    {
+        $NUM_PAGE = 8;
+        $appoints = Appoint::orderBy('staff','asc')
+                           ->orderBy('date','desc')
+                           ->orderBy('time','desc')
+                           ->paginate($NUM_PAGE);
+        $page = $request->input('page');
+        $page = ($page != null)?$page:1;
+        return view('appoint.index_1')->with('appoints',$appoints)
+                                    ->with('page',$page)
+                                    ->with('NUM_PAGE',$NUM_PAGE);
+    }
     public function create()    {
         return view('appoint.appoint');
     }
@@ -46,7 +58,6 @@ class AppointsController extends Controller
         $cser2 = (int) $spser[1];
         $timee_h = $ctime1 + $cser1;
         $timee_m = $ctime2 + $cser2;
-        //dd($timee_m);
         if ($timee_m >= 60 && $timee_h >=24) 
         {
             $m1 = $timee_m/60;
@@ -56,64 +67,55 @@ class AppointsController extends Controller
             $timee_m1 = 0 + $m2;
             if($timee_m1 <= 9 && $timee_h1 <= 9)
             {   
-              $time_e = ('0'.(string) $timee_h1).':'.'0'. (string) $timee_m1; //dd($time_e);   
+              $time_e = ('0'.(string) $timee_h1).':'.'0'. (string) $timee_m1;
             }
             elseif($timee_m1 <= 9 && $timee_h1 >= 9)
             { 
-              $time_e = (string) $timee_h1.':'.'0'.(string) $timee_m1;//dd($time_e);
+              $time_e = (string) $timee_h1.':'.'0'.(string) $timee_m1;
             }
             elseif($timee_m1 >= 9 && $timee_h1 <= 9)
             { 
-              $time_e = '0'.(string) $timee_h1.':'.(string) $timee_m1;// dd($time_e);   
+              $time_e = '0'.(string) $timee_h1.':'.(string) $timee_m1;
             }  
         }
         elseif($timee_m >= 60 && $timee_h < 24)
         {
             $m1 = $timee_m/60;
-
             $cm1 = (int) $m1;
             $m2 = $timee_m%60;
             $timee_h1 = $timee_h + $cm1;
             $timee_m = 0;
             $timee_m1 = $timee_m + $m2;
-            //dd($timee_m1);
             if($timee_m1 <= 9 && $timee_h1 <= 9)
             {   
-              $time_e = ('0'.(string) $timee_h1).':'.'0'. (string) $timee_m1;  //dd($time_e);  
+              $time_e = ('0'.(string) $timee_h1).':'.'0'. (string) $timee_m1; 
             }
             elseif($timee_m1 <= 9 && $timee_h1 >= 9)
             { 
-              $time_e = (string) $timee_h1.':'.'0'.(string) $timee_m1;//dd($time_e);
+              $time_e = (string) $timee_h1.':'.'0'.(string) $timee_m1;
             }
             elseif($timee_m1 >= 9 && $timee_h1 <= 9)
             { 
-              $time_e = '0'.(string) $timee_h1.':'.(string) $timee_m1; //dd($time_e);
+              $time_e = '0'.(string) $timee_h1.':'.(string) $timee_m1;
             }
             elseif($timee_m1 >= 9 && $timee_h1 >= 9)
             { 
-              $time_e = (string) $timee_h1.':'.(string) $timee_m1;//dd($time_e);
+              $time_e = (string) $timee_h1.':'.(string) $timee_m1;
             } 
         }
         elseif ($timee_m < 60 && $timee_h >=24) 
         {
-
             $timee_h1 = 0 + ((int)($timee_h)%24);
             if($timee_m >= 9 && $timee_h1 <= 9)
             { 
-              $time_e = '0'.(string) $timee_h1.':'.(string) $timee_m;// dd($time_e);
+              $time_e = '0'.(string) $timee_h1.':'.(string) $timee_m;
             }  
-            // elseif($timee_m >= 9 && $timee_h1 >= 9)
-            // { 
-            //   $time_e = (string) $timee_h1.':'.(string) $timee_m;
-            // }    
         }
         elseif ($timee_m < 60 && $timee_h < 24) 
         {
-
-            //$timee_h1 = 0 + ((int)($timee_h)%24);
             if($timee_m >= 9 && $timee_h <= 9)
             { 
-              $time_e = '0'.(string) $timee_h.':'.(string) $timee_m; //dd($time_e);
+              $time_e = '0'.(string) $timee_h.':'.(string) $timee_m;
             }  
             elseif($timee_m >= 9 && $timee_h >= 9)
             { 
@@ -134,14 +136,11 @@ class AppointsController extends Controller
           $c_sp_time0 = ((int)  $sp_time[0] * 60) + (int)  $sp_time[1];
           //เวลาสิ้นสุดที่คำนวณค่าจากตอบรับแล้ว
           $sp_time1 = explode(':', $time_e);
-          //dd($sp_time1);
-          $c_sp_time1 = ((int)  $sp_time1[0] * 60) + (int)  $sp_time1[1]; 
-          // dd( $c_sp_time1);          
+          $c_sp_time1 = ((int)  $sp_time1[0] * 60) + (int)  $sp_time1[1];       
           if( (($c_sp_find_b<=$c_sp_time0   &&   $c_sp_find_e >= $c_sp_time0)||
             ($c_sp_find_b<=$c_sp_time1   &&   $c_sp_find_e >= $c_sp_time1))&&
             ($request->get('date')==$find->date)&&
             ($request->get('staff')==$find->staff))
-            //dd($find->time_e);
           { 
             return redirect('appoint')->with('errors','วันที่ '.$request->date.' เวลา '.$request->time.'-'.$find->time_e.' มีคนจองแล้วค่ะ '. 'กรุณากรอกข้อมูลใหม่');
           }
@@ -169,7 +168,6 @@ class AppointsController extends Controller
     public function edit($id)
     {
         $appoint = Appoint::findOrFail($id);
-        // dd($appoint);
         return view('appoint.edit')->with('appoint',$appoint)
                                    ->with('id',$id);
     }

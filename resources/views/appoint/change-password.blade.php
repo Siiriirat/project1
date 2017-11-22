@@ -6,7 +6,7 @@
        <div class="col-xs-12 col-sm-6 col-md-8">
         <div class="container">
         <div class="well">
-        <legend>Change Password</legend>
+        <legend>เปลี่ยนรหัสผ่าน</legend>
                 @if (Session::has('success'))
                 <div class="alert alert-success">{!! Session::get('success') !!}</div>
                 @endif
