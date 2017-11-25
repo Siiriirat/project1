@@ -1,5 +1,8 @@
 @extends('template_nav')
 @section('title','Appointment')
+<head>
+    <link href="/dist/DateTimePicker.css" rel="stylesheet"/>
+</head>
 <!-- <link rel="stylesheet" type="text/css" href="{{asset('/css/bootstrap-button.css')}}"> -->
 @section('content')
 <div class="row">
@@ -13,7 +16,15 @@
           <a href="/appoints" class="btn btn-warning"><i class="fa fa-plus-square-o"></i> เพิ่มรายการ</a>
 </div>
 </div>
-
+<div id="dtBox"></div>
+          <script src="/js/jquery1.min.js"></script>
+          <script src="/dist/DateTimePicker.js"></script>
+          <script src="/dist/i18n/DateTimePicker-i18n.js"></script>
+          <script>
+          $('#dtBox').DateTimePicker({
+             dateTimeFormat: "yyyy-mm-dd hh:mm:ss"
+          });
+          </script>
 <br>
 <div class="container">
     <div class="well">
@@ -275,6 +286,23 @@
 </div>
 </div>
 
+<script>
+      $('.clockpicker').clockpicker({
+        'default': DisplayCurrentTime(),
+         twelvehour: true,
+        }).find('input').val(DisplayCurrentTime())
 
+function DisplayCurrentTime() {
+  var date = new Date();
+  var hours = date.getHours() > 12 ? date.getHours() - 12 : date.getHours();
+  var am_pm = date.getHours() >= 12 ? "PM" : "AM";
+  hours = hours < 10 ? "0" + hours : hours;
+  var minutes = date.getMinutes() < 10 ? "0" + date.getMinutes() : date.getMinutes();
+  var seconds = date.getSeconds() < 10 ? "0" + date.getSeconds() : date.getSeconds();
+  time = hours + ":" + minutes + ":" + am_pm;
+  //time = hours + ":" + minutes + am_pm;
+  return time;
+};
+</script>
 @endsection
 

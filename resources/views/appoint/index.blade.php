@@ -1,5 +1,8 @@
 @extends('template_nav')
 @section('title','Appointment')
+<head>
+    <link href="/dist/DateTimePicker.css" rel="stylesheet"/>
+</head>
 @section('content')
 <br>
 <form action="{{url('/search')}}" method="post" >
@@ -13,9 +16,18 @@
 <div class="form-group">
             <div class="input-append">
             	<!-- <input type="text" id="name" name ="name" style="width:220px;" data-field="date" class="form-control" placeholder="ค้นหาวันที่ใช้บริการ"/> -->
-                <input type="text" name="name" id="name" class="search-query form-control" placeholder="ค้นหาผู้ใช้บริการ" >
+                <input type="text" name="name" id="name" class="search-query form-control" data-field="date" placeholder="ค้นหาวันที่ใช้บริการ" >
                 <button type="submit" class="btn"><i class="fa fa-search"></i> ค้นหา</button>
             </div>
+          <div id="dtBox"></div>
+          <script src="/js/jquery1.min.js"></script>
+          <script src="/dist/DateTimePicker.js"></script>
+          <script src="/dist/i18n/DateTimePicker-i18n.js"></script>
+          <script>
+          $('#dtBox').DateTimePicker({
+             dateTimeFormat: "yyyy-mm-dd hh:mm:ss"
+          });
+          </script>
 </div>
 </div>
 </div>
@@ -119,6 +131,24 @@
 </table>
 </div>
 @endif
+<script>
+      $('.clockpicker').clockpicker({
+        'default': DisplayCurrentTime(),
+         twelvehour: true,
+        }).find('input').val(DisplayCurrentTime())
+
+function DisplayCurrentTime() {
+  var date = new Date();
+  var hours = date.getHours() > 12 ? date.getHours() - 12 : date.getHours();
+  var am_pm = date.getHours() >= 12 ? "PM" : "AM";
+  hours = hours < 10 ? "0" + hours : hours;
+  var minutes = date.getMinutes() < 10 ? "0" + date.getMinutes() : date.getMinutes();
+  var seconds = date.getSeconds() < 10 ? "0" + date.getSeconds() : date.getSeconds();
+  time = hours + ":" + minutes + ":" + am_pm;
+  //time = hours + ":" + minutes + am_pm;
+  return time;
+};
+</script>
 
 {{ $appoints->links() }}
 <br>

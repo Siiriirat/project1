@@ -29,10 +29,10 @@
                       <a class="news-btn" href="" data-toggle="modal" data-target="#myModal2">อ่านต่อ</a>
                     </div>
         <div class="col-md-3 news-column">
-                      <img class="img-responsive" src="https://images.pexels.com/photos/7096/people-woman-coffee-meeting.jpg?w=940&h=650&auto=compress&cs=tinysrgb" title="name">
-                      <h4>LOREM IPSUM DOLO</h4>
-                      <p>here are many variations of passages of Lorem Ipsum available,</p>
-                      <a class="news-btn" href="#">More info</a>
+                      <img class="img-responsive" src="image/5.jpg" title="name">
+                      <h4>ทาเล็บสีอะไรดี ให้เข้ากับสีผิวมากที่สุด</h4>
+                      <p>เล็บถือเป็นเสน่ห์แบบหนึ่งเลยก็ว่าได้นะสำหรับสาวๆ อย่างเราๆ ค่ะ เพราะมันสามารถแต่งเติมสีสัน ลวดลายลงไปบนเล็บมือได้แต่ก็หลายครั้งนะเวลาจะทาสีเล็บทั้งทีก็ไม่รู้จะทาสีอะไรทาไปแล้วมันจะเข้ากับนิ้วมือเรา สีผิวเราไหม วันนี้ทางร้านมีเทคนิคการเลือกสีเล็บให้เข้ากับสีผิวมาฝากกันค่ะ</p>
+                      <a class="news-btn" href="#">อ่านต่อ</a>
                     </div>
                     
   </div>      
