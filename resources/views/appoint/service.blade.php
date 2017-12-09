@@ -17,7 +17,7 @@
     <div class="well">
        <!-- <a href="https://www.twitter.com/maridlcrmn/">Code snippet inspired by the Nike website. Made with love by @maridlcrmn for @bootsnipp. Enjoy and Share!</a>  --> 
        <div class="card card-container">
-          <form method="post" action="/services">
+          <form method="post" action="/services" enctype="multipart/form-data">
           <div class="container">
            <div class="row">
                 <div class="col-md-6">
@@ -31,6 +31,10 @@
           <div class="form-group" style="width:210px;">
           <label for="cost">ราคาของบริการ : <input type="number" name="cost" class="form-control" required></label>
           </div>
+           <div class="form-group">
+          <label for="picture">รูปภาพ : <input type="file" name="img" id= "img"  required></label>
+          </div>
+           
           </div>
           <br><br>
           <div class="col-md-6">

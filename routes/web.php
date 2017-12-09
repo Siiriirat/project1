@@ -67,3 +67,6 @@ Route::get('change-password', function() {
 Route::post('change-password', 'Auth\UpdatePasswordController@update');
 
 Route::post('/search','SearchController@search');
+Route::get('/search','SearchController@search');
+Route::post('/searchs','SearchController@searchs');
+Route::get('/searchs','SearchController@searchs');

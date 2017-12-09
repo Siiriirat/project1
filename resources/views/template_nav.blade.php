@@ -67,7 +67,9 @@
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-calendar-plus-o"></i> จองคิวบริการ <span class="caret"></span></a>
           <ul class="dropdown-menu" role="menu">
             <li><a href="{{url('/appoint')}}"><i class="fa fa-plus"></i> เพิ่มรายการจองคิวบริการ</a></li>
+            @if (Auth::user()->level == "user")
             <li><a href="{{url('/index_1')}}"><i class="fa fa-calendar-plus-o"></i> ตารางการจองคิวบริการ</a></li>
+            @endif
             <li><a href="{{url('/appoints')}}"><i class="fa fa-calendar-plus-o"></i> ตารางการจองคิวบริการทั้งหมด</a></li>
            
           </ul>

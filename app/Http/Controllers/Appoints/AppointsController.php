@@ -16,8 +16,8 @@ class AppointsController extends Controller
     public function index(Request $request)    {
         $NUM_PAGE = 8;
         $appoints = Appoint::orderBy('staff','asc')
-                           ->orderBy('date','desc')
-                           ->orderBy('time','desc')
+                           ->orderBy('created_at','desc')
+                           ->orderBy('time','asc')
                            ->paginate($NUM_PAGE);
         $page = $request->input('page');
         $page = ($page != null)?$page:1;

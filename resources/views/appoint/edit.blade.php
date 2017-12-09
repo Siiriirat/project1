@@ -279,7 +279,7 @@
                     </div>       
                     <div class="form-group">
                       <label for="detail">รายละเอียดเพิ่มเติม :</label>
-                      <textarea name="detail" class="form-control" style="width:100%;" rows="4" placeholder="Enter text here" value="{{$appoint->detail}}"></textarea>
+                      <textarea name="detail" class="form-control" style="width:100%;" rows="4" placeholder="Enter text here" >{{$appoint->detail}}</textarea>
                     </div>
                     <b>From: </b> {{ Auth::user()->name}} <br>
                     <input type="hidden" name="user_id" value="{{Auth::user()->id}}">

@@ -1,46 +1,55 @@
 @extends('template_nav')
 @section('title','Appointment')
+<link rel="stylesheet" type="text/css" href="{{asset('/css/image.css')}}">
 @section('content')
 <br>
-<div style="overflow-x:auto;">
-<table class="table table-bordered">
-          <thead class="thead-inverse">
-           <tr>
-           <th>ลำดับที่</th>
-           <th>ชื่อบริการ</th>
-           <th>ชนิดบริการ</th>
-           <th>ราคาของบริการ</th>
-           <th>เวลาที่ใช้ (ชั่วโมง.นาที)</th>
-           @if (Auth::user()->level == "admin")
-           <th>ตัวเลือก</th>
-           @endif
-           </tr>
-          </thead>
+<div class="container">
 @foreach( $services as  $index => $item )
-		<tbody>
-        <tr> 
-		<td>{{$index+1}}</td>
-		<td>{{$item->name_ser}}</td>
-		<td>{{$item->type}}</td>
-		<td>{{$item->cost}} ฿</td>
-		<td>{{$item->sp_time}}</td>
-		@if (Auth::user()->level == "admin")
-			<form method="post" action="services/{{$item->id_ser}}" class="form-inline">
-
-				<td><a href="services/{{$item->id_ser}}" class="btn btn-info btn-sm"><i class="fa fa-eye"></i> แสดง</a>
+<div class="portfolioContainer">
+    <div class="col-md-4  webdesign illustrator">
+        <div class="gal-detail thumb">
+            <a href="/services" class="image-popup" title="Screenshot-1">
+                <img src="/uploads/images/service/{{$item->picture}}"  class="thumb-img" alt="work-thumbnail">
+            </a>
+            <h4 class="text-center">ชื่อบริการ : {{$item->name_ser}}</h4>
+            <div class="ga-border"></div>
+            <p class="text-muted text-center">
+            @if (Auth::user()->level == "admin")
+            <center>
+            <form method="post" action="services/{{$item->id_ser}}" class="form-inline">
+				<a href="services/{{$item->id_ser}}" class="btn btn-info btn-sm"><i class="fa fa-eye"></i> ดูรายละเอียด</a>
 				<a href="services/{{$item->id_ser}}/edit" class="btn btn-warning btn-sm"><i class="fa fa-edit"></i> แก้ไขบริการ</a> 		
 				<input type="hidden" name="_method" value="Delete">
 				<button class="btn btn-danger btn-sm"><i class="fa fa-ban"></i> ลบบริการ</button> 
-				</td>
+				
 				{{csrf_field()}}
-			</form>
-		@endif
-	    </tr>
-      </tbody>
-@endforeach
-</table>
+			</form>	
+            </center>
+             @else(Auth::user()->level == "user")
+            <center>
+            <form method="post" action="services/{{$item->id_ser}}" class="form-inline">
+
+				<a href="services/{{$item->id_ser}}" class="btn btn-success btn-sm"><i class="fa fa-eye"></i> ดูรายละเอียด</a>
+				{{csrf_field()}}
+			</form>	
+            </center>
+			@endif
+	        </p>
+        </div>
+    </div>
+
+
+   
+
+    
+    
+
 </div>
-<br>
+    @endforeach
+</div>
+
+
+
 
 @if (Auth::user()->level == "admin")
 	<a href="service" class="btn btn-success"><i class="fa fa-plus-circle"></i> เพิ่มบริการ </a>

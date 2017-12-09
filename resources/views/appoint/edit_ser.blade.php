@@ -15,7 +15,7 @@
 
 <br>
     <div class="well">
-      <form method="post" action="/services">
+      <form method="post" action="/services/{{$service->id_ser}}">
           <legend>แก้ไขบริการ</legend>
           <div class="row">
             <div class="col-md-6">
@@ -28,13 +28,20 @@
           <div class="form-group" style="width:210px;">
           <label for="cost">ราคาของบริการ : <input type="number" name="cost" class="form-control" value="{{$service->cost}}"></label>
           </div>
-            </div>
-            <div class="col-md-6">
-              <div class="form-group">
+          <div class="form-group">
+          <label for="picture">รูปภาพ : <input type="file" class="form-control" style="height:80%;" name="img" id= "img"></label>
+          </div> 
+          </div>
+          <div class="col-md-6">
+          <div class="form-group" style="width:230px;">
+          <label for="sp_time">เวลาที่ใช้ : <input type="text" name="sp_time" class="form-control" value="{{$service->sp_time}}" required></label>
+          </div> 
+          <div class="form-group">
           <label for="detail">รายละเอียดบริการ :</label>
-          <textarea name="detail" class="form-control" style="width:80%;" rows="4" placeholder="Enter text here" value="{{$service->detail}}"></textarea>
+          <textarea name="detail" class="form-control" style="width:80%;" rows="4" placeholder="Enter text here">{{$service->detail}}</textarea>
           </div>
           <br>
+          <input type="hidden" name="_method" value="PUT">
           {{csrf_field()}}  
          <button type="submit" class="btn btn-warning"><i class="fa fa-edit"></i> แก้ไข
          </button>
