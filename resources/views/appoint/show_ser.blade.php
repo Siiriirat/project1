@@ -16,8 +16,9 @@
     <div class="well">
       <div class="row">
         <div class="col-md-6">
+          <br>
           <center>
-            <img src="/uploads/images/service/{{$service->picture}}" width="40%" class="img-responsive">   
+            <img src="/uploads/images/service/{{$service->picture}}" width="70%" class="img-responsive">   
           </center> 
         </div>
                 <div class="col-sm-6">

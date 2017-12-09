@@ -2,15 +2,32 @@
 @section('title','Appointment')
 <link rel="stylesheet" type="text/css" href="{{asset('/css/image.css')}}">
 @section('content')
+
+<div class="row">
+<div class="col-md-3"></div>
+<div class="col-md-3"></div>
+<div class="col-md-3"></div>
+<div class="col-md-2"></div>
+<div class="col-md-1">
+@if (Auth::user()->level == "admin")
+	<a href="service" class="btn btn-success"><i class="fa fa-plus-circle"></i> เพิ่มบริการ </a>
+	<br>
+@endif
+</div>
+</div>
+
 <br>
 <div class="container">
 @foreach( $services as  $index => $item )
 <div class="portfolioContainer">
     <div class="col-md-4  webdesign illustrator">
         <div class="gal-detail thumb">
-            <a href="/services" class="image-popup" title="Screenshot-1">
-                <img src="/uploads/images/service/{{$item->picture}}"  class="thumb-img" alt="work-thumbnail">
-            </a>
+        	<center>
+        	<a href="/services" class="image-popup" title="Screenshot-1">
+                <img src="/uploads/images/service/{{$item->picture}}"  class="thumb-img" alt="work-thumbnail" style="height: 45%">
+            </a>	
+        	</center>
+            
             <h4 class="text-center">ชื่อบริการ : {{$item->name_ser}}</h4>
             <div class="ga-border"></div>
             <p class="text-muted text-center">
@@ -36,6 +53,7 @@
 			@endif
 	        </p>
         </div>
+        <br><br>
     </div>
 
 
@@ -51,9 +69,6 @@
 
 
 
-@if (Auth::user()->level == "admin")
-	<a href="service" class="btn btn-success"><i class="fa fa-plus-circle"></i> เพิ่มบริการ </a>
-	<br>
-@endif
+
 
 @endsection

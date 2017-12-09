@@ -30,33 +30,33 @@
   <ul>
        <li>
       <div class="image_title">
-        <a href="#">Beauty and Salon</a>
+        <a href="/services">Beauty and Salon</a>
       </div>
-      <a href="#">
+      <a href="/services/1">
      <img src="image/2.jpg">
       </a>
     </li>
           <li>
       <div class="image_title">
-        <a href="#">Beauty and Salon</a>
+        <a href="/services">Beauty and Salon</a>
       </div>
-      <a href="#">
+      <a href="/services/8">
      <img src="image/3.jpg">
       </a>
     </li>
              <li>
       <div class="image_title">
-        <a href="#">Beauty and Salon</a>
+        <a href="/services">Beauty and Salon</a>
       </div>
-      <a href="#">
+      <a href="/services/8">
      <img src="image/6.png">
       </a>
     </li>
                 <li>
       <div class="image_title">
-        <a href="#">Beauty and Salon</a>
+        <a href="/services">Beauty and Salon</a>
       </div>
-      <a href="#">
+      <a href="/services/7">
      <img src="image/4.jpg">
       </a>
     </li>

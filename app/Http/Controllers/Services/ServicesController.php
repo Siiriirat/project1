@@ -60,8 +60,22 @@ class ServicesController extends Controller
     }
     public function update(Request $request, $id)
     {
-        $service = Service::findOrFail($id);      
-        $service->update($request->all());
+         
+        $service = Service::findOrFail($id);  
+
+
+
+        if ($request->hasFile('img'))
+        {
+            $file = $request->file('img');
+            $fileName = md5(($file->getClientOriginalName(). time()) . time()) . "_o." . $file->getClientOriginalExtension();
+            $file->move('uploads/images/service', $fileName);
+             $path = 'uploads/images/service/'.$fileName;
+            echo '<a href="'.$path.'" target="_blank">ดาวน์โหลดรูปภาพ</a>';
+            $created_service = Service::findOrFail($service->id_ser);
+            $created_service->update(array('picture'=>$fileName));                     
+        }   
+        $service->update($request->all());    
         return redirect('services');
     }
     public function destroy($id)

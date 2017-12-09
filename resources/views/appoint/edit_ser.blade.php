@@ -15,7 +15,7 @@
 
 <br>
     <div class="well">
-      <form method="post" action="/services/{{$service->id_ser}}">
+      <form method="post" action="/services/{{$service->id_ser}}" enctype="multipart/form-data">
           <legend>แก้ไขบริการ</legend>
           <div class="row">
             <div class="col-md-6">
