@@ -27,6 +27,16 @@
           </script>
 <br>
 <div class="container">
+@if (count($errors) > 0)
+    <div class="alert alert-danger">
+        <ul>
+           <i class="fa fa-exclamation-triangle"></i>
+           {{$errors}}
+        </ul>
+    </div>
+@endif
+</div>
+<div class="container">
     <div class="well">
     <form method="post" action="/appoints/{{$appoint->id}}">
     

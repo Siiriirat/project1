@@ -22,7 +22,8 @@
 <!--   <link rel="stylesheet" type="text/css" href="{{asset('css/bootstrap-news.css')}}">
  -->  
 <!--   <script type="text/javascript" src="{{url('js/navbar.js')}}"></script>
- -->  <script src="https://code.jquery.com/jquery-1.11.1.js"></script>
+ -->  
+ <script src="https://code.jquery.com/jquery-1.11.1.js"></script>
   <script>
         window.Laravel = {!! json_encode([
             'csrfToken' => csrf_token(),
@@ -40,7 +41,7 @@
         <span class="icon-bar"></span>
       </button>
         <a class="navbar-brand" href="{{url('/home1')}}">
-                    <img src="/image/icon2.png" width="30" height="30" class="d-inline-block align-top" alt=""> Appointment
+          <img src="/image/icon2.png" width="30" height="30" class="d-inline-block align-top" alt=""> Appointment
         </a>
     </div>
     <div class="collapse navbar-collapse" id="navbar">
@@ -66,7 +67,9 @@
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-calendar-plus-o"></i> จองคิวบริการ <span class="caret"></span></a>
           <ul class="dropdown-menu" role="menu">
             <li><a href="{{url('/appoint')}}"><i class="fa fa-plus"></i> เพิ่มรายการจองคิวบริการ</a></li>
-            <li><a href="{{url('/appoints')}}"><i class="fa fa-calendar-plus-o"></i> ตารางการจองคิวบริการ</a></li>
+            <li><a href="{{url('/index_1')}}"><i class="fa fa-calendar-plus-o"></i> ตารางการจองคิวบริการ</a></li>
+            <li><a href="{{url('/appoints')}}"><i class="fa fa-calendar-plus-o"></i> ตารางการจองคิวบริการทั้งหมด</a></li>
+           
           </ul>
         </li>
         <li class="active">
@@ -85,7 +88,7 @@
               {{ csrf_field() }}
               </form>
             </li>
-            <li><a href="{{url('/change-password')}}">&nbsp<i class="fa fa-cog"></i> เปลี่ยนรหัสผ่านผู้ใช้</a></li>
+            <li><a href="{{url('/change-password')}}"><i class="fa fa-cog fa-spin fa-1x fa-fw"></i>เปลี่ยนรหัสผ่านผู้ใช้</a></li>
           
           </ul>
         </li>

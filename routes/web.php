@@ -40,8 +40,15 @@ Route::get('/appoint', function () {
 Route::get('/contact', function () {
     return view('appoint.contact');
 });
+
+Route::get('/index', function () {
+    return view('appoint.index_1');
+});
+
 Route::resource('appoints','Appoints\\AppointsController');
 Route::resource('services','Services\\ServicesController');
+
+Route::get('/index_1','ShowsController@show');
 
 });
 

@@ -106,11 +106,11 @@
 		?></td>
 		<td>
 			@if($item->status == 0)
-			 <font color="orange">รอการอนุมัติ</font> 
+			 <font color="orange"><i class="fa fa-refresh fa-spin fa-1x fa-fw" aria-hidden="true"></i> รอการอนุมัติ</font> 
 			@elseif($item->status == 1)
-			 <font color="red">ไม่อนุมัติ!</font> 
+			 <font color="red"><i class="fa fa-times" aria-hidden="true"></i> ไม่อนุมัติ!</font> 
 			@elseif($item->status == 2)
-			 <font color="green">อนุมัติ</font> 
+			 <font color="green"><i class="fa fa-check" aria-hidden="true"></i> อนุมัติ</font> 
 
 			@endif
 		</td>
