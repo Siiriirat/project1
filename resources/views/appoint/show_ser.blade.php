@@ -28,9 +28,9 @@
                     </div>
                     <div class="box">
                          <ul class="list-unstyled">
-                          <li><i class="fa fa-list" aria-hidden="true"></i> {{$service->type}}</li>
-                          <li><i class="fa fa-clock-o" aria-hidden="true"></i> {{$hour}} ชั่วโมง {{$min}} นาที</li>
-                            <li><i class="fa fa-money" aria-hidden="true"></i> {{$service->cost}} ฿</li>
+                          <li><i class="fa fa-list" aria-hidden="true"></i>ประเภทบริการ : {{$service->type}}</li>
+                          <li><i class="fa fa-clock-o" aria-hidden="true"></i>เวลาที่ใช้ : {{$hour}} ชั่วโมง {{$min}} นาที</li>
+                            <li><i class="fa fa-money" aria-hidden="true"></i>ราคา : {{$service->cost}} ฿</li>
                             @if($service->detail != NULL)
                             <li><i class="fa fa-comment"></i>รายละเอียด : {{$service->detail}}</li>
                             @endif
