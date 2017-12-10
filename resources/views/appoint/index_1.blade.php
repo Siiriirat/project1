@@ -4,11 +4,14 @@
     <link href="/dist/DateTimePicker.css" rel="stylesheet"/>
 </head>
 @section('content')
-<br>
+
 <form action="{{url('/searchs')}}" method="post" >
 {{csrf_field()}}
 <div class="row">
-<div class="col-md-3"></div>
+<div class="col-md-3">@if ( !Auth::guest() )
+  <a href="appoint" class="btn btn-success"> <i class="fa fa-plus-circle"></i> เพิ่มรายการ </a>
+
+@endif</div>
 <div class="col-md-3"></div>
 <div class="col-md-3"></div>
 <div class="col-md-3">
@@ -112,12 +115,5 @@ function DisplayCurrentTime() {
 };
 </script>
 {{ $show->links() }}
-<br>
-
-@if ( !Auth::guest() )
-	<a href="appoint" class="btn btn-success"> <i class="fa fa-plus-circle"></i> เพิ่มรายการ </a>
-	<br>
-	<br>
-@endif
 
 @endsection

@@ -23,7 +23,7 @@
     <div class="col-md-4  webdesign illustrator">
         <div class="gal-detail thumb">
         	<center>
-        	<a href="/services" class="image-popup" title="Screenshot-1">
+        	<a href="/services/{{$item->id_ser}}" class="image-popup" title="Appointment">
                 <img src="/uploads/images/service/{{$item->picture}}"  class="thumb-img" alt="work-thumbnail" style="height: 45%">
             </a>	
         	</center>
