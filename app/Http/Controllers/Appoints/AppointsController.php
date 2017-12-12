@@ -24,12 +24,14 @@ class AppointsController extends Controller
         return view('appoint.index')->with('appoints',$appoints)
                                     ->with('page',$page)
                                     ->with('NUM_PAGE',$NUM_PAGE);
+                                    
     }
     public function create()    {
+
         return view('appoint.appoint');
     }
     public function store(Request $request)    {
-           
+         
         $time_e =$request->get('time_e');
         $idser  = (int) $request->get('id_ser');
         $nser = DB::table('services')->where('id_ser',$idser)->get();
@@ -128,13 +130,17 @@ class AppointsController extends Controller
           $c_sp_time0 = ((int)  $sp_time[0] * 60) + (int)  $sp_time[1];
           //เวลาสิ้นสุดที่คำนวณค่าจากตอบรับแล้ว
           $sp_time1 = explode(':', $time_e);
-          $c_sp_time1 = ((int)  $sp_time1[0] * 60) + (int)  $sp_time1[1];       
+
+          $c_sp_time1 = ((int)  $sp_time1[0] * 60) + (int)  $sp_time1[1];    
+            
           if( (($c_sp_find_b<=$c_sp_time0   &&   $c_sp_find_e >= $c_sp_time0)||
             ($c_sp_find_b<=$c_sp_time1   &&   $c_sp_find_e >= $c_sp_time1))&&
             ($request->get('date')==$find->date)&&
             ($request->get('staff')==$find->staff))
           { 
-            return redirect('appoint')->with('errors','วันที่ '.$request->date.' เวลา '.$request->time.' - '.$find->time_e.' มีคนจองแล้วค่ะ '. 'กรุณากรอกข้อมูลใหม่');
+            return back()->with('errors','วันที่ '.$request->date.' เวลา '.$request->time.' - '.$find->time_e.' มีคนจองแล้วค่ะ '. 'กรุณากรอกข้อมูลใหม่')
+        
+                         ->withInput($request->input());
           }
         }
         $data = new Appoint;
@@ -278,13 +284,15 @@ class AppointsController extends Controller
           $sp_time1 = explode(':', $time_e);
           //dd($sp_time1);
           $c_sp_time1 = ((int)  $sp_time1[0] * 60) + (int)  $sp_time1[1]; 
-               
+
           if( (($c_sp_find_b<=$c_sp_time0   &&   $c_sp_find_e >= $c_sp_time0)||
             ($c_sp_find_b<=$c_sp_time1   &&   $c_sp_find_e >= $c_sp_time1))&&
             ($request->get('date')==$find->date)&&
-            ($request->get('staff')==$find->staff) && ($find->id != $appoint->id))
+            ($request->get('staff')==$find->staff) )
           { 
+
             return redirect('appoint')->with('errors','วันที่ '.$request->date.' เวลา '.$request->time.' - '.$find->time_e.' มีคนจองแล้วค่ะ '. 'กรุณากรอกข้อมูลใหม่');
+
           }
         }
         $users = DB::table('users')->where('id',$request->get('user_id'))->get();  

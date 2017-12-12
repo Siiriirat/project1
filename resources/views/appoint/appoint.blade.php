@@ -34,19 +34,20 @@
                 <div class="col-md-6">
           <legend>ระบบจองคิว</legend>
           <div class="form-group">
-          <label for="tel">เบอร์โทรศัพท์ : <input type="text" name="tel" class="form-control" required></label>
+          <label for="tel">เบอร์โทรศัพท์ : <input type="text" name="tel" value="{{ old ('tel')}}" class="form-control" required></label>
           </div> 
+        
           <div class="form-group">
           <label for="gender">ระบุเพศของท่าน :</label><br>
           <label class="custom-control custom-radio" >
-          <input id="gender" name="gender" type="radio" value="เพศชาย" class="custom-control-input" required> 
+          <input id="gender" name="gender" type="radio" value="เพศชาย" class="custom-control-input" required @if(old('gender') ==  'เพศชาย') checked="checked" @endif> 
           <span class="custom-control-indicator"></span>
           <span class="custom-control-description">
             <img src="{{url('/image/male.png')}}" width="10%">
           </span>
           </label><br><br>
           <label class="custom-control custom-radio">
-          <input id="gender" name="gender" type="radio" value="เพศหญิง" class="custom-control-input" required>
+          <input id="gender" name="gender" type="radio" value="เพศหญิง" class="custom-control-input" required @if(old('gender') ==  'เพศหญิง') checked="checked" @endif>
           <span class="custom-control-indicator"></span>
           <span class="custom-control-description">
             <img src="{{url('/image/female.png')}}" width="10%">
@@ -97,9 +98,9 @@
           <label for="time">ระบุวันและเวลา :</label><br> 
    
           <label>วันที่</label>
-          <input type="text" id="date" name ="date" style="width:220px;" data-field="date" class="form-control" required/>
+          <input type="text" id="date" name ="date" style="width:220px;" data-field="date" class="form-control" value="{{ old ('date')}}" required/>
           <label>ช่วงเวลา</label>
-          <input type="text" id="time" name="time" style="width:220px;" data-field="time" class="form-control" required/>
+          <input type="text" id="time"  value="{{ old ('time')}}" name="time" style="width:220px;" data-field="time" class="form-control" required/>
           <div id="dtBox"></div>
           <script src="/js/jquery1.min.js"></script>
           <script src="/dist/DateTimePicker.js"></script>

@@ -62,9 +62,6 @@ class ServicesController extends Controller
     {
          
         $service = Service::findOrFail($id);  
-
-
-
         if ($request->hasFile('img'))
         {
             $file = $request->file('img');
