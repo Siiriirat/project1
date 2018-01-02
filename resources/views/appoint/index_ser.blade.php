@@ -37,7 +37,7 @@
 				<a href="services/{{$item->id_ser}}" class="btn btn-info btn-sm"><i class="fa fa-eye"></i> ดูรายละเอียด</a>
 				<a href="services/{{$item->id_ser}}/edit" class="btn btn-warning btn-sm"><i class="fa fa-edit"></i> แก้ไขบริการ</a> 		
 				<input type="hidden" name="_method" value="Delete">
-				<button class="btn btn-danger btn-sm"><i class="fa fa-ban"></i> ลบบริการ</button> 
+				<button class="btn btn-danger btn-sm" onclick="return confirm('ท่านต้องการลบรายการบริการใช่หรือไม่ ?')"><i class="fa fa-ban"></i> ลบบริการ</button> 
 				
 				{{csrf_field()}}
 			</form>	
@@ -67,7 +67,13 @@
 </div>
 
 
-
+<script type="text/javascript">
+        $(document).ready(function () {
+            $('#confirm').on('click', function (e) {
+                $('#deletes').trigger('submit');
+            });
+        });
+</script>
 
 
 

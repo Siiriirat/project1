@@ -138,7 +138,7 @@ class AppointsController extends Controller
             ($request->get('date')==$find->date)&&
             ($request->get('staff')==$find->staff))
           { 
-            return back()->with('errors','วันที่ '.$request->date.' เวลา '.$request->time.' - '.$find->time_e.' มีคนจองแล้วค่ะ '. 'กรุณากรอกข้อมูลใหม่')
+            return back()->with('errors','วันที่ '.$request->date.' เวลา '.$request->time.' - '.$find->time_e.' มีคนจองแล้วค่ะ '. 'กรุณาเลือกเวลาใหม่')
         
                          ->withInput($request->input());
           }
@@ -160,11 +160,11 @@ class AppointsController extends Controller
         }
         elseif($ch_time > 1200)
         {
-            return redirect('appoint')->with('errors','เวลา '.$request->time.' ทางร้านปิดให้บริการแล้วคะ');
+            return back()->with('errors','เวลา '.$request->time.' ทางร้านปิดให้บริการแล้วคะ')->withInput($request->input());
         }
         elseif($ch_time > 0 && $ch_time < 600)
         {
-            return redirect('appoint')->with('errors','เวลา '.$request->time.' ทางร้านยังไม่เปิดให้บริการคะ');
+            return back()->with('errors','เวลา '.$request->time.' ทางร้านยังไม่เปิดให้บริการคะ')->withInput($request->input());
         }
       
        
@@ -291,7 +291,7 @@ class AppointsController extends Controller
             ($request->get('staff')==$find->staff) )
           { 
 
-            return redirect('appoint')->with('errors','วันที่ '.$request->date.' เวลา '.$request->time.' - '.$find->time_e.' มีคนจองแล้วค่ะ '. 'กรุณากรอกข้อมูลใหม่');
+            return back()->with('errors','วันที่ '.$request->date.' เวลา '.$request->time.' - '.$find->time_e.' มีคนจองแล้วค่ะ '. 'กรุณาเลือกเวลาใหม่');
 
           }
         }
@@ -333,11 +333,11 @@ class AppointsController extends Controller
         }
         elseif($ch_time > 1200)
         {
-            return redirect('appoint')->with('errors','เวลา '.$request->time.' ทางร้านปิดให้บริการแล้วคะ');
+            return back()->with('errors','เวลา '.$request->time.' ทางร้านปิดให้บริการแล้วคะ');
         }
         elseif($ch_time > 0 && $ch_time < 600)
         {
-            return redirect('appoint')->with('errors','เวลา '.$request->time.' ทางร้านยังไม่เปิดให้บริการคะ');
+            return back()->with('errors','เวลา '.$request->time.' ทางร้านยังไม่เปิดให้บริการคะ');
         }
     }
     public function destroy($id)

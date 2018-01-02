@@ -13,7 +13,7 @@ class ServicesController extends Controller
     //     $this->middleware('auth');
     // }
     public function index(Request $request)    {
-        $services = Service::orderBy('created_at','asc')->get();
+        $services = Service::orderBy('id_ser','asc')->get();
         return view('appoint.index_ser')->with('services',$services);
     }
     public function create()    {
