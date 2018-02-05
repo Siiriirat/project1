@@ -8,11 +8,12 @@
 <form action="{{url('/search')}}" method="post" >
 {{csrf_field()}}
 <div class="row">
-<div class="col-md-3">@if ( !Auth::guest() )
+<div class="col-md-3">
+  @if ( !Auth::guest() )
 	<a href="appoint" class="btn btn-success"> <i class="fa fa-plus-circle"></i> เพิ่มรายการ </a>
 	<br>
-	
-@endif</div>
+	@endif
+</div>
 <div class="col-md-3"></div>
 <div class="col-md-3"></div>
 <div class="col-md-3">
@@ -45,11 +46,11 @@
           <thead class="thead-inverse">
            <tr>
            <th>
-             <center><button type="submit" formaction="/selectconfirm" value="selectconfirm" class="btn btn-success"><i class="fa fa-check-circle" aria-hidden="true"></i>
+             <center><button type="submit" formaction="/selectconfirm"  value="selectconfirm" class="btn btn-warning" onclick="return confirm('ยืนยันการแก้ไขข้อมูล ?')"><i class="fa fa-check-circle" aria-hidden="true"></i>
              </button></center>
            </th>
            <th>
-           <center><button type="submit" value="selectdelete" class="btn btn-danger"><i class="fa fa-trash-o" aria-hidden="true"></i>
+           <center><button type="submit" value="selectdelete" class="btn btn-danger" onclick="return confirm('ยืนยันการลบข้อมูล ?')"><i class="fa fa-trash-o" aria-hidden="true"></i>
            </button></center>
            </th>
            <th>ลำดับที่</th>
@@ -65,7 +66,7 @@
 		<tbody>
     <tr> 
       <td>
-      <select name="confirmcheckbox_{{$item->id}}" class="form-control">
+      <select name="confirmcheckbox_{{$item->id}}" style="width:125px;" class="form-control">
         @if($item->status == 0)
         <option value="0" selected>รอการตอบรับ</option>
         <option value="1" >ปฏิเสธ</option>
@@ -82,7 +83,9 @@
       </select> 
       </td>
     <td>
-    <input name="appointscheckbox[]" value="{{$item->id}}" type="checkbox" class="form-control">
+      <center>
+            <input name="appointscheckbox[]" class="btn btn-lg btn-primary btn-block" value="{{$item->id}}" type="checkbox" >
+      </center>
     </td>      
 		<td>{{$NUM_PAGE*($page-1) + $index+1}}</td>
 		<td>{{$item->user()->get()[0]->name}}</td>
@@ -95,7 +98,7 @@
 				<td><a href="/appoints/{{$item->id}}" class="btn btn-info btn-sm"><i class="fa fa-eye"></i> แสดง</a>
 				<a href="/appoints/{{$item->id}}/edit" class="btn btn-warning btn-sm"><i class="fa fa-edit"></i> แก้ไข</a>
 				<input type="hidden" name="_method" value="Delete">
-				<button formaction="/appoints/{{$item->id}}" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure to delete ?')"><i class="fa fa-ban"></i> ยกเลิก</button> </td>
+				<button formaction="/appoints/{{$item->id}}" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure to delete ?')"><i class="fa fa-trash"></i> ลบบริการ</button> </td>
 				{{csrf_field()}}
 			</form>
 		@endcan
@@ -115,7 +118,7 @@
            <th>ชื่อบริการ</th>
            <th>ช่างผู้ให้บริการ</th>
            <th>วันที่จอง</th>
-		   <th>เวลาเริ่มต้น</th>
+		       <th>เวลาเริ่มต้น</th>
            <th>เวลาสิ้นสุด</th>
            <th>ชื่อผู้จอง</th>
            <th>ราคารวม</th>
@@ -155,7 +158,7 @@
 				<td><a href="/appoints/{{$item->id}}" class="btn btn-info btn-sm"><i class="fa fa-eye"></i> แสดง</a>
 				<a href="/appoints/{{$item->id}}/edit" class="btn btn-warning btn-sm"><i class="fa fa-edit"></i> แก้ไข</a>
 				<input type="hidden" name="_method" value="Delete">
-				<button class="btn btn-danger btn-sm" onclick="return confirm('Are you sure to delete ?')"><i class="fa fa-ban"></i> ยกเลิก</button> </td>
+				<button class="btn btn-danger btn-sm" onclick="return confirm('Are you sure to delete ?')"><i class="fa fa-ban"></i> ลบบริการ</button> </td>
 				{{csrf_field()}}
 			</form>
 		@endcan
