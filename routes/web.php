@@ -19,14 +19,13 @@ Route::group(['middleware' => ['auth']], function() {
 Route::get('/home1', function () {
     return view('appoint.home1');
 });
-
 Route::get('/template', function () {
     return view('template_nav');
 });
 
-Route::get('/temp', function () {
-    return view('appoint.template');
-});
+// Route::get('/temp', function () {
+//     return view('appoint.template');
+// });
 Route::get('/news', function () {
     return view('appoint.news');
 });
@@ -41,26 +40,32 @@ Route::get('/contact', function () {
     return view('appoint.contact');
 });
 
-Route::get('/index', function () {
-    return view('appoint.index_1');
+// Route::get('/index', function () {
+//     return view('appoint.index_1');
+// });
+Route::get('/test', function () {
+    return view('appoint.test');
 });
+
 
 Route::resource('appoints','Appoints\\AppointsController');
 Route::resource('services','Services\\ServicesController');
-
 Route::get('/index_1','ShowsController@show');
+Route::delete('/selectdelete','Appoints\\AppointsController@selectdelete');
+Route::delete('/selectconfirm','Appoints\\AppointsController@selectconfirm');
+
 
 });
 
-Route::get('/home2', function () {
+/*Route::get('/home2', function () {
     return view('appoint.home2');
 });
-
+*/
 Auth::routes();
 
 
 
-Route::get('/home', 'HomeController@index');
+//Route::get('/home', 'HomeController@index');
 Route::get('change-password', function() {
 	return view('appoint.change-password'); 
 });

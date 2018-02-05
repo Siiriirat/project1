@@ -19,8 +19,14 @@ class ShowsController extends Controller
                            								  ->orderBy('date','desc')
                                                           ->orderBy('time','desc')
                                                           ->paginate($NUM_PAGE);
+                                                        
     	return view('appoint.index_1')->with('show',$show)
     								  ->with('page',$page)
                                       ->with('NUM_PAGE',$NUM_PAGE);
+    }
+    public function delete($id)
+    {
+        Appoint::destroy($id);
+        return back();
     }
 }

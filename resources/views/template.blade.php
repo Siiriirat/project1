@@ -39,18 +39,18 @@
                 </div>
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item">
-                    <a class="btn btn-outline-danger nav-link " href="{{url('home1')}}"><i class="fa fa-home"></i> หน้าหลัก<span class="sr-only"></span>
+                    <a class="btn btn-outline-danger nav-link " href="{{url('/home1')}}"><i class="fa fa-home"></i> หน้าหลัก<span class="sr-only"></span>
                     
                     </a>
                     </li>&nbsp
                     <li class="nav-item">
-                    <a class="btn btn-outline-danger nav-link" href="{{url('news')}}"><i class="fa fa-newspaper-o"></i> ข่าวสาร</a>
+                    <a class="btn btn-outline-danger nav-link" href="{{url('/news')}}"><i class="fa fa-newspaper-o"></i> ข่าวสาร</a>
                     </li>&nbsp
 
                     @if (Auth::user()->level == "admin")
 
                     <li class="nav-item">
-                    <a class="btn btn-outline-danger nav-link" href="{{url('service')}}"><i class="fa fa-th-list"></i> รายการบริการ</a>
+                    <a class="btn btn-outline-danger nav-link" href="{{url('/service')}}"><i class="fa fa-th-list"></i> รายการบริการ</a>
                     </li>&nbsp
                     @else
                     <li class="nav-item">
@@ -59,7 +59,7 @@
                     @endif
                     @if (Auth::user()->level == "admin")
                     <li class="nav-item">
-                    <a class="btn btn-outline-danger nav-link" href="{{url('appoints')}}"><i class="fa fa-calendar-plus-o"></i> จองคิวบริการ</a>
+                    <a class="btn btn-outline-danger nav-link" href="{{url('/appoints')}}"><i class="fa fa-calendar-plus-o"></i> จองคิวบริการ</a>
                     </li>
                     @else
                     <li class="nav-item">
@@ -68,7 +68,7 @@
                     @endif
                     </li>&nbsp
                     <li class="nav-item">
-                    <a class="btn btn-outline-danger nav-link" href="{{url('contact')}}"><i class="fa fa-newspaper-o"></i> ติดต่อเรา</a>
+                    <a class="btn btn-outline-danger nav-link" href="{{url('/contact')}}"><i class="fa fa-newspaper-o"></i> ติดต่อเรา</a>
                     </li>&nbsp
 
                     <!--@if (Auth::user()->level == "admin")

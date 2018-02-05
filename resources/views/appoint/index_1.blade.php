@@ -2,16 +2,17 @@
 @section('title','Appointment')
 <head>
     <link href="/dist/DateTimePicker.css" rel="stylesheet"/>
+    <link rel="stylesheet" type="text/css" href="{{asset('/css/test.css')}}">
 </head>
 @section('content')
 
 <form action="{{url('/searchs')}}" method="post" >
 {{csrf_field()}}
 <div class="row">
-<div class="col-md-3">@if ( !Auth::guest() )
+<div class="col-md-3"><!-- @if ( !Auth::guest() )
   <a href="appoint" class="btn btn-success"> <i class="fa fa-plus-circle"></i> เพิ่มรายการ </a>
 
-@endif</div>
+@endif --></div>
 <div class="col-md-3"></div>
 <div class="col-md-3"></div>
 <div class="col-md-3">
@@ -37,64 +38,99 @@
 </div>
 </form>
 <br>
-<div style="overflow-x:auto;">
-<table class="table table-bordered">
-          <thead class="thead-inverse">
-           <tr>
-           <th>ลำดับที่</th>
-           <th>ชื่อบริการ</th>
-           <th>ช่างผู้ให้บริการ</th>
-           <th>วันที่จอง</th>
-		   <th>เวลาเริ่มต้น</th>
-           <th>เวลาสิ้นสุด</th>
-           <th>ชื่อผู้จอง</th>
-           <th>ราคารวม</th>
-           <th>การตอบรับ</th>
-           <th>ตัวเลือก</th>
-           </tr>
-          </thead>
 
-@foreach( $show as  $index => $item )
-		
-		<tbody>
-        <tr> 
-		<td>{{$NUM_PAGE*($page-1) + $index+1}}</td>
-		<td><?php 
-		echo (DB::table('services')->where('id_ser',$item->id_ser)->value('name_ser'));
-		?></td>
-		<td>{{$item->staff}}</td>
-		<td>{{$item->date}}</td>
-		<td>{{$item->time}}</td>
-		<td>{{$item->time_e}}</td>
-		<td>{{$item->user()->get()[0]->name}}</td>	
-		<td><?php 
-		echo (DB::table('services')->where('id_ser',$item->id_ser)->value('cost'));
-		?></td>
-		<td>
-			@if($item->status == 0)
-			 <font color="orange"> <i class="fa fa-refresh fa-spin fa-1x fa-fw" aria-hidden="true"></i>รอการอนุมัติ</font> 
-			@elseif($item->status == 1)
-			 <font color="red"><i class="fa fa-times" aria-hidden="true"></i> ไม่อนุมัติ!</font> 
-			@elseif($item->status == 2)
-			 <font color="green"><i class="fa fa-check" aria-hidden="true"></i> อนุมัติ</font> 
-			@endif
-		</td>
-		@can('show',$item)
-			<form method="post" action="/appoints/{{$item->id}}" class="form-inline">
-				<td><a href="/appoints/{{$item->id}}" class="btn btn-info btn-sm"><i class="fa fa-eye"></i> แสดง</a>
-				<a href="/appoints/{{$item->id}}/edit" class="btn btn-warning btn-sm"><i class="fa fa-edit"></i> แก้ไข</a>
-				<input type="hidden" name="_method" value="Delete">
-				<button class="btn btn-danger btn-sm"><i class="fa fa-ban"></i> ยกเลิก</button> </td>
-				{{csrf_field()}}
-			</form>
-		@endcan
-	    
-	    </tr>
-      </tbody>
-      
-@endforeach
-</table>
+
+
+
+
+<div class="col-md-12">  
+    <div class="col-md-4">      
+        <div class="portlet light profile-sidebar-portlet bordered">
+            <div class="profile-userpic">
+              <center>
+                 <img src="https://bootdey.com/img/Content/avatar/avatar1.png" style="width: 90%"; alt=""> 
+              </center>
+               </div>
+            <div class="profile-usertitle">
+                <div class="profile-usertitle-name">{{Auth::user()->name}}</div>
+                <div class="profile-usertitle-job"> {{Auth::user()->level}} 
+             
+
+
+                </div>
+            </div>
+           <!--  <div class="profile-userbuttons">
+                <button type="button" class="btn btn-success  btn-sm">ตั้งค่าผู้ใช้</button>
+                <button type="button" class="btn btn-info  btn-sm">Message</button>
+            </div> -->
+            <div class="profile-usermenu">
+                <ul class="nav">
+                    <li class="active">
+                      @if ( !Auth::guest() )
+                        <a href="/appoint">
+                            <i class="fa fa-plus-circle"></i> เพิ่มรายการบริการ </a>
+                     @endif
+                    </li>
+                    <li class="active">
+                        <a href="{{url('/appoints')}}">
+                          <i class="fa fa-calendar-plus-o"></i> ตารางการเข้าใช้บริการ </a>
+                    
+                    </li>
+                   
+                 
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-8"> 
+        <div class="portlet light bordered">
+            <div class="portlet-title tabbable-line">
+                <div class="caption caption-md">
+                    <i class="icon-globe theme-font hide"></i>
+                    <span class="caption-subject font-blue-madison bold uppercase"><h4
+                  ><b><i class="fa fa-th-list"></i> รายการจองคิวบริการ</b></h4></span>
+                </div>
+            </div>
+            <div class="portlet-body">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>ลำดับ</th>
+                            <th>ชื่อบริการ</th>
+                            <th><center>วันที่จอง</center></th>
+                            <th>ผู้ให้บริการ</th>
+                            <th><center>ตัวเลือก</center></th>
+                        </tr>
+                    </thead>
+                    @foreach( $show as  $index => $item )
+                    <tbody>
+                        <tr class="active">
+                            <td>{{$NUM_PAGE*($page-1) + $index+1}}</td>
+                            <td><?php 
+                            echo (DB::table('services')->where('id_ser',$item->id_ser)->value('name_ser'));
+                            ?></td>
+                            <td>{{$item->date}} {{$item->time}} - {{$item->time_e}}</td>
+                            <td><center>{{$item->staff}}</center></td>
+                            @can('show',$item)
+                              <form method="post" action="/appoints/{{$item->id}}" class="form-inline">
+                               <td><a href="/appoints/{{$item->id}}" class="btn btn-info btn-sm"><i class="fa fa-eye"></i> แสดง</a>
+                               <a href="/appoints/{{$item->id}}/edit" class="btn btn-warning btn-sm"><i class="fa fa-edit"></i> แก้ไข</a>
+                               <input type="hidden" name="_method" value="Delete">
+                              <button class="btn btn-danger btn-sm" onclick="return confirm('Are you sure to delete ?')"><i class="fa fa-ban"></i> ยกเลิก</button> </td>
+                               {{csrf_field()}}
+                              </form>
+                            @endcan
+                        </tr>
+                        
+                    </tbody>
+                    @endforeach
+                </table>
+            </div>
+        </div>
+    </div>
 </div>
+
+
 
 <script>
       $('.clockpicker').clockpicker({

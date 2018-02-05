@@ -39,14 +39,23 @@
 </form>
 
 @if (Auth::user()->level == "admin")
+<form method="post" action="/selectdelete" >
 <div style="overflow-x:auto;">
 <table class="table table-bordered">
           <thead class="thead-inverse">
            <tr>
+           <th>
+             <center><button type="submit" formaction="/selectconfirm" value="selectconfirm" class="btn btn-success"><i class="fa fa-check-circle" aria-hidden="true"></i>
+             </button></center>
+           </th>
+           <th>
+           <center><button type="submit" value="selectdelete" class="btn btn-danger"><i class="fa fa-trash-o" aria-hidden="true"></i>
+           </button></center>
+           </th>
            <th>ลำดับที่</th>
            <th>ชื่อผู้จอง</th>
            <th>วันที่จอง</th>
-		   <th>เวลาเริ่มต้น</th>
+		       <th>เวลาเริ่มต้น</th>
            <th>เวลาสิ้นสุด</th>
            <th>ช่างผู้ให้บริการ</th>
            <th>ตัวเลือก</th>
@@ -54,7 +63,27 @@
           </thead>
 @foreach( $appoints as  $index => $item )
 		<tbody>
-        <tr> 
+    <tr> 
+      <td>
+      <select name="confirmcheckbox_{{$item->id}}" class="form-control">
+        @if($item->status == 0)
+        <option value="0" selected>รอการตอบรับ</option>
+        <option value="1" >ปฏิเสธ</option>
+        <option value="2" >ยอมรับ</option>
+        @elseif($item->status == 1)
+        <option value="0">รอการตอบรับ</option>
+        <option value="1" selected>ปฏิเสธ</option>
+        <option value="2" >ยอมรับ</option>
+        @elseif($item->status == 2)
+        <option value="0">รอการตอบรับ</option>
+        <option value="1" >ปฏิเสธ</option>
+        <option value="2" selected>ยอมรับ</option>
+        @endif
+      </select> 
+      </td>
+    <td>
+    <input name="appointscheckbox[]" value="{{$item->id}}" type="checkbox" class="form-control">
+    </td>      
 		<td>{{$NUM_PAGE*($page-1) + $index+1}}</td>
 		<td>{{$item->user()->get()[0]->name}}</td>
 		<td>{{$item->date}}</td>
@@ -66,13 +95,14 @@
 				<td><a href="/appoints/{{$item->id}}" class="btn btn-info btn-sm"><i class="fa fa-eye"></i> แสดง</a>
 				<a href="/appoints/{{$item->id}}/edit" class="btn btn-warning btn-sm"><i class="fa fa-edit"></i> แก้ไข</a>
 				<input type="hidden" name="_method" value="Delete">
-				<button class="btn btn-danger btn-sm" onclick="return confirm('Are you sure to delete ?')"><i class="fa fa-ban"></i> ยกเลิก</button> </td>
+				<button formaction="/appoints/{{$item->id}}" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure to delete ?')"><i class="fa fa-ban"></i> ยกเลิก</button> </td>
 				{{csrf_field()}}
 			</form>
 		@endcan
 	    </tr>
       </tbody>
 @endforeach
+</form>
 </table>
 </div>
 @else
@@ -80,6 +110,7 @@
 <table class="table table-bordered">
           <thead class="thead-inverse">
            <tr>
+           
            <th>ลำดับที่</th>
            <th>ชื่อบริการ</th>
            <th>ช่างผู้ให้บริการ</th>
@@ -96,6 +127,7 @@
 		
 		<tbody>
         <tr> 
+    
 		<td>{{$NUM_PAGE*($page-1) + $index+1}}</td>
 		<td><?php 
 		echo (DB::table('services')->where('id_ser',$item->id_ser)->value('name_ser'));
@@ -110,7 +142,7 @@
 		?></td>
 		<td>
 			@if($item->status == 0)
-			 <font color="orange"><i class="fa fa-refresh fa-spin fa-1x fa-fw" aria-hidden="true"></i> รอการอนุมัติ</font> 
+			 <font color="orange"><i class="fa fa-refresh" aria-hidden="true"></i> รอการอนุมัติ</font> 
 			@elseif($item->status == 1)
 			 <font color="red"><i class="fa fa-times" aria-hidden="true"></i> ไม่อนุมัติ!</font> 
 			@elseif($item->status == 2)

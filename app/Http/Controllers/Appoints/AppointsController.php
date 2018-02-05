@@ -21,9 +21,36 @@ class AppointsController extends Controller
                            ->paginate($NUM_PAGE);
         $page = $request->input('page');
         $page = ($page != null)?$page:1;
+        $services = DB::table('services')->get();
         return view('appoint.index')->with('appoints',$appoints)
                                     ->with('page',$page)
+                                    ->with('services',$services)
                                     ->with('NUM_PAGE',$NUM_PAGE);
+                                    
+    }
+    public function selectdelete(Request $request)    {
+
+            foreach ($request->get('appointscheckbox') as $value) {
+                Appoint::destroy($value);
+            }
+            return redirect('appoints');
+                                    
+    }
+    public function selectconfirm(Request $request)    {
+
+        
+        foreach(DB::table('appoints')->get() as $item)
+        {
+            if($request->get('confirmcheckbox_'.$item->id)!=null)
+            {
+
+                $appoint = Appoint::findOrFail($item->id);
+                $appoint->update([
+                        'status' => $request->get('confirmcheckbox_'.$item->id),
+                        ]);
+            }
+        }
+        return redirect('appoints');
                                     
     }
     public function create()    {

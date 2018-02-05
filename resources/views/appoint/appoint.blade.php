@@ -26,6 +26,10 @@
         </ul>
     
 @endif
+<?php
+$services = DB::table('services')->get();
+$i=1;
+?>
 
 
 </div>
@@ -40,7 +44,7 @@
           <div class="form-group">
           <label for="tel">เบอร์โทรศัพท์ : <input type="text" name="tel" value="{{ old ('tel')}}" class="form-control" required></label>
           </div> 
-        
+
           <div class="form-group">
           <label for="gender">ระบุเพศของท่าน :</label><br>
           <label class="custom-control custom-radio" >
@@ -61,6 +65,15 @@
           <div class="form-group">
           <label for="service"   class= "control-label" >บริการ : <br>
           <select  name="id_ser" id="id_ser" class="form-control" required>
+            <option value="" required>--- เลือกประเภทบริการ ---</option>
+            @foreach($services as $s)
+                  <option value="{{$i}}" required @if (old('id_ser') == $i) {{ 'selected' }} @endif>{{$s->name_ser}}</option>
+                  <?php
+                      $i++;
+                  ?>
+            @endforeach
+          </select>
+          <!-- <select  name="id_ser" id="id_ser" class="form-control" required>
           <option value="" required>--- เลือกประเภทบริการ ---</option>
           <optgroup label="หน้า" data-max-options="3">
           <option value="1" required @if (old('id_ser') == "1") {{ 'selected' }} @endif>แต่งหน้า</option>
@@ -77,7 +90,8 @@
           <option value="8" required @if (old('id_ser') == "8") {{ 'selected' }} @endif>ทำเล็บมือ</option>
           <option value="9" required @if (old('id_ser') == "9") {{ 'selected' }} @endif>ทำเล็บเท้า</option>   
           </optgroup>
-          </select>
+          </select> -->
+
           </label>
           </div>
           <div class="form-group">
