@@ -116,7 +116,7 @@
                                <td><a href="/appoints/{{$item->id}}" class="btn btn-info btn-sm"><i class="fa fa-eye"></i> แสดง</a>
                                <a href="/appoints/{{$item->id}}/edit" class="btn btn-warning btn-sm"><i class="fa fa-edit"></i> แก้ไข</a>
                                <input type="hidden" name="_method" value="Delete">
-                              <button class="btn btn-danger btn-sm" onclick="return confirm('Are you sure to delete ?')"><i class="fa fa-ban"></i> ยกเลิก</button> </td>
+                              <button class="btn btn-danger btn-sm" onclick="return confirm('Are you sure to delete ?')"><i class="fa fa-ban"></i> ลบบริการ</button> </td>
                                {{csrf_field()}}
                               </form>
                             @endcan

@@ -53,8 +53,8 @@ Route::resource('services','Services\\ServicesController');
 Route::get('/index_1','ShowsController@show');
 Route::delete('/selectdelete','Appoints\\AppointsController@selectdelete');
 Route::delete('/selectconfirm','Appoints\\AppointsController@selectconfirm');
-
-
+Route::get('/appoints_1','ShowsController@show_1');
+Route::get('/appoints_2','ShowsController@show_2');
 });
 
 /*Route::get('/home2', function () {

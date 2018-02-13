@@ -44,7 +44,7 @@
 <div id="user-profile-2" class="user-profile">
     <div class="tabbable">
       <ul class="nav nav-tabs padding-18">
-        <li class="active">
+        <li>
           <a href="/appoints">
             <i class="green ace-icon fa fa-user bigger-120"></i>
             ช่าง A
@@ -58,7 +58,7 @@
           </a>
         </li>
 
-        <li>
+        <li class="active">
           <a href="/appoints_2">
             <i class="blue ace-icon fa fa-user bigger-120"></i>
             ช่าง C

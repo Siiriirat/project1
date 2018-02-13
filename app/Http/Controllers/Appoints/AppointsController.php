@@ -14,11 +14,13 @@ class AppointsController extends Controller
     //     $this->middleware('auth');
     // }
     public function index(Request $request)    {
-        $NUM_PAGE = 8;
-        $appoints = Appoint::orderBy('staff','asc')
+        $NUM_PAGE = 6;
+        $appoints = Appoint::where('staff',"A")->orderBy('staff','asc')
                            ->orderBy('created_at','desc')
                            ->orderBy('time','asc')
                            ->paginate($NUM_PAGE);
+                           
+
         $page = $request->input('page');
         $page = ($page != null)?$page:1;
         $services = DB::table('services')->get();
@@ -33,7 +35,7 @@ class AppointsController extends Controller
             foreach ($request->get('appointscheckbox') as $value) {
                 Appoint::destroy($value);
             }
-            return redirect('appoints');
+            return back();
                                     
     }
     public function selectconfirm(Request $request)    {
@@ -50,7 +52,7 @@ class AppointsController extends Controller
                         ]);
             }
         }
-        return redirect('appoints');
+        return back();
                                     
     }
     public function create()    {
@@ -370,7 +372,7 @@ class AppointsController extends Controller
     public function destroy($id)
     {
         Appoint::destroy($id);
-        return redirect('appoints');
+        return back();
     }
     
 
