@@ -5,7 +5,7 @@
     <link rel="stylesheet" type="text/css" href="{{asset('/css/bootstrap-tab.css')}}">
 </head>
 @section('content')
-
+<br><br><br><br>
 <form action="{{url('/search')}}" method="post" >
 {{csrf_field()}}
 <div class="row">

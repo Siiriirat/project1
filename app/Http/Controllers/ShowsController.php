@@ -13,7 +13,7 @@ class ShowsController extends Controller
     {
     	$NUM_PAGE = 8;
     	$page = $request->input('page');
-      $page = ($page != null)?$page:1;
+        $page = ($page != null)?$page:1;
     	$show = Appoint::where('user_id',Auth::user()->id)->orderby('staff','asc')
     													                          ->orderBy('created_at','desc')
                            								              ->orderBy('date','desc')
@@ -48,8 +48,6 @@ class ShowsController extends Controller
                            ->orderBy('created_at','desc')
                            ->orderBy('time','asc')
                            ->paginate($NUM_PAGE);
-                           
-
         $page = $request->input('page');
         $page = ($page != null)?$page:1;
         $services = DB::table('services')->get();

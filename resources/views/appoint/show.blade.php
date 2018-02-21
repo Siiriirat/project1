@@ -1,6 +1,7 @@
 @extends('template_nav')
 @section('title','Appointment')
 @section('content')
+<br><br><br><br>
 <div class="row">
   <div class="col-md-3">
     <a href="/appoints" class="btn btn-success"><i class="fa fa-hand-o-left" ></i></a>

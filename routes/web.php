@@ -19,6 +19,7 @@ Route::group(['middleware' => ['auth']], function() {
 Route::get('/home1', function () {
     return view('appoint.home1');
 });
+Route::resource('news','NewsController');
 Route::get('/template', function () {
     return view('template_nav');
 });
@@ -26,11 +27,20 @@ Route::get('/template', function () {
 // Route::get('/temp', function () {
 //     return view('appoint.template');
 // });
-Route::get('/news', function () {
-    return view('appoint.news');
-});
+// Route::get('/news', function () {
+//     return view('appoint.news');
+// });
+
+Route::resource('infos','InformationsController');
 Route::get('/service', function () {
     return view('appoint.service');
+});
+
+Route::get('/news', function () {
+    return view('appoint.index_info');
+});
+Route::get('/add_news', function () {
+    return view('appoint.create_info');
 });
 
 Route::get('/appoint', function () {
@@ -55,6 +65,8 @@ Route::delete('/selectdelete','Appoints\\AppointsController@selectdelete');
 Route::delete('/selectconfirm','Appoints\\AppointsController@selectconfirm');
 Route::get('/appoints_1','ShowsController@show_1');
 Route::get('/appoints_2','ShowsController@show_2');
+Route::get('/infos_1','InformationsController@show_1');
+Route::get('/infos_2','InformationsController@show_2');
 });
 
 /*Route::get('/home2', function () {

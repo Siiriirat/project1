@@ -4,6 +4,7 @@
     <link href="dist/DateTimePicker.css" rel="stylesheet"/>
 </head>
 @section('content')
+<br><br><br><br>
 <div class="row">
   <div class="col-md-3"></div>
   <div class="col-md-3"></div>
@@ -30,8 +31,6 @@
 $services = DB::table('services')->get();
 $i=1;
 ?>
-
-
 </div>
 <div class="container">
     <div class="well">
@@ -73,25 +72,7 @@ $i=1;
                   ?>
             @endforeach
           </select>
-          <!-- <select  name="id_ser" id="id_ser" class="form-control" required>
-          <option value="" required>--- เลือกประเภทบริการ ---</option>
-          <optgroup label="หน้า" data-max-options="3">
-          <option value="1" required @if (old('id_ser') == "1") {{ 'selected' }} @endif>แต่งหน้า</option>
-          <option value="2" required @if (old('id_ser') == "2") {{ 'selected' }} @endif>มาร์กหน้า</option>
-          </optgroup>
-          <optgroup label="ผม" data-max-options="3">
-          <option value="3" required @if (old('id_ser') == "3") {{ 'selected' }} @endif>ตัดผม</option>
-          <option value="4" required @if (old('id_ser') == "4") {{ 'selected' }} @endif>สระไดร์</option>
-          <option value="5" required @if (old('id_ser') == "5") {{ 'selected' }} @endif>ทำสีผม</option>
-          <option value="6" required @if (old('id_ser') == "6") {{ 'selected' }} @endif>ยืดผม</option>
-          <option value="7" required @if (old('id_ser') == "7") {{ 'selected' }} @endif>ดัดผม</option>
-          </optgroup>
-          <optgroup label="เล็บ" data-max-options="3">
-          <option value="8" required @if (old('id_ser') == "8") {{ 'selected' }} @endif>ทำเล็บมือ</option>
-          <option value="9" required @if (old('id_ser') == "9") {{ 'selected' }} @endif>ทำเล็บเท้า</option>   
-          </optgroup>
-          </select> -->
-
+      
           </label>
           </div>
           <div class="form-group">

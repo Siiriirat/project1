@@ -1,6 +1,7 @@
 @extends('template_nav')
 @section('title','Appointment')
 @section('content')
+<br><br><br><br>
 <center>
     <div class="container">
         <div class="well">

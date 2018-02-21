@@ -31,7 +31,7 @@
   </script>
 </head>
 <body>
-   <nav class="navbar navbar-webmaster">
+   <nav style="margin-bottom: -20px;" class="navbar navbar-webmaster navbar-fixed-top ">
     <div class="container">
       <div class="navbar-header">
       <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
@@ -49,9 +49,17 @@
         <li class="dropdown">
           <a href="{{url('/home1')}}"><i class="fa fa-home"></i> หน้าหลัก<span class="sr-only"></span></a>
         </li>
-        <li class="active">
-          <a href="{{url('/news')}}"><i class="fa fa-newspaper-o"></i> ข่าวสาร</a>
+        @if (Auth::user()->level == "admin")
+          <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-newspaper-o"></i> ข่าวสาร <span class="caret"></span></a>
+          <ul class="dropdown-menu" role="menu">
+            <li><a href="{{url('/add_news')}}"><i class="fa fa-plus"></i> เพิ่มข่าวสาร</a></li>
+            <li><a href="{{url('/infos')}}"><i class="fa fa-th-list"></i> ข่าวสารทั้งหมด</a></li>
+          </ul>
         </li>
+        @else
+            <li><a href="{{url('/infos')}}"><i class="fa fa-newspaper-o"></i> ข่าวสาร</a></li>
+        @endif
         @if (Auth::user()->level == "admin")
           <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-th-list"></i> รายการบริการ <span class="caret"></span></a>

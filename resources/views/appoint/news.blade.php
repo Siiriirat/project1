@@ -8,14 +8,19 @@
   </head>
   <body>
 <script src="{{ asset('js/news.js') }}"></script>
+<br><br><br>
 <div class="news-section"> 
     <div class="container"> 
+      
         <div class="col-md-3 news-column">
-                      <img class="img-responsive" src="image/1.jpg" title="name">
+          <div class="well">
+                      <img class="img-responsive img-rounded" src="image/1.jpg" title="name">
                       <h4>12 อาหารบำรุงเส้นผม</h4>
                       <p>เส้นผมของคนเรามีวงจรการงอกใหม่และผลัดผมเก่าออกวนเวียนกันอยู่ภายในช่วง 2 เดือน สำหรับกระบวนทั้งหมดของแต่ละเส้น เป็นเรื่องปกติที่คนเราจะมีผมร่วงทุกวัน แต่เราสามารถทำให้ผมกลับมายาวและสวยได้อย่างเดิมด้วยอาหาร 12 ชนิด</p>
                       <a class="news-btn" href="" data-toggle="modal" data-target="#myModal">อ่านต่อ</a>
-                    </div>
+          </div>
+        </div>
+        
         <div class="col-md-3 news-column">
                       <img class="img-responsive" src="image/2.jpg" title="name">
                       <h4>10 เมคอัพทริค</h4>

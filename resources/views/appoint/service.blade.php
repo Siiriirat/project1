@@ -1,7 +1,7 @@
 @extends('template_nav')
 @section('title','Appointment')
 @section('content')
-
+<br><br><br><br>
 <div class="row">
   <div class="col-md-3">
   </div>
@@ -12,16 +12,30 @@
           <a href="/services" class="btn btn-warning"><i class="fa fa-plus-square-o"></i> รายการบริการ</a>
 </div>
 </div>
+
 <br>
-  <div class="container">
-    <div class="well">
-       <!-- <a href="https://www.twitter.com/maridlcrmn/">Code snippet inspired by the Nike website. Made with love by @maridlcrmn for @bootsnipp. Enjoy and Share!</a>  --> 
-       <div class="card card-container">
-          <form method="post" action="/services" enctype="multipart/form-data">
-          <div class="container">
+ <div class="wrapper">
+    <div class="container">
+        <div class="wraper">
+            <div class="row">
+                <div class="col-lg-12">
+
+                    <div class="tab-content profile-tab-content">
+                        <div class="tab-pane active" id="home-2">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <!-- Personal-Information -->
+                                    <div class="panel panel-primary ">
+                                        <div class="panel-heading">
+                                            <h3 class="panel-title">เพิ่มบริการ</h3>
+                                        </div>
+                                        <div class="panel-body">
+                                            <div class="about-info-p">
+                                              <form method="post" action="/services" enctype="multipart/form-data">
+          
            <div class="row">
                 <div class="col-md-6">
-          <legend>เพิ่มบริการ</legend>
+        
           <div class="form-group">
           <label for="name_ser">ชื่อบริการ : <input type="text" name="name_ser" class="form-control" required></label>
           </div> 
@@ -32,12 +46,12 @@
           <label for="cost">ราคาของบริการ : <input type="number" name="cost" class="form-control" required></label>
           </div>
           <div class="form-group">
-          <label for="picture">รูปภาพ : <input type="file" class="form-control" style="height:80%;" name="img" id= "img" required></label>
+          <label for="picture">รูปภาพ : <input type="file"  style="height:80%;" name="img" id= "img" required></label>
           </div> 
           
 
           </div>
-          <br><br>
+          
           <div class="col-md-6">
           <div class="form-group" style="width:230px;">
           <label for="sp_time">เวลาที่ใช้ (hh.mm) : <input type="text" name="sp_time" class="form-control" required></label>
@@ -53,55 +67,20 @@
           </div>
      </div>
 </div>
-          </div>
+       
           </form>
-
- </div>
-
-
-
-    </div>
-</div>
- <!-- <div class="card card-container">
-          <form method="post" action="/services">
-          <div class="container">
-           <div class="row">
-                <div class="col-md-6">
-          <legend>เพิ่มบริการ</legend>
-          <div class="form-group">
-          <label for="name_ser">ชื่อบริการ : <input type="text" name="name_ser" class="form-control"></label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div> 
+                     </div>
+                  </div>
+                  </div>
+              </div>
           </div> 
-          <div class="form-group">
-          <label for="type">ประเภทบริการ : <input type="text" name="type" class="form-control"></label>
-          </div> 
-          <div class="form-group" style="width:230px;">
-          <label for="cost">ราคาของบริการ : <input type="number" name="cost" class="form-control"></label>
-          </div>
-          </div>
-          <br><br>
-          <div class="col-md-6">
-          <div class="form-group" style="width:230px;">
-          <label for="sp_time">เวลาที่ใช้ : <input type="text" name="sp_time" class="form-control"></label>
-          </div> 
-          <div class="form-group">
-          <label for="detail">รายละเอียดบริการ :</label>
-          <textarea name="detail" class="form-control" rows="4" placeholder="Enter text here"></textarea>
-          </div>
-          {{csrf_field()}} 
-          <div class="form-group">
-          <button type="submit" class="btn btn-success"><i class="fa fa-plus-circle"></i> เพิ่มบริการ
-          </button> 
-          </div>
-     </div>
-</div>
-          </div>
-          </form>
-
- </div>
- -->
-
-
-
+        </div>
 
 <br>
 
