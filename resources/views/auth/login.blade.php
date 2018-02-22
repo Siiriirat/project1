@@ -1,15 +1,33 @@
 @extends('layouts.app')
+<head>
+    <link rel="stylesheet" type="text/css" href="{{asset('/css/bootstrap-login.css')}}">
+</head>
 @section('content')
 <br><br><br><br>
-<div class="container">
-    <div class="well">
-        <legend>เข้าสู่ระบบ</legend>
-             <form class="form-horizontal" role="form" method="POST" action="{{ route('login') }}">
-                        {{ csrf_field() }}
-                        <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
-                            <label for="email" class="col-md-4 control-label">E-Mail :</label>
 
-                            <div class="col-md-4">
+<form class="form-horizontal" role="form" method="POST" action="{{ route('login') }}">
+<div class="row">
+<div class="col-md-4"></div>
+<div class="col-md-4">
+    <div class="card b-1 hover-shadow mb-50">
+     <footer class="card-footer flexbox align-items-center">
+            <div>
+              <strong><font color = "white">เข้าสู่ระบบ</font></strong> 
+            </div>
+            <div class="card-hover-show">
+              
+
+            </div>
+        </footer>
+        <div class="media card-body">
+         
+          
+            <div class="col-md-12">
+              {{ csrf_field() }}
+                        <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
+                            <label for="email" class="col-md-3 control-label">E-Mail :</label>
+
+                            <div class="col-md-8">
                                 <input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}" required autofocus>
 
                                 @if ($errors->has('email'))
@@ -20,8 +38,8 @@
                             </div>
                         </div>
                         <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
-                            <label for="password" class="col-md-4 control-label">รหัสผ่าน :</label>
-                            <div class="col-md-4">
+                            <label for="password" class="col-md-3 control-label">รหัสผ่าน :</label>
+                            <div class="col-md-8">
                                 <input id="password" type="password" class="form-control" name="password" required>
                                 @if ($errors->has('password'))
                                     <span class="help-block">
@@ -39,21 +57,42 @@
                                     <span class="custom-control-description">จดจำรหัสผ่าน</span>
                                     </label>
                             </div>
-                        </div>   
-          <div class="form-group">
+                        </div> 
+                 
+              
+            </div>
+            
+         
+            
+            
+        </div>
+        <footer class="card-footer flexbox align-items-center">
+            <div>
+               
+            </div>
+            <div class="card-hover-show">
+             
                             <div class="col-md-8 col-md-offset-4">
-                                <button type="submit" class="btn btn-success">
+
+                                <button type="submit" class="btn btn-success btn btn-xs fs-15">
                                     เข้าสู่ระบบ
                                 </button>
-
-                                <a class="btn btn-danger" href="{{ route('password.request') }}">
+                                <a class="btn btn-danger btn btn-xs fs-15" href="{{ route('password.request') }}">
                                     ลืมรหัสผ่าน ?
                                 </a>
                             </div>
-                        </div>
-         
-                    </form>
-                </div>
+                        
+
             </div>
+        </footer>
+    </div>
+
+    <br>
+</div>
+<div class="col-md-4"></div>
+</div>
+</form>
+
+
 
 @endsection

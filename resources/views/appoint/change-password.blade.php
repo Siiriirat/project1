@@ -1,19 +1,37 @@
 @extends('template_nav')
+<head>
+    <link rel="stylesheet" type="text/css" href="{{asset('/css/bootstrap-change.css')}}">
+</head>
 @section('content')
 
-<br><br>
+<br><br><br><br><br><br><br><br>
 
-       <div class="col-xs-12 col-sm-6 col-md-8">
-        <div class="container">
-        <div class="well">
-        <legend>เปลี่ยนรหัสผ่าน</legend>
-                @if (Session::has('success'))
+<form action="" method="post" role="form" class="form-horizontal">
+<div class="row">
+<div class="col-md-3"></div>
+<div class="col-md-6">
+    <div class="card b-1 hover-shadow mb-50">
+     <footer class="card-footer flexbox align-items-center">
+            <div>
+              <strong><font color = "white">ลงทะเบียน</font></strong> 
+            </div>
+            <div class="card-hover-show">
+              
+
+            </div>
+        </footer>
+        <div class="media card-body">
+         
+          
+            <div class="col-md-12">
+              {{ csrf_field() }}
+                 @if (Session::has('success'))
                 <div class="alert alert-success">{!! Session::get('success') !!}</div>
                 @endif
                 @if (Session::has('failure'))
                 <div class="alert alert-danger">{!! Session::get('failure') !!}</div>
                 @endif
-                <form action="" method="post" role="form" class="form-horizontal">
+                
                     {{csrf_field()}}
                         <div class="form-group{{ $errors->has('old') ? ' has-error' : '' }}">
                         <label for="password" class="col-md-4 control-label">รหัสผ่านเก่า :</label>
@@ -48,15 +66,48 @@
                                     </span>
                                     @endif
                             </div>
-                        </div>
-                        <div class="form-group">
-                            <div class="col-md-6 col-md-offset-4">
-                            <button type="submit" style="width:225px;" class="btn btn-success form-control">Submit</button>
+                        </div>      
+              
+            </div>
+            
+         
+            
+            
+        </div>
+        <footer class="card-footer flexbox align-items-center">
+            <div>
+               
+            </div>
+            <div class="card-hover-show">
+             
+                            <div class="col-md-8 col-md-offset-4">
+
+
+                                <button type="submit" class="btn btn-danger btn btn-xs fs-15" onclick="return confirm('แน่ใจหรือไม่ว่าจะเปลี่ยนรหัสผ่าน ?')">
+                                    เปลี่ยนรหัสผ่าน
+                                </button>
+                               
                             </div>
-                        </div>
-                  </form>
-          </div>
-       </div>
-  </div>
+                        
+
+            </div>
+        </footer>
+    </div>
+
+    <br>
+</div>
+<div class="col-md-3"></div>
+</div>
+</form>
+
+<script type="text/javascript">
+        $(document).ready(function () {
+            $('#confirm').on('click', function (e) {
+                $('#deletes').trigger('submit');
+            });
+        });
+</script>
+
+
 @endsection
  

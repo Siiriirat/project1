@@ -1,14 +1,28 @@
 @extends('layouts.app')
+<head>
+    <link rel="stylesheet" type="text/css" href="{{asset('/css/bootstrap-regis.css')}}">
+</head>
 @section('content')
-<div class="container">
-    <div class="well">
-    
-          <legend>ลงทะเบียน</legend>
-          <p class="card-text">
+<br><br>
+<form class="form-horizontal" role="form" method="POST" action="{{ route('register') }}">
+<div class="row">
+<div class="col-md-4"></div>
+<div class="col-md-4">
+    <div class="card b-1 hover-shadow mb-50">
+     <footer class="card-footer flexbox align-items-center">
+            <div>
+              <strong><font color = "white">ลงทะเบียน</font></strong> 
+            </div>
+            <div class="card-hover-show">
               
-                    <form class="form-horizontal" role="form" method="POST" action="{{ route('register') }}">
-                        {{ csrf_field() }}
 
+            </div>
+        </footer>
+        <div class="media card-body">
+         
+          
+            <div class="col-md-12">
+              {{ csrf_field() }}
                         <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
                             <label for="name" class="col-md-4 control-label">ชื่อ :</label>
 
@@ -58,18 +72,40 @@
                                 <input id="password-confirm" type="password" class="form-control" name="password_confirmation" style="width:250px;" required>
                             </div>
                         </div>
+              
+            </div>
+            
+         
+            
+            
+        </div>
+        <footer class="card-footer flexbox align-items-center">
+            <div>
+               
+            </div>
+            <div class="card-hover-show">
+             
+                            <div class="col-md-8 col-md-offset-4">
 
-                        <div class="form-group">
-                            <div class="col-md-6 col-md-offset-4">
-                                <button type="submit" class="btn btn-success">
+
+                                <button type="submit" class="btn btn-primary btn btn-xs fs-15">
                                     ลงทะเบียน
                                 </button>
+                               
                             </div>
-                        </div>
-                    </form>
-                    </p>
-                </div>
+                        
+
             </div>
-     
+        </footer>
+    </div>
+
+    <br>
+</div>
+<div class="col-md-4"></div>
+</div>
+</form>
+
+
+
    
 @endsection

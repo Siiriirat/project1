@@ -54,7 +54,7 @@
           
           <div class="col-md-6">
           <div class="form-group" style="width:230px;">
-          <label for="sp_time">เวลาที่ใช้ (hh.mm) : <input type="text" name="sp_time" class="form-control" required></label>
+          <label for="sp_time">เวลาที่ใช้ (hh.mm) : <input type="text" name="sp_time" class="form-control" placeholder="ตัวอย่างการกรอก 01.30" required></label>
           </div> 
           <div class="form-group">
           <label for="detail">รายละเอียดบริการ :</label>
