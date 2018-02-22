@@ -91,7 +91,7 @@
                             </div>
                             <br>
                             <br><br><br>
-                                <span class="label label-warning">
+                                <span class="label label-danger">
                                     ประเภทข่าวสาร : {{$item->type_info}}
                                 </span>&nbsp;&nbsp;&nbsp;
                                 <span class="label label-success">

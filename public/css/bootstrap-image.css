@@ -1,0 +1,57 @@
+bootstrap-image.css
+body{
+    margin-top:20px;
+}
+
+.user-item {
+    font-family: Verdana;
+    position: relative;
+    width: 100%;
+    cursor: pointer;
+}
+
+.user-item > img {
+    width: 100%;
+}
+
+.user-item > div small {
+    display: block;
+    color: #fff;
+    padding-top: 10px;
+}
+
+.user-item > div p {
+    color: #fff;
+    padding-top: 10px;
+    line-height: 16px;
+    font-size: 12px;
+}
+
+.user-item > div {
+    background: #28b486;
+    bottom: -50px;
+    line-height: 16px;
+    padding: 15px 0;
+    position: absolute;
+    text-align: center;
+    width: 100%;
+    -webkit-transition: all 0.3s ease 0s;
+    -moz-transition: all 0.3s ease 0s;
+    -ms-transition: all 0.3s ease 0s;
+    -o-transition: all 0.3s ease 0s;
+    transition: all 0.3s ease 0s;
+    padding: 20px;
+}
+
+.user-item:hover > div {
+    background: #b20000;
+    bottom: -75px;
+    color: #000000;
+}
+
+.img-user {
+  padding: 4px;
+  line-height: 1.42857143;
+  background-color: #fff;
+  border: 1px solid #ddd;
+}

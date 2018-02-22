@@ -89,9 +89,16 @@
                             </div>
                             <br>
                             <br><br><br>
-                                <span class="label label-warning">
+                                @if($item->type_info == "ข่าวสารทั่วไป")
+                                <span class="label label-danger">
                                     ประเภทข่าวสาร : {{$item->type_info}}
-                                </span>&nbsp;&nbsp;&nbsp;
+                                </span>
+                                @elseif($item->type_info == "ข่าวสารทางร้าน")
+                                <span class="label label-info">
+                                    ประเภทข่าวสาร : {{$item->type_info}}
+                                </span>
+                                @endif
+                                &nbsp;&nbsp;&nbsp;
                                 <span class="label label-success">
                                     วันที่ลงข่าว : {{$item->date_info}}
                                 </span>
