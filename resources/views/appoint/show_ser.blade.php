@@ -19,12 +19,28 @@
 <br>
 <div class="col-md-12">
     <div class="card b-1 hover-shadow mb-20">
+      <footer class="card-footer flexbox align-items-center">
+            <div>
+                
+            </div>
+            <div class="card-hover-show">
+               <div class="card-hover-show">
+                @if($service->type == "หน้า")
+                <a class="btn btn-xs fs-10 btn-bold btn-info" href="#">ประเภทบริการ : {{$service->type}}</a>
+                @elseif($service->type == "ผม")
+                <a class="btn btn-xs fs-10 btn-bold btn-warning" href="#">ประเภทบริการ : {{$service->type}}</a>
+                @elseif($service->type == "เล็บ")
+                <a class="btn btn-xs fs-10 btn-bold btn-success" href="#">ประเภทบริการ : {{$service->type}}</a>
+                @endif
+            </div> 
+            </div>
+        </footer>
         <div class="media card-body">
           <div class="row">
             <div class="col-md-6">
               <div class="media-left pr-12">
                 <center>
-                  <br><br>
+                  
                   <img src="/uploads/images/service/{{$service->picture}}" width="70%" class="img-responsive img-rounded">
                 </center>
                  
@@ -32,7 +48,7 @@
             </div>
             <div class="col-md-6">
               <div class="media-left pr-12">
-                 <br><br>
+                 
                     <div class="box">
                   <b>ชื่อบริการ : {{$service->name_ser}}</b>
                     </div>
@@ -58,19 +74,13 @@
             <div>
                 
             </div>
-            <div class="card-hover-show">
-                @if($service->type == "หน้า")
-                <a class="btn btn-xs fs-10 btn-bold btn-info" href="#">ประเภทบริการ : {{$service->type}}</a>
-                @elseif($service->type == "ผม")
-                <a class="btn btn-xs fs-10 btn-bold btn-warning" href="#">ประเภทบริการ : {{$service->type}}</a>
-                @elseif($service->type == "เล็บ")
-                <a class="btn btn-xs fs-10 btn-bold btn-success" href="#">ประเภทบริการ : {{$service->type}}</a>
-                @endif
-            </div>
+            
         </footer>
     </div>
 
     <br>
 </div>
+
+
 
 @endsection

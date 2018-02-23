@@ -2,7 +2,7 @@
 @section('title','Appointment')
 <head>
   <link rel="stylesheet" type="text/css" href="{{asset('/css/picture.css')}}">
-<link rel="stylesheet" type="text/css" href="{{asset('/css/bootstrap-list.css')}}">
+<link rel="stylesheet" type="text/css" href="{{asset('/css/bootstrap-list1.css')}}">
 </head>
 @section('content')
 <br><br><br><br>
@@ -17,7 +17,15 @@
 <br><br>
 <div class="col-md-12">
     <div class="card b-1 hover-shadow mb-20">
-
+      <footer class="card-footer flexbox align-items-center">
+            <div>
+               
+            </div>
+            <div class="card-hover-show">
+              <a class="btn btn-xs fs-10 btn-bold btn-danger" href="#"><i class="fa fa-user"></i> ชื่อผู้จอง : {{ Auth::user()->name}}</a>
+             
+            </div>
+        </footer>
         <div class="media card-body">
          
           <div class="row">
@@ -74,7 +82,7 @@
                
             </div>
             <div class="card-hover-show">
-              <a class="btn btn-xs fs-10 btn-bold btn-default" href="#"><i class="fa fa-user"></i> ชื่อผู้จอง : {{ Auth::user()->name}}</a>
+              
              
                 <?php if( DB::table('services')->where('id_ser',$appoint->id_ser)->get()[0]->type== "หน้า") {?>  
                 <a class="btn btn-xs fs-10 btn-bold btn-info" href="#">ประเภทบริการ : 
