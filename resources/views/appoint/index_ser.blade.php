@@ -35,7 +35,7 @@
                     @if (Auth::user()->level == "admin")
                     <center>
                     <form method="post" action="services/{{$item->id_ser}}" class="form-inline">
-                    <a href="services/{{$item->id_ser}}" class="btn btn-info btn-sm"><i class="fa fa-eye"></i> ดูรายละเอียด</a>
+                    <a href="services/{{$item->id_ser}}" class="btn btn-success btn-sm"><i class="fa fa-eye"></i> ดูรายละเอียด</a>
                     <a href="services/{{$item->id_ser}}/edit" class="btn btn-warning btn-sm"><i class="fa fa-edit"></i> แก้ไขบริการ</a>         
                     <input type="hidden" name="_method" value="Delete">
                     <button class="btn btn-danger btn-sm" onclick="return confirm('ท่านต้องการลบรายการบริการใช่หรือไม่ ?')"><i class="fa fa-trash"></i> ลบบริการ</button> 
@@ -47,7 +47,6 @@
                     @else(Auth::user()->level == "user")
                     <center>
                     <form method="post" action="services/{{$item->id_ser}}" class="form-inline">
-
                     <a href="services/{{$item->id_ser}}" class="btn btn-success btn-sm"><i class="fa fa-eye"></i> ดูรายละเอียด</a>
                     {{csrf_field()}}
                    </form> 

@@ -51,7 +51,7 @@
                                            <br>
           <input type="hidden" name="_method" value="PUT">
           {{csrf_field()}}  
-         <button type="submit" class="btn btn-warning"><i class="fa fa-edit"></i> แก้ไข
+         <button type="submit" class="btn btn-warning" onclick="return confirm('ท่านต้องการแก้ไขบริการใช่หรือไม่ ?')"><i class="fa fa-edit"></i> แก้ไข
          </button>
             </div>
           </div>
@@ -71,21 +71,13 @@
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+<script type="text/javascript">
+        $(document).ready(function () {
+            $('#confirm').on('click', function (e) {
+                $('#deletes').trigger('submit');
+            });
+        });
+</script>
 
 <br>
 
