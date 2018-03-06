@@ -13,7 +13,7 @@
     <div class="card b-1 hover-shadow mb-50">
      <footer class="card-footer flexbox align-items-center">
             <div>
-              <strong><font color = "white">ลงทะเบียน</font></strong> 
+              <strong><font color = "white">เปลี่ยนรหัสผ่าน</font></strong> 
             </div>
             <div class="card-hover-show">
               

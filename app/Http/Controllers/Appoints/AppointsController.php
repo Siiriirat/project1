@@ -6,21 +6,15 @@ use App\Appoint;
 use DB;
 use App\Service;
 use App\User;
-
+use DateTime;
 class AppointsController extends Controller
 {
-    // public function __construct()
-    // {
-    //     $this->middleware('auth');
-    // }
     public function index(Request $request)    {
         $NUM_PAGE = 6;
         $appoints = Appoint::where('staff',"A")->orderBy('staff','asc')
                            ->orderBy('created_at','desc')
                            ->orderBy('time','asc')
                            ->paginate($NUM_PAGE);
-                           
-
         $page = $request->input('page');
         $page = ($page != null)?$page:1;
         $services = DB::table('services')->get();
@@ -35,8 +29,7 @@ class AppointsController extends Controller
             foreach ($request->get('appointscheckbox') as $value) {
                 Appoint::destroy($value);
             }
-            return back();
-                                    
+            return back();                         
     }
     public function selectconfirm(Request $request)    {
 
@@ -64,23 +57,32 @@ class AppointsController extends Controller
         $time_e =$request->get('time_e');
         $idser  = (int) $request->get('id_ser');
         $nser = DB::table('services')->where('id_ser',$idser)->get();
-        // dd($nser[0]->name_ser);
         $ntime = $request->get('time');
-
+        $reserve_date = $request->get('date');
         $sptime = explode(':', $ntime);
-        
         $ctime1 = (int) $sptime[0];
         $ctime2 = (int) $sptime[1];
         $ch_time = ($ctime1*60) + $ctime2;
-        
         $spser = explode('.', $nser[0]->sp_time);
         $cser1 = (int) $spser[0];
         $cser2 = (int) $spser[1];
+        $timezone = new DateTime('Asia/Bangkok');
+        $timezone_date = $timezone->format('d-m-Y');
+        $timezone_time = $timezone->format('H:i');
+        $sp_timezone = explode(':', $timezone_time);
+        $ctimezone1 = (int) $sp_timezone[0];
+        $ctimezone2 = (int) $sp_timezone[1];
+        $ch_timezone = ($ctimezone1*60) + $ctimezone2;
+        $date_rs = strtotime($reserve_date);
+        $date_tz = strtotime($timezone_date);
+        if($ch_time < $ch_timezone || $date_rs < $date_tz){
+        return back()->with('errors','วันที่และเวลา '.$reserve_date.' '.$request->time.' พ้นช่วงเวลานั้นมาแล้ว ขณะนี้วันและเวลา'.' '.$timezone_date .' '.$timezone_time)->withInput($request->input());
+        }
 
         if ($ch_time >= 600 && $ch_time <= 1200)
         {
             $timee_h = $ctime1 + $cser1;
-        $timee_m = $ctime2 + $cser2;
+            $timee_m = $ctime2 + $cser2;
         if ($timee_m >= 60 && $timee_h >=24) 
         {
             $m1 = $timee_m/60;
@@ -167,9 +169,7 @@ class AppointsController extends Controller
             ($request->get('date')==$find->date)&&
             ($request->get('staff')==$find->staff))
           { 
-            return back()->with('errors','วันที่ '.$request->date.' เวลา '.$request->time.' - '.$find->time_e.' มีคนจองแล้วค่ะ '. 'กรุณาเลือกเวลาใหม่')
-        
-                         ->withInput($request->input());
+            return back()->with('errors','วันที่ '.$request->date.' เวลา '.$request->time.' - '.$find->time_e.' มีคนจองแล้วค่ะ '. 'กรุณาเลือกเวลาใหม่')->withInput($request->input());
           }
         }
         $data = new Appoint;
@@ -185,7 +185,12 @@ class AppointsController extends Controller
         $data->ip = $request->get('ip');
         $data->comment = $request->get('comment');
         $data->save();
+        if($data->staff =='A')
         return redirect('appoints')->with('time_e',$data->time_e);
+        elseif($data->staff =='B')
+        return redirect('appoints_1')->with('time_e',$data->time_e);
+        elseif($data->staff =='C')
+        return redirect('appoints_2')->with('time_e',$data->time_e);
         }
         elseif($ch_time > 1200)
         {
@@ -221,6 +226,19 @@ class AppointsController extends Controller
         $spser = explode('.', $service[0]->sp_time);
         $cser1 = (int) $spser[0];
         $cser2 = (int) $spser[1];
+        $reserve_date = $request->get('date');
+        $timezone = new DateTime('Asia/Bangkok');
+        $timezone_date = $timezone->format('d-m-Y');
+        $timezone_time = $timezone->format('H:i');
+        $sp_timezone = explode(':', $timezone_time);
+        $ctimezone1 = (int) $sp_timezone[0];
+        $ctimezone2 = (int) $sp_timezone[1];
+        $ch_timezone = ($ctimezone1*60) + $ctimezone2;
+        $date_rs = strtotime($reserve_date);
+        $date_tz = strtotime($timezone_date);
+        if($ch_time < $ch_timezone || $date_rs < $date_tz){
+        return back()->with('errors','วันที่และเวลา '.$reserve_date.' '.$request->time.' พ้นช่วงเวลานั้นมาแล้ว ขณะนี้วันและเวลา'.' '.$timezone_date .' '.$timezone_time)->withInput($request->input());
+        }
         if ($ch_time >= 600 && $ch_time <= 1200)
         {
         $timee_h = $ctime1 + $cser1;
@@ -294,7 +312,6 @@ class AppointsController extends Controller
             }    
         }
         $finds = DB::table('appoints')->get();
-      
         foreach ($finds as $find) {
           $sp_find_b = explode(':', $find->time);
           
@@ -302,7 +319,7 @@ class AppointsController extends Controller
 
           $sp_find_e = explode(':', $find->time_e);
           $c_sp_find_e = ((int)  $sp_find_e[0] * 60) + (int)  $sp_find_e[1];
-
+          
           $timeh = $request->get('time');
           
           $sp_time = explode(':', $timeh);
@@ -317,7 +334,7 @@ class AppointsController extends Controller
           if( (($c_sp_find_b<=$c_sp_time0   &&   $c_sp_find_e >= $c_sp_time0)||
             ($c_sp_find_b<=$c_sp_time1   &&   $c_sp_find_e >= $c_sp_time1))&&
             ($request->get('date')==$find->date)&&
-            ($request->get('staff')==$find->staff) )
+            ($request->get('staff')==$find->staff) && ($find->id != $appoint->id))
           { 
 
             return back()->with('errors','วันที่ '.$request->date.' เวลา '.$request->time.' - '.$find->time_e.' มีคนจองแล้วค่ะ '. 'กรุณาเลือกเวลาใหม่');
@@ -355,8 +372,12 @@ class AppointsController extends Controller
                         'ip' => $request->get('ip'),
                         'status' => 0,
                         'comment' =>$request->get('comment')]); 
-                   
+                        if($request->get('staff') == 'A')
                         return redirect('appoints');
+                        if($request->get('staff') == 'B')
+                        return redirect('appoints_1');
+                        if($request->get('staff') == 'C')
+                        return redirect('appoints_2');
                 }
         }
         }
