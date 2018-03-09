@@ -23,15 +23,21 @@
                 @if($item->level =="admin")
                 <p class="media-heading">Status : <span class="label label-danger">{{$item->level}}</span></p>
                 @elseif($item->level =="user")
-                <p class="media-heading">Status : <span class="label label-info">{{$item->level}}</span></p>
+                <p class="media-heading">Status : <span class="label label-success">{{$item->level}}</span></p>
                 @endif
-                <p>ยอดการเข้าใช้งาน :</p>
+                <p>ยอดการเข้าใช้บริการ :
+                @for($i = 0 ; $i < count($amount) ; $i++ ) 
+                @if($amount[$i]->user_id == $item->id)
+                {{$amount[$i]->cnt}}
+                @endif
+                @endfor
+                </p>
                 <div class="text-right">
                     <a class="btn btn-xs btn-warning"><i class="fa fa-edit"></i> แก้ไข</a>
                     <a class="btn btn-xs btn-danger"><i class="fa fa fa-trash"></i> ลบ</a>
                 </div>
             </div>
-        </div>
+        </div> 
     @endforeach   
   </div>
 </div>

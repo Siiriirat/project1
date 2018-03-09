@@ -9,6 +9,8 @@ use App\User;
 use DateTime;
 class AppointsController extends Controller
 {
+    private $line_api = "https://notify-api.line.me/api/notify";
+    private $access_token = 'vX8RdoW627FjtkoPEOK91cIrz97NS6QXKfeEiykD38I';
     public function index(Request $request)    {
         $NUM_PAGE = 6;
         $appoints = Appoint::where('staff',"A")->orderBy('staff','asc')
@@ -51,6 +53,43 @@ class AppointsController extends Controller
     public function create()    {
         return view('appoint.appoint');
     }
+    private function check_Appointment() {
+        $str = "คลิกที่ url เพื่อตอบรับการจอง"." ".'https://sirirat405.000webhostapp.com/appoints';
+        //$str = 'ทดสอบข้อความ';    //ข้อความที่ต้องการส่ง สูงสุด 1000 ตัวอักษร
+        $image_thumbnail_url = '';  // ขนาดสูงสุด 240×240px JPEG
+        $image_fullsize_url = '';  // ขนาดสูงสุด 1024×1024px JPEG
+        $sticker_package_id = 1;  // Package ID ของสติกเกอร์
+        $sticker_id = 410;    // ID ของสติกเกอร์
+
+        $message_data = array(
+         'message' => $str,
+         'imageThumbnail' => $image_thumbnail_url,
+         'imageFullsize' => $image_fullsize_url,
+         //'stickerPackageId' => $sticker_package_id,
+         //'stickerId' => ''
+        );
+        $result = $this->send_notify_message($message_data);
+    }
+    private function send_notify_message($message_data)
+    {
+     $headers = array('Method: POST', 'Content-type: multipart/form-data', 'Authorization: Bearer '.$this->access_token );
+
+     $ch = curl_init();
+     curl_setopt($ch, CURLOPT_URL, $this->line_api);
+     curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+     curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
+     curl_setopt($ch, CURLOPT_POSTFIELDS, $message_data);
+     curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+     $result = curl_exec($ch);
+     // Check Error
+     if(curl_error($ch)) {
+      $return_array = array( 'status' => '000: send fail', 'message' => curl_error($ch) ); 
+     } else {
+      $return_array = json_decode($result, true);
+     }
+     curl_close($ch);
+     return $return_array;
+    }
     public function store(Request $request)    {
          
         $time_e =$request->get('time_e');
@@ -74,7 +113,7 @@ class AppointsController extends Controller
         $ch_timezone = ($ctimezone1*60) + $ctimezone2;
         $date_rs = strtotime($reserve_date);
         $date_tz = strtotime($timezone_date);
-        if($ch_time < $ch_timezone || $date_rs < $date_tz){
+        if($ch_time < $ch_timezone && $date_rs < $date_tz){
         return back()->with('errors','วันที่และเวลา '.$reserve_date.' '.$request->time.' พ้นช่วงเวลานั้นมาแล้ว ขณะนี้วันและเวลา'.' '.$timezone_date .' '.$timezone_time)->withInput($request->input());
         }
 
@@ -184,12 +223,18 @@ class AppointsController extends Controller
         $data->ip = $request->get('ip');
         $data->comment = $request->get('comment');
         $data->save();
-        if($data->staff =='A')
+        if($data->staff =='A'){
+        $this->check_Appointment();
         return redirect('appoints')->with('time_e',$data->time_e);
-        elseif($data->staff =='B')
+        }
+        elseif($data->staff =='B'){
+        $this->check_Appointment();
         return redirect('appoints_1')->with('time_e',$data->time_e);
-        elseif($data->staff =='C')
+        }
+        elseif($data->staff =='C'){
+        $this->check_Appointment();
         return redirect('appoints_2')->with('time_e',$data->time_e);
+        }
         }
         elseif($ch_time > 1200)
         {
@@ -198,9 +243,7 @@ class AppointsController extends Controller
         elseif($ch_time > 0 && $ch_time < 600)
         {
             return back()->with('errors','เวลา '.$request->time.' ทางร้านยังไม่เปิดให้บริการคะ')->withInput($request->input());
-        }
-      
-       
+        }  
     }
     public function show($id)
     {

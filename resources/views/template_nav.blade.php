@@ -98,9 +98,9 @@
               {{ csrf_field() }}
               </form>
             </li>
-            <li><a href="{{url('/change-password')}}"><i class="fa fa-cog fa-spin fa-1x fa-fw"></i>เปลี่ยนรหัสผ่านผู้ใช้</a></li>
+            <li><a href="{{url('/change-password')}}">&nbsp<i class="fa fa-cog "></i> เปลี่ยนรหัสผ่านผู้ใช้</a></li>
             @if(Auth::user()->level == "admin")
-            <li><a href="{{url('/showalluser')}}"><i class="fa fa-user"></i> ข้อมูลผู้ใช้ทั้งหมด</a></li>
+            <li><a href="{{url('/showalluser')}}">&nbsp<i class="fa fa-users"></i> ข้อมูลผู้ใช้ทั้งหมด</a></li>
             @endif
           </ul>
         </li>

@@ -57,10 +57,16 @@ class ShowsController extends Controller
     
     public function show_alluser(Request $request)
     {
-        $appoints = Appoint::where('id',Auth::user()->id)->count();
-        dd($appoints);
+        $amount  = Appoint::select('user_id', DB::raw('count(user_id) as cnt')) 
+                                                    ->groupBy('user_id')
+                                                    ->orderBy('cnt','DESC')
+                                                    ->get();
+        // dd($amount);
+
         $users = DB::table('users')->get();
-        return view('appoint.show_alluser')->with('users',$users);
+        
+        return view('appoint.show_alluser')->with('users',$users)
+                                           ->with('amount',$amount);
     }
 
 
