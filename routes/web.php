@@ -65,6 +65,7 @@ Route::delete('/selectdelete','Appoints\\AppointsController@selectdelete');
 Route::delete('/selectconfirm','Appoints\\AppointsController@selectconfirm');
 Route::get('/appoints_1','ShowsController@show_1');
 Route::get('/appoints_2','ShowsController@show_2');
+Route::get('/showalluser','ShowsController@show_alluser');
 Route::get('/infos_1','InformationsController@show_1');
 Route::get('/infos_2','InformationsController@show_2');
 });
@@ -74,16 +75,15 @@ Route::get('/infos_2','InformationsController@show_2');
 });
 */
 Auth::routes();
-
-
-
-//Route::get('/home', 'HomeController@index');
-Route::get('change-password', function() {
-	return view('appoint.change-password'); 
-});
 Route::post('change-password', 'Auth\UpdatePasswordController@update');
 
 Route::post('/search','SearchController@search');
 Route::get('/search','SearchController@search');
 Route::post('/searchs','SearchController@searchs');
 Route::get('/searchs','SearchController@searchs');
+
+
+//Route::get('/home', 'HomeController@index');
+Route::get('change-password', function() {
+	return view('appoint.change-password'); 
+});

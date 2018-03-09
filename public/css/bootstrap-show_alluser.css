@@ -1,0 +1,59 @@
+/*show_alluser.css*/
+body{margin-top:20px;}
+
+.p-lg {
+  padding: 30px;
+}
+
+.lazur-bg {
+  background-color: #23c6c8;
+  color: #ffffff;
+}
+
+.red-bg {
+  background-color: #ed5565;
+  color: #ffffff;
+}
+
+.navy-bg {
+  background-color: #1ab394;
+  color: #ffffff;
+}
+
+.yellow-bg {
+  background-color: #f8ac59;
+  color: #ffffff;
+}
+
+.widget-head-color-box {
+  border-radius: 5px 5px 0px 0px;
+  margin-top: 10px;
+}
+
+.m-b-md {
+  margin-bottom: 20px;
+}
+
+.no-margins {
+  margin: 0 !important;
+}
+
+.font-bold {
+  font-weight: 600;
+}
+
+img.circle-border {
+  border: 6px solid #FFFFFF;
+  border-radius: 50%;
+}
+
+.widget-text-box {
+  padding: 20px;
+  border: 1px solid #e7eaec;
+  background: #ffffff;
+}
+
+.media-heading {
+  margin-top: 0;
+  margin-bottom: 5px;
+}

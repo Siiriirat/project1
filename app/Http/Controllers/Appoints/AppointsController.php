@@ -49,7 +49,6 @@ class AppointsController extends Controller
                                     
     }
     public function create()    {
-
         return view('appoint.appoint');
     }
     public function store(Request $request)    {
