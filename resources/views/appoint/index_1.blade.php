@@ -42,13 +42,12 @@
 
 
 
-
 <div class="col-md-12">  
     <div class="col-md-4">      
         <div class="portlet light profile-sidebar-portlet bordered">
             <div class="profile-userpic">
               <center>
-                 <img src="https://bootdey.com/img/Content/avatar/avatar1.png" style="width: 90%"; alt=""> 
+                 <img src="/uploads/images/user/{{Auth::user()->picture_user}}" style="width: 90%"; alt=""> 
               </center>
                </div>
             <div class="profile-usertitle">

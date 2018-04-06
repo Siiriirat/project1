@@ -6,7 +6,7 @@
 
 <br><br><br><br><br><br><br><br>
 
-<form action="" method="post" role="form" class="form-horizontal">
+<form action="/change-password" method="post" role="form" class="form-horizontal">
 <div class="row">
 <div class="col-md-3"></div>
 <div class="col-md-6">
@@ -110,4 +110,3 @@
 
 
 @endsection
- 

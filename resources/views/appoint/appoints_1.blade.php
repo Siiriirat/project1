@@ -39,6 +39,16 @@
 </div>
 </div>
 </form>
+@if (count($errors) > 0)
+   
+        <ul>
+           
+           <script>
+            alert( "{{$errors}}");  
+            </script>
+        </ul>
+    
+@endif
 
 <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
 <div id="user-profile-2" class="user-profile">
@@ -47,21 +57,21 @@
         <li>
           <a href="/appoints">
             <i class="green ace-icon fa fa-user bigger-120"></i>
-            ช่าง A
+            ช่าง Sirirat
           </a>
         </li>
 
         <li class="active">
           <a href="/appoints_1">
             <i class="red ace-icon fa fa-user bigger-120"></i>
-            ช่าง B
+            ช่าง Aunyamane
           </a>
         </li>
 
         <li>
           <a href="/appoints_2">
             <i class="blue ace-icon fa fa-user bigger-120"></i>
-            ช่าง C
+            ช่าง Teetawat
           </a>
         </li>
       </ul>

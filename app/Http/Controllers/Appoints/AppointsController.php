@@ -13,23 +13,31 @@ class AppointsController extends Controller
     private $access_token = 'vX8RdoW627FjtkoPEOK91cIrz97NS6QXKfeEiykD38I';
     public function index(Request $request)    {
         $NUM_PAGE = 6;
-        $appoints = Appoint::where('staff',"A")->orderBy('staff','asc')
+        $appoints = Appoint::where('staff',"Sirirat")
                            ->orderBy('created_at','desc')
                            ->orderBy('time','asc')
                            ->paginate($NUM_PAGE);
+        $name = "Sirirat";
         $page = $request->input('page');
         $page = ($page != null)?$page:1;
         $services = DB::table('services')->get();
         return view('appoint.index')->with('appoints',$appoints)
                                     ->with('page',$page)
                                     ->with('services',$services)
-                                    ->with('NUM_PAGE',$NUM_PAGE);
+                                    ->with('NUM_PAGE',$NUM_PAGE)
+                                    ->with('name',$name);
                                     
     }
     public function selectdelete(Request $request)    {
 
-            foreach ($request->get('appointscheckbox') as $value) {
-                Appoint::destroy($value);
+            if(count($request->get('appointscheckbox')) == 0)
+            {
+              return back()->with('errors','กรุณาเลือกข้อมูลที่ต้องการลบ')->withInput($request->input());
+            }
+            else{
+              foreach ($request->get('appointscheckbox') as $value) {
+                            Appoint::destroy($value);
+              }
             }
             return back();                         
     }
@@ -46,6 +54,7 @@ class AppointsController extends Controller
                         'status' => $request->get('confirmcheckbox_'.$item->id),
                         ]);
             }
+
         }
         return back();
                                     
@@ -120,8 +129,6 @@ class AppointsController extends Controller
         else if($ch_time < $ch_timezone && $date_rs <= $date_tz){
         return back()->with('errors','วันที่และเวลา '.$reserve_date.' '.$request->time.' พ้นช่วงเวลานั้นมาแล้ว ขณะนี้วันและเวลา'.' '.$timezone_date .' '.$timezone_time)->withInput($request->input());
         }
-        
-
         if ($ch_time >= 600 && $ch_time <= 1200)
         {
             $timee_h = $ctime1 + $cser1;
@@ -228,18 +235,10 @@ class AppointsController extends Controller
         $data->ip = $request->get('ip');
         $data->comment = $request->get('comment');
         $data->save();
-        if($data->staff =='A'){
+       
         $this->check_Appointment();
-        return redirect('appoints')->with('time_e',$data->time_e);
-        }
-        elseif($data->staff =='B'){
-        $this->check_Appointment();
-        return redirect('appoints_1')->with('time_e',$data->time_e);
-        }
-        elseif($data->staff =='C'){
-        $this->check_Appointment();
-        return redirect('appoints_2')->with('time_e',$data->time_e);
-        }
+        return redirect()->action('Appoints\\AppointsController@showstaff',['name'=>$data->staff]);
+        
         }
         elseif($ch_time > 1200)
         {
@@ -419,12 +418,8 @@ class AppointsController extends Controller
                         'ip' => $request->get('ip'),
                         'status' => 0,
                         'comment' =>$request->get('comment')]); 
-                        if($request->get('staff') == 'A')
-                        return redirect('appoints');
-                        if($request->get('staff') == 'B')
-                        return redirect('appoints_1');
-                        if($request->get('staff') == 'C')
-                        return redirect('appoints_2');
+                         $this->check_Appointment();
+                         return redirect()->action('Appoints\\AppointsController@showstaff',['name'=>$appoint->staff]);
                 }
         }
         }
@@ -441,6 +436,23 @@ class AppointsController extends Controller
     {
         Appoint::destroy($id);
         return back();
+    }
+
+    public function showstaff(Request $request, $name)    {
+        $NUM_PAGE = 6;
+        $appoints = Appoint::where('staff',$name)
+                           ->orderBy('created_at','desc')
+                           ->orderBy('time','asc')
+                           ->paginate($NUM_PAGE);
+        // dd($appoints);
+        $page = $request->input('page');
+        $page = ($page != null)?$page:1;
+        $services = DB::table('services')->get();
+        return view('appoint.index')->with('appoints',$appoints)
+                                    ->with('page',$page)
+                                    ->with('services',$services)
+                                    ->with('NUM_PAGE',$NUM_PAGE)
+                                    ->with('name',$name);       
     }
     
 

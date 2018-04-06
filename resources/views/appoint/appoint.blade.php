@@ -33,8 +33,6 @@ $i=1;
 ?>
 </div>
 
-
-
 <div class="wraper">
             <div class="row">
               <form method="post" action="{{url('/appoints')}}">
@@ -79,18 +77,22 @@ $i=1;
                                                        <?php
                                                            $i++;
                                                        ?>
-                                                 @endforeach
+                                                    @endforeach
                                                </select>
       
                                                </label>
                                                </div>
                                                 <div class="form-group">
                                                  <label for="staff" class= "control-label">ผู้ให้บริการ : <br>
-                                                <select  name="staff" id="staff" class="form-control" required> 
+                                                 <select  name="staff" id="staff" class="form-control" required> 
+                                                  <?php
+                                                    $users = DB::table('users')->where('level','admin')
+                                                                               ->where('status_user','present')->get();
+                                                  ?>
                                                     <option value="" required>--- เลือกช่างผู้ให้บริการ ---</option>
-                                                    <option value="A" required @if (old('staff') == "A") {{ 'selected' }} @endif>- A -</option>
-                                                    <option value="B" required @if (old('staff') == "B") {{ 'selected' }} @endif>- B -</option>
-                                                    <option value="C" required @if (old('staff') == "C") {{ 'selected' }} @endif>- C -</option>
+                                                     @foreach($users as $u)
+                                                     <option value="{{$u->name}}" required @if (old('staff') == "{{$u->name}}") {{ 'selected' }} @endif>- {{$u->name}} -</option>
+                                                     @endforeach
                                                 </select> 
                                                 </label>
                                                 </div>

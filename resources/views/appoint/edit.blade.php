@@ -243,22 +243,12 @@
                     <div class="form-group">
                       <label for="staff" class="col-sm-0" class= "control-label">ผู้ให้บริการ : <br>
                       <select  name="staff" id="staff" class="form-control" style="width:225px;"> 
-                      <option value="">--- เลือกช่างผู้ให้บริการ ---</option>
-                      @if($appoint->staff == 'A')
-                        <option value="A" selected>- A -</option>
-                      @else
-                        <option value="A">- A -</option>
-                      @endif
-                      @if($appoint->staff == 'B')
-                        <option value="B" selected>- B -</option>
-                      @else
-                        <option value="B">- B -</option>
-                      @endif
-                      @if($appoint->staff == 'C')
-                        <option value="C" selected>- C -</option>
-                      @else
-                        <option value="C">- C -</option>
-                      @endif
+                      <?php
+                      $users = DB::table('users')->where('level','admin')->where('status_user','present')->get();
+                      ?>
+                     @foreach($users as $u)
+                     <option value="{{$u->name}}" required @if (old('staff') == "{{$u->name}}") {{ 'selected' }} @endif>- {{$u->name}} -</option>
+                     @endforeach
                       </select> 
                       </label>
                     </div>

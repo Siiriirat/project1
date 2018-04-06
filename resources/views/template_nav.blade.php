@@ -102,6 +102,7 @@
             @if(Auth::user()->level == "admin")
             <li><a href="{{url('/showalluser')}}">&nbsp<i class="fa fa-users"></i> ข้อมูลผู้ใช้ทั้งหมด</a></li>
             @endif
+            <li><a href="{{url('/profile')}}">&nbsp<i class="fa fa-users"></i> ข้อมูลส่วนตัวผู้ใช้</a></li>
           </ul>
         </li>
       </ul>

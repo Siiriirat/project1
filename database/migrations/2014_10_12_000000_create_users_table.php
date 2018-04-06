@@ -17,6 +17,8 @@ class CreateUsersTable extends Migration
             $table->string('email')->unique();
             $table->string('password');
             $table->enum('level',['admin','user'])->default('user');
+            $table->text('picture_user');
+            $table->enum('status_user',['present','absent'])->default('absent');
             $table->rememberToken();
             $table->timestamps();
         });

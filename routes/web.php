@@ -36,6 +36,9 @@ Route::get('/service', function () {
     return view('appoint.service');
 });
 
+
+Route::get('edit/{id}/user', 'UsersController@edit');
+Route::get('show/{id}/user', 'UsersController@show');
 Route::get('/news', function () {
     return view('appoint.index_info');
 });
@@ -75,13 +78,23 @@ Route::get('/infos_2','InformationsController@show_2');
 });
 */
 Auth::routes();
-Route::post('change-password', 'Auth\UpdatePasswordController@update');
+Route::post('/change-password', 'Auth\UpdatePasswordController@update');
+Route::get('/change-password', function () {
+    return view('appoint.change-password');
+});
+
+Route::get('/header', function () {
+    return view('appoint.header');
+});
+Route::post('/edit_profile', 'Auth\UpdatePasswordController@updateProfile');
+Route::get('/profile','ShowsController@showProfile');
 
 Route::post('/search','SearchController@search');
 Route::get('/search','SearchController@search');
 Route::post('/searchs','SearchController@searchs');
 Route::get('/searchs','SearchController@searchs');
 
+Route::get('/showstaff/{name}','Appoints\\AppointsController@showstaff');
 
 //Route::get('/home', 'HomeController@index');
 Route::get('change-password', function() {
