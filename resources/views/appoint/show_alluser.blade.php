@@ -1,12 +1,18 @@
 @extends('template_nav')
 @section('title','Appointment')
-<link rel="stylesheet" type="text/css" href="{{asset('/css/bootstrap-show_alluser.css')}}">
+<link rel="stylesheet" type="text/css" href="{{asset('/css/bootstrap-show_alluser.css')}}"><link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+
 @section('content')
 <br><br><br><br>
 
 <br>
-<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+
+<form method="post" action="/changestatus" >
+@if(Auth::user()->name == "Sirirat_n")
+    <button type="submit" formaction="/changestatus" class="btn btn-warning" onclick="return confirm('ยืนยันการแก้ไขข้อมูล ?')"><i class="fa fa-check-circle" aria-hidden="true"></i></button>
+@endif
 <div class="container bootstrap snippet">
+
     <div class="row">
     @foreach( $users as $item )
         <div class="col-md-4">
@@ -24,6 +30,14 @@
                 <p class="media-heading">Status : <span class="label label-danger">{{$item->level}}</span></p>
                 @elseif($item->level =="user")
                 <p class="media-heading">Status : <span class="label label-success">{{$item->level}}</span></p>
+                @endif
+                <?php $is_user=($item->level=="user"); ?>
+                @if(Auth::user()->name == "Sirirat_n")
+                    @if($is_user)
+                    <input type="checkbox" name="status_checkbox{{$item->id}}"> Admin
+                    @else
+                    <input type="checkbox" name="status_checkbox{{$item->id}}"  checked> Admin
+                    @endif
                 @endif
                 <p>ยอดการเข้าใช้บริการ :
                 @for($i = 0 ; $i < count($amount) ; $i++ ) 
@@ -48,7 +62,11 @@
         </div> 
 
     @endforeach   
+
   </div>
+   
 </div>
+
+</form>
         
 @endsection

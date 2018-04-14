@@ -28,25 +28,20 @@
 
         </center>
         <div class="media card-body">
-         
-          
             <div class="col-md-12">
               {{ csrf_field() }}
-               
-                    <div class="row">
-                        
+                    <div class="row">   
                         <div class="col-md-6">
                            <div class="form-group">
                             <label for="password" class="col-md-4 control-label">ชื่อ :</label>
                             <div class="col-md-6">
-                            <input id="name" type="text" class="form-control" name="name" style="width:250px;" value="{{$user->name}}" required>
-                             
+                            <input id="name" type="text" class="form-control" name="name" style="width:250px;" value="{{$user->name}}" required> 
                             </div>
                            </div>
                             <div class="form-group">
                               <label for="picture_user" class="col-md-4 control-label">รูปภาพ : </label>
                                <div class="col-md-6">
-                                <input type="file" style="height:80%;" name="img" id= "img" value="{{$user->picture}}" required>
+                                <input type="file" style="height:80%;" name="img" id= "img" value="{{$user->picture_user}}" >
                                </div> 
                             </div> 
                         </div>
@@ -72,9 +67,8 @@
                                                 @else
                                                 <div class="form-group">
                             						<label for="level" class="col-md-4 control-label">สถานะ :</label>
-                           							 <div class="col-md-6">
+                           							<div class="col-md-6">
                             						<input id="level" type="text" class="form-control" name="level" style="width:250px;" value="{{$user->level}}" disabled>
-                             
                             						</div>
                           						 </div>
                                                 @endif
@@ -95,9 +89,11 @@
                                                         <option value="absent">ไม่มาทำงาน</option>
                                                     @endif
                                                     </select>
-                                                </div>
 
+                                                </div>
                                                 </div> 
+                                                @else
+                                                    <input type="hidden" name="status_user" value="{{$user->status_user}}">
                                                 @endif
 
 

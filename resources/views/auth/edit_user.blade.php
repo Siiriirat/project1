@@ -26,7 +26,7 @@
                                                  </div> 
                                                  
                                                  <div class="form-group">
-                                                 <label for="picture_user">รูปภาพ : <input type="file" style="height:80%;" name="img" id= "img"></label>
+                                                 <label for="picture_user">รูปภาพ : <input type="file" style="height:80%;" name="img" id= "img" ></label>
                                                  </div> 
                                                  </div>
                                                  <div class="col-md-6">

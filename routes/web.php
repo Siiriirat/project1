@@ -36,7 +36,7 @@ Route::get('/service', function () {
     return view('appoint.service');
 });
 
-
+Route::delete('/changestatus','UsersController@changestatus');
 Route::get('edit/{id}/user', 'UsersController@edit');
 Route::get('show/{id}/user', 'UsersController@show');
 Route::get('/news', function () {

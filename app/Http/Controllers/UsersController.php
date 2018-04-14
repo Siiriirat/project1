@@ -24,4 +24,28 @@ class UsersController extends Controller
 
         return view('appoint.show_profile')->with('user',$user);
     }
+    public function changestatus(Request $request)
+    {
+        foreach(DB::table('users')->get() as $item)
+        {
+            if($item->level=="user"&&$request->get('status_checkbox'.$item->id)!=null)
+            {
+
+                $appoint = User::findOrFail($item->id);
+                $appoint->update([
+                        'level' => "admin",
+                        ]);
+            }
+            else if($item->level=="admin"&&$request->get('status_checkbox'.$item->id)==null)
+            {
+
+                $appoint = User::findOrFail($item->id);
+                $appoint->update([
+                        'level' => "user",
+                        ]);
+            }
+
+        }
+            return back();      
+    }
 }
