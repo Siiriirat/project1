@@ -91,7 +91,7 @@ $i=1;
                                                   ?>
                                                     <option value="" required>--- เลือกช่างผู้ให้บริการ ---</option>
                                                      @foreach($users as $u)
-                                                     <option value="{{$u->name}}" required @if (old('staff') == "{{$u->name}}") {{ 'selected' }} @endif>- {{$u->name}} -</option>
+                                                     <option value="{{ $u->name}}" {{ (old("staff") == $u->name ? "selected":"") }} required>{{ $u->name }}</option>
                                                      @endforeach
                                                 </select> 
                                                 </label>

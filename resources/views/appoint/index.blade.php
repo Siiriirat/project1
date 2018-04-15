@@ -51,6 +51,7 @@
     
 @endif
 @include('appoint.header') <br>
+@include('appoint.date_header')  <br>
 @if (Auth::user()->level == "admin")
          <form method="post" action="/selectdelete" >
          <div style="overflow-x:auto;">

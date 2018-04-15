@@ -47,16 +47,17 @@
                 @endfor
                 </p>
                 <div class="text-right">
-                    <form method="post" action="users/{{$item->id}}" class="form-inline">
+                    <div class="form-inline">
                     <a href="show/{{$item->id}}/user" class="btn btn-success btn-xs"><i class="fa fa-eye"></i> ดูรายละเอียด</a>
-                    @if($item->name == Auth::user()->name )
+                    @if($item->name == Auth::user()->name)
                     <a class='btn btn-warning btn-xs' href="edit/{{$item->id}}/user"> <i class="fa fa-edit"></i> แก้ไขข้อมูล</a>
-                    @endif        
+                    @endif    
+                       
                     <input type="hidden" name="_method" value="Delete">
-                    <button class="btn btn-danger btn-xs" onclick="return confirm('ท่านต้องการลบรายการบริการใช่หรือไม่ ?')"><i class="fa fa-trash"></i> ลบบริการ</button> 
-                
+                    <a href="delete/{{$item->id}}/user" class="btn btn-danger btn-xs" onclick="return confirm('ท่านต้องการลบผู้ใช้งานใช่หรือไม่ ?')"><i class="fa fa-trash"></i> ลบผู้ใช้งาน</a>
                     {{csrf_field()}}
-                    </form>
+                    
+                    </div>
                 </div>
             </div>
         </div> 
@@ -68,5 +69,11 @@
 </div>
 
 </form>
-        
+     <script type="text/javascript">
+        $(document).ready(function () {
+            $('#confirm').on('click', function (e) {
+                $('#deletes').trigger('submit');
+            });
+        });
+</script>   
 @endsection

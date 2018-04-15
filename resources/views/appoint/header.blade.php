@@ -10,7 +10,7 @@
 <div id="user-profile-2" class="user-profile">
     <div class="tabbable">
       <ul class="nav nav-tabs padding-18">
-      	 <?php
+         <?php
          $users = DB::table('users')->where('level','admin')->get();
          ?>
         @foreach($users as $u)

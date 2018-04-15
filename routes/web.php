@@ -59,11 +59,16 @@ Route::get('/contact', function () {
 Route::get('/test', function () {
     return view('appoint.test');
 });
+Route::get('/111', function () {
+    return view('appoint.date_header');
+});
 
+Route::get('delete/{id}/user', 'UsersController@deleteuser');
 
 Route::resource('appoints','Appoints\\AppointsController');
 Route::resource('services','Services\\ServicesController');
 Route::get('/index_1','ShowsController@show');
+
 Route::delete('/selectdelete','Appoints\\AppointsController@selectdelete');
 Route::delete('/selectconfirm','Appoints\\AppointsController@selectconfirm');
 Route::get('/appoints_1','ShowsController@show_1');

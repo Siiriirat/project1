@@ -48,4 +48,13 @@ class UsersController extends Controller
         }
             return back();      
     }
+   
+    public function deleteuser($id)
+    {
+        $user = DB::table('users')->where('id', $id)->delete();
+        return back();
+    }
+
+
+
 }

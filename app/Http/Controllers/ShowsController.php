@@ -15,16 +15,15 @@ class ShowsController extends Controller
     {
     	$NUM_PAGE = 8;
     	$page = $request->input('page');
-      $page = ($page != null)?$page:1;
+        $page = ($page != null)?$page:1;
     	$show = Appoint::where('user_id',Auth::user()->id)->orderby('staff','asc')
-    													                          ->orderBy('created_at','desc')
-                           								              ->orderBy('date','desc')
-                                                        ->orderBy('time','desc')
-                                                        ->paginate($NUM_PAGE);
-                                                        
+    													  ->orderBy('created_at','desc')
+                           								  ->orderBy('date','desc')
+                                                          ->orderBy('time','desc')
+                                                          ->paginate($NUM_PAGE);                                               
     	return view('appoint.index_1')->with('show',$show)
-    								                ->with('page',$page)
-                                    ->with('NUM_PAGE',$NUM_PAGE);
+    								  ->with('page',$page)
+                                      ->with('NUM_PAGE',$NUM_PAGE);
     }
     public function show_alluser(Request $request)
     {
@@ -32,14 +31,10 @@ class ShowsController extends Controller
                                                     ->groupBy('user_id')
                                                     ->orderBy('cnt','DESC')
                                                     ->get();
-        // dd($amount);
-
         $users = DB::table('users')->get();
-        
         return view('appoint.show_alluser')->with('users',$users)
                                            ->with('amount',$amount);
     }
-
     public function showProfile(Request $request)
     {
         $amount  = Appoint::select('user_id', DB::raw('count(user_id) as cnt')) 
@@ -50,8 +45,6 @@ class ShowsController extends Controller
         return view('appoint.show_profile')->with('user',$user)
                                            ->with('amount',$amount);                                
     }
-
-
     public function delete($id)
     {
         Appoint::destroy($id);
