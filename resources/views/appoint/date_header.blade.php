@@ -7,26 +7,27 @@
 </head>
 <body>
 
-<div id="user-profile-2" class="user-profile">
-    <div class="tabbable">
-      <ul class="nav nav-tabs padding-18">
+
+      <ul class="nav nav-tabs">
          <?php
-         $dates = DB::table('appoints')->select('date')->orderBy('date','asc')->distinct()->get();
+         $dates = DB::table('appoints')->select('date')->orderBy('date','asc')->where('staff',$name)->distinct()->get();
          ?>
-        @foreach($dates as $d)
-        
-        <li > 
-          <a href="#">
+        <li class="active"> 
+          <a data-toggle="tab" href="#all">
              <i class="red ace-icon fa fa-calendar bigger-120"></i>
-                    วันที {{$d->date}}                                   
+                    all                                   
           </a>      
         </li>
-                                             
-         
+        @foreach($dates as $d)
+        
+        <li> 
+          <a data-toggle="tab" href="#{{$d->date}}">
+             <i class="red ace-icon fa fa-calendar bigger-120"></i>
+                    {{$d->date}}                                   
+          </a>      
+        </li>
+                                          
         @endforeach
       </ul>
-    </div><!-- /.row -->
-  <div class="space-20"></div>
-</div><!-- /#home -->
 </body>
 </html>

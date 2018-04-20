@@ -10,9 +10,10 @@
 <div id="user-profile-2" class="user-profile">
     <div class="tabbable">
       <ul class="nav nav-tabs padding-18">
-         <?php
-         $users = DB::table('users')->where('level','admin')->get();
-         ?>
+        <?php
+         $users = DB::table('users')->orderBy('name','asc')->where('level','admin')->get();
+        ?>
+        
         @foreach($users as $u)
         <li class="{{$u->name==$name?'active':''}}"> 
           <a href="/showstaff/{{$u->name}}">

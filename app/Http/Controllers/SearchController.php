@@ -9,8 +9,9 @@ use Auth;
 
 class SearchController extends Controller
 {
-    public function search(Request $request)
+    public function search(Request $request, $name)
     {
+       
     	$date = $request->get('name');
     	$NUM_PAGE = 4;
         // $id_user = DB::table('users')->where('name',$name)->value('id');

@@ -4,15 +4,10 @@
     <link rel="stylesheet" type="text/css" href="{{asset('/css/bootstrap-change.css')}}">
 </head>
 @section('content')
-
-<br><br><br>
-<br>
-<br>
-<br>
-
+<br><br><br><br><br><br>
 <form action="/edit_profile" method="post" role="form" class="form-horizontal" enctype="multipart/form-data">
 <div class="row">
-<div class="col-md-1"></div>
+    <div class="col-md-1"></div>
 <div class="col-md-10">
     <div class="card b-1 hover-shadow mb-50">
      <footer class="card-footer flexbox align-items-center">
@@ -116,7 +111,7 @@
                             <div class="col-md-8 col-md-offset-4">
                                     
                               
-                                <button type="submit" class="btn btn-danger btn btn-xs fs-15" onclick="return confirm('แน่ใจหรือไม่ว่าจะเปลี่ยนรหัสผ่าน ?')">
+                                <button type="submit" class="btn btn-danger btn btn-xs fs-15" onclick="return confirm('แน่ใจหรือไม่ว่าต้องการจะแก้ไขข้อมูล ?')">
                                    แก้ไขข้อมูลส่วนตัว
                                 </button>
                                

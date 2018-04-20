@@ -13,10 +13,15 @@ class AppointsController extends Controller
     private $access_token = 'vX8RdoW627FjtkoPEOK91cIrz97NS6QXKfeEiykD38I';
     public function index(Request $request)    {
         $NUM_PAGE = 6;
-        $appoints = Appoint::orderBy('staff','asc')
-                           ->orderBy('created_at','desc')
+        $appoints = Appoint::orderBy('created_at','desc')
                            ->orderBy('time','asc')
-                           ->paginate($NUM_PAGE);
+                           ->get();
+        $appointsall = Appoint::orderBy('status','asc')
+                            ->orderBy('staff','asc')
+                            ->orderBy('date','desc')
+                            ->orderBy('time','desc')
+                            ->paginate($NUM_PAGE);
+
         $name = "Sirirat";
         $page = $request->input('page');
         $page = ($page != null)?$page:1;
@@ -25,7 +30,8 @@ class AppointsController extends Controller
                                     ->with('page',$page)
                                     ->with('services',$services)
                                     ->with('NUM_PAGE',$NUM_PAGE)
-                                    ->with('name',$name);
+                                    ->with('name',$name)
+                                    ->with('appointsall',$appointsall);
                                     
     }
     public function selectdelete(Request $request)    {
@@ -62,8 +68,10 @@ class AppointsController extends Controller
     public function create()    {
         return view('appoint.appoint');
     }
-    private function check_Appointment() {
-        $str = "คลิกที่ url เพื่อตอบรับการจอง"." ".'https://sirirat405.000webhostapp.com/appoints';
+    private function check_Appointment($name) {
+        
+        $str = "คลิกที่ url เพื่อตอบรับการจอง"." ".'https://sirirat405.000webhostapp.com/showstaff/'.$name;
+
         //$str = 'ทดสอบข้อความ';    //ข้อความที่ต้องการส่ง สูงสุด 1000 ตัวอักษร
         $image_thumbnail_url = '';  // ขนาดสูงสุด 240×240px JPEG
         $image_fullsize_url = '';  // ขนาดสูงสุด 1024×1024px JPEG
@@ -239,7 +247,8 @@ class AppointsController extends Controller
         $data->comment = $request->get('comment');
         $data->save();
        
-        $this->check_Appointment();
+        $this->check_Appointment($data->staff);
+       
         return redirect()->action('Appoints\\AppointsController@showstaff',['name'=>$data->staff]);
         
         }
@@ -427,7 +436,7 @@ class AppointsController extends Controller
                         'ip' => $request->get('ip'),
                         'status' => 0,
                         'comment' =>$request->get('comment')]); 
-                         $this->check_Appointment();
+                         $this->check_Appointment($appoint->staff);
                          return redirect()->action('Appoints\\AppointsController@showstaff',['name'=>$appoint->staff]);
                 }
         }
@@ -448,8 +457,12 @@ class AppointsController extends Controller
     }
 
     public function showstaff(Request $request, $name)    {
-        $NUM_PAGE = 6;
+        $NUM_PAGE = 10;
         $appoints = Appoint::where('staff',$name)
+                           ->orderBy('created_at','desc')
+                           ->orderBy('time','asc')
+                           ->get();
+        $appointsall = Appoint::where('staff',$name)
                            ->orderBy('created_at','desc')
                            ->orderBy('time','asc')
                            ->paginate($NUM_PAGE);
@@ -461,9 +474,10 @@ class AppointsController extends Controller
                                     ->with('page',$page)
                                     ->with('services',$services)
                                     ->with('NUM_PAGE',$NUM_PAGE)
-                                    ->with('name',$name);       
+                                    ->with('name',$name)
+                                    ->with('appointsall',$appointsall);       
     }
-    
+
 
     
 
