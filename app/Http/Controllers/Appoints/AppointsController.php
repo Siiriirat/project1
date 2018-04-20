@@ -35,7 +35,6 @@ class AppointsController extends Controller
                                     
     }
     public function selectdelete(Request $request)    {
-
             if(count($request->get('appointscheckbox')) == 0)
             {
               return back()->with('errors','กรุณาเลือกข้อมูลที่ต้องการลบ')->withInput($request->input());
@@ -47,9 +46,7 @@ class AppointsController extends Controller
             }
             return back();                         
     }
-    public function selectconfirm(Request $request)    {
-
-        
+    public function selectconfirm(Request $request)    {  
         foreach(DB::table('appoints')->get() as $item)
         {
             if($request->get('confirmcheckbox_'.$item->id)!=null)
@@ -69,15 +66,12 @@ class AppointsController extends Controller
         return view('appoint.appoint');
     }
     private function check_Appointment($name) {
-        
         $str = "คลิกที่ url เพื่อตอบรับการจอง"." ".'https://sirirat405.000webhostapp.com/showstaff/'.$name;
-
         //$str = 'ทดสอบข้อความ';    //ข้อความที่ต้องการส่ง สูงสุด 1000 ตัวอักษร
         $image_thumbnail_url = '';  // ขนาดสูงสุด 240×240px JPEG
         $image_fullsize_url = '';  // ขนาดสูงสุด 1024×1024px JPEG
         $sticker_package_id = 1;  // Package ID ของสติกเกอร์
         $sticker_id = 410;    // ID ของสติกเกอร์
-
         $message_data = array(
          'message' => $str,
          'imageThumbnail' => $image_thumbnail_url,
@@ -457,7 +451,7 @@ class AppointsController extends Controller
     }
 
     public function showstaff(Request $request, $name)    {
-        $NUM_PAGE = 10;
+        $NUM_PAGE = 6;
         $appoints = Appoint::where('staff',$name)
                            ->orderBy('created_at','desc')
                            ->orderBy('time','asc')

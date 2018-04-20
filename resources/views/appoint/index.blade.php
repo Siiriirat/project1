@@ -5,7 +5,7 @@
     <link rel="stylesheet" type="text/css" href="{{asset('/css/bootstrap-tab.css')}}">
 </head>
 @section('content')
-<br><br><br><br>
+<br><br><br>
 <form action="{{url('/search')}}" method="post" >
 {{csrf_field()}}
 <div class="row">
@@ -18,10 +18,10 @@
 <div class="col-md-3"></div>
 <div class="col-md-3"></div>
 <div class="col-md-3">
-<div class="form-inline">
+<!-- <div class="form-inline">
 <div class="form-group">
             <div class="input-append">
-            	<!-- <input type="text" id="name" name ="name" style="width:220px;" data-field="date" class="form-control" placeholder="ค้นหาวันที่ใช้บริการ"/> -->
+            	
                 <input type="text" name="name" id="name" class="search-query form-control" data-field="date" placeholder="ค้นหาวันที่ใช้บริการ" >
                 <button type="submit" class="btn"><i class="fa fa-search"></i> ค้นหา</button>
             </div>
@@ -35,7 +35,7 @@
           });
           </script>
 </div>
-</div>
+</div> -->
 </div>
 </div>
 </form>
@@ -129,10 +129,14 @@
     @can('show',$item)
       <form method="post" action="/appoints/{{$item->id}}" class="form-inline">
         <td><a href="/appoints/{{$item->id}}" class="btn btn-info btn-sm"><i class="fa fa-eye"></i> แสดง</a>
+        @if($item->status == 0 || $item->status == 2)
         <a href="/appoints/{{$item->id}}/edit" class="btn btn-warning btn-sm"><i class="fa fa-edit"></i> แก้ไข</a>
+        @endif
         <input type="hidden" name="_method" value="Delete">
-        <button formaction="/appoints/{{$item->id}}" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure to delete ?')"><i class="fa fa-trash"></i> ลบบริการ</button> </td>
+        
+        <button formaction="/appoints/{{$item->id}}" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure to delete ?')"><i class="fa fa-trash"></i> ลบรายการ</button> </td>
         {{csrf_field()}}
+        
       </form>
     @endcan
       </tr>
@@ -200,9 +204,11 @@
     @can('show',$item)
       <form method="post" action="/appoints/{{$item->id}}" class="form-inline">
         <td><a href="/appoints/{{$item->id}}" class="btn btn-info btn-sm"><i class="fa fa-eye"></i> แสดง</a>
+        @if($item->status == 0 || $item->status == 2)
         <a href="/appoints/{{$item->id}}/edit" class="btn btn-warning btn-sm"><i class="fa fa-edit"></i> แก้ไข</a>
+        @endif
         <input type="hidden" name="_method" value="Delete">
-        <button class="btn btn-danger btn-sm" onclick="return confirm('Are you sure to delete ?')"><i class="fa fa-ban"></i> ลบบริการ</button> </td>
+        <button class="btn btn-danger btn-sm" onclick="return confirm('Are you sure to delete ?')"><i class="fa fa-trash"></i> ลบรายการ</button> </td>
         {{csrf_field()}}
       </form>
     @endcan
@@ -240,7 +246,7 @@
            <th>วันที่จอง</th>
            <th>เวลาเริ่มต้น</th>
            <th>เวลาสิ้นสุด</th>
-           <th>ช่างผู้ให้บริการ</th>
+           
            <th>ตัวเลือก</th>
            </tr>
           </thead>
@@ -278,13 +284,15 @@
     <td>{{$item->date}}</td>
     <td>{{$item->time}}</td>
     <td>{{$item->time_e}}</td>
-    <td>{{$item->staff}}</td>
+   
     @can('show',$item)
       <form method="post" action="/appoints/{{$item->id}}" class="form-inline">
         <td><a href="/appoints/{{$item->id}}" class="btn btn-info btn-sm"><i class="fa fa-eye"></i> แสดง</a>
+        @if($item->status == 0 || $item->status == 2)
         <a href="/appoints/{{$item->id}}/edit" class="btn btn-warning btn-sm"><i class="fa fa-edit"></i> แก้ไข</a>
+        @endif
         <input type="hidden" name="_method" value="Delete">
-        <button formaction="/appoints/{{$item->id}}" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure to delete ?')"><i class="fa fa-trash"></i> ลบบริการ</button> </td>
+        <button formaction="/appoints/{{$item->id}}" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure to delete ?')"><i class="fa fa-trash"></i> ลบรายการ</button> </td>
         {{csrf_field()}}
       </form>
     @endcan
@@ -307,7 +315,7 @@
            
            <th>ลำดับที่</th>
            <th>ชื่อบริการ</th>
-           <th>ช่างผู้ให้บริการ</th>
+           
            <th>วันที่จอง</th>
            <th>เวลาเริ่มต้น</th>
            <th>เวลาสิ้นสุด</th>
@@ -328,7 +336,7 @@
     <td><?php 
     echo (DB::table('services')->where('id_ser',$item->id_ser)->value('name_ser'));
     ?></td>
-    <td>{{$item->staff}}</td>
+    
     <td>{{$item->date}}</td>
     <td>{{$item->time}}</td>
     <td>{{$item->time_e}}</td>
@@ -354,9 +362,11 @@
     @can('show',$item)
       <form method="post" action="/appoints/{{$item->id}}" class="form-inline">
         <td><a href="/appoints/{{$item->id}}" class="btn btn-info btn-sm"><i class="fa fa-eye"></i> แสดง</a>
+        @if($item->status == 0 || $item->status == 2)
         <a href="/appoints/{{$item->id}}/edit" class="btn btn-warning btn-sm"><i class="fa fa-edit"></i> แก้ไข</a>
+        @endif
         <input type="hidden" name="_method" value="Delete">
-        <button class="btn btn-danger btn-sm" onclick="return confirm('Are you sure to delete ?')"><i class="fa fa-ban"></i> ลบบริการ</button> </td>
+        <button class="btn btn-danger btn-sm" onclick="return confirm('Are you sure to delete ?')"><i class="fa fa-trash"></i> ลบรายการ</button> </td>
         {{csrf_field()}}
       </form>
     @endcan
