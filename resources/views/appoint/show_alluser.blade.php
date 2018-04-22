@@ -8,8 +8,8 @@
 <br>
 
 <form method="post" action="/changestatus" >
-@if(Auth::user()->name == "Sirirat_n")
-    <button type="submit" formaction="/changestatus" class="btn btn-warning" onclick="return confirm('ยืนยันการแก้ไขข้อมูล ?')"><i class="fa fa-check-circle" aria-hidden="true"></i></button>
+@if(Auth::user()->id == 4)
+    <button type="submit" formaction="/changestatus" class="btn btn-warning" onclick="return confirm('ยืนยันการแก้ไขข้อมูล ?')"><i class="fa fa-check-circle" aria-hidden="true"></i> แก้ไขสถานะผู้ใช้งาน</button>
 @endif
 <div class="container bootstrap snippet">
 
