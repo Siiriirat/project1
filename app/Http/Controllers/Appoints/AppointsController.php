@@ -125,15 +125,15 @@ class AppointsController extends Controller
         $date_rs = strtotime($reserve_date);
         $date_tz = strtotime($timezone_date);
         
-        if($ch_time < $ch_timezone && $date_rs < $date_tz){
+        if($ch_time <= $ch_timezone && $date_rs <= $date_tz){
+          dd("pp");
         return back()->with('errors','วันที่และเวลา '.$reserve_date.' '.$request->time.' พ้นช่วงเวลานั้นมาแล้ว ขณะนี้วันและเวลา'.' '.$timezone_date .' '.$timezone_time)->withInput($request->input());
         }
-        else if($ch_time < $ch_timezone && $date_rs <= $date_tz){
+        else if($ch_time <= $ch_timezone || $date_rs < $date_tz){
+          dd("xx");
         return back()->with('errors','วันที่และเวลา '.$reserve_date.' '.$request->time.' พ้นช่วงเวลานั้นมาแล้ว ขณะนี้วันและเวลา'.' '.$timezone_date .' '.$timezone_time)->withInput($request->input());
         }
-        else if($ch_time <= $ch_timezone && $date_rs <= $date_tz){
-        return back()->with('errors','วันที่และเวลา '.$reserve_date.' '.$request->time.' พ้นช่วงเวลานั้นมาแล้ว ขณะนี้วันและเวลา'.' '.$timezone_date .' '.$timezone_time)->withInput($request->input());
-        }
+      
         if ($ch_time >= 600 && $ch_time <= 1200)
         {
             $timee_h = $ctime1 + $cser1;
