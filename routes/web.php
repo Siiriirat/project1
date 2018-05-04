@@ -65,12 +65,6 @@ Route::get('/appoints_2','ShowsController@show_2');
 Route::get('/showalluser','ShowsController@show_alluser');
 Route::get('/infos_1','InformationsController@show_1');
 Route::get('/infos_2','InformationsController@show_2');
-});
-/*Route::get('/home2', function () {
-    return view('appoint.home2');
-});
-*/
-Auth::routes();
 Route::post('/change-password', 'Auth\UpdatePasswordController@update');
 Route::get('/change-password', function () {
     return view('appoint.change-password');
@@ -89,3 +83,9 @@ Route::get('/showstaff/{name}','Appoints\\AppointsController@showstaff');
 Route::get('change-password', function() {
     return view('appoint.change-password'); 
 });
+});
+/*Route::get('/home2', function () {
+    return view('appoint.home2');
+});
+*/
+Auth::routes();

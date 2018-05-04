@@ -66,10 +66,10 @@
         </li>
         @endforeach
   </ul>
-
+@if(!Auth::guest())
   <div class="tab-content">
     <div id="all" class="tab-pane fade in active">
-@if(!Auth::guest())
+
     @if (Auth::user()->level == "admin")
 <form method="post" action="/selectdelete" >
          <div style="overflow-x:auto;">
