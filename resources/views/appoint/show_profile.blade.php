@@ -63,7 +63,7 @@
             </div>   
             <div class="card-hover-show">
                <div class="card-hover-show">
-                <a class='btn btn-success btn-xs' href="edit/{{$user->id}}/user"> <i class="fa fa-edit"></i> เปลี่ยนแปลงข้อมูล</a>        
+                <a class='btn btn-success btn-xs' href="/edit/{{$user->id}}/user"> <i class="fa fa-edit"></i> เปลี่ยนแปลงข้อมูล</a>        
 				{{csrf_field()}}
             </div>     
                     
