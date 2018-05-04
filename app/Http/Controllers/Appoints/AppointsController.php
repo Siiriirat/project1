@@ -17,11 +17,9 @@ class AppointsController extends Controller
                            ->orderBy('time','asc')
                            ->get();
         $appointsall = Appoint::orderBy('status','asc')
-                            ->orderBy('staff','asc')
                             ->orderBy('date','desc')
                             ->orderBy('time','desc')
                             ->paginate($NUM_PAGE);
-
         $name = "Sirirat";
         $page = $request->input('page');
         $page = ($page != null)?$page:1;
@@ -124,16 +122,10 @@ class AppointsController extends Controller
         $ch_timezone = ($ctimezone1*60) + $ctimezone2;
         $date_rs = strtotime($reserve_date);
         $date_tz = strtotime($timezone_date);
-        
-        if($ch_time <= $ch_timezone && $date_rs <= $date_tz){
-          dd("pp");
-        return back()->with('errors','วันที่และเวลา '.$reserve_date.' '.$request->time.' พ้นช่วงเวลานั้นมาแล้ว ขณะนี้วันและเวลา'.' '.$timezone_date .' '.$timezone_time)->withInput($request->input());
-        }
-        else if($ch_time <= $ch_timezone || $date_rs < $date_tz){
-          dd("xx");
-        return back()->with('errors','วันที่และเวลา '.$reserve_date.' '.$request->time.' พ้นช่วงเวลานั้นมาแล้ว ขณะนี้วันและเวลา'.' '.$timezone_date .' '.$timezone_time)->withInput($request->input());
-        }
       
+        if($ch_time <= $ch_timezone && $date_rs <= $date_tz){
+        return back()->with('errors','วันที่และเวลา '.$reserve_date.' '.$request->time.' พ้นช่วงเวลานั้นมาแล้ว ขณะนี้วันและเวลา'.' '.$timezone_date .' '.$timezone_time)->withInput($request->input());
+        }
         if ($ch_time >= 600 && $ch_time <= 1200)
         {
             $timee_h = $ctime1 + $cser1;
