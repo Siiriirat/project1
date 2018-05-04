@@ -6,39 +6,24 @@
 </head>
 @section('content')
 <br><br><br>
-<form action="{{url('/search')}}" method="post" >
-{{csrf_field()}}
+
 <div class="row">
 <div class="col-md-3">
+ 
+  {{csrf_field()}}
   @if ( !Auth::guest() )
 	<a href="/appoint" class="btn btn-success"> <i class="fa fa-plus-circle"></i> เพิ่มรายการ </a>
 	<br>
 	@endif
+
 </div>
 <div class="col-md-3"></div>
-<div class="col-md-3"></div>
-<div class="col-md-3">
-<!-- <div class="form-inline">
-<div class="form-group">
-            <div class="input-append">
-            	
-                <input type="text" name="name" id="name" class="search-query form-control" data-field="date" placeholder="ค้นหาวันที่ใช้บริการ" >
-                <button type="submit" class="btn"><i class="fa fa-search"></i> ค้นหา</button>
-            </div>
-          <div id="dtBox"></div>
-          <script src="/js/jquery1.min.js"></script>
-          <script src="/dist/DateTimePicker.js"></script>
-          <script src="/dist/i18n/DateTimePicker-i18n.js"></script>
-          <script>
-          $('#dtBox').DateTimePicker({
-             dateTimeFormat: "yyyy-mm-dd hh:mm:ss"
-          });
-          </script>
-</div>
-</div> -->
+<div class="col-md-4"></div>
+<div class="col-md-2">
+ 
 </div>
 </div>
-</form>
+<br>
 
 @if (count($errors) > 0)
    

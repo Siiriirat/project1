@@ -82,7 +82,9 @@
             <li><a href="{{url('/index_1')}}"><i class="fa fa-calendar-plus-o"></i> ตารางการจองคิวบริการ</a></li>
             @endif
             <li><a href="{{url('/appoints')}}"><i class="fa fa-calendar-plus-o"></i> ตารางการจองคิวบริการทั้งหมด</a></li>
-           
+            @if(Auth::user()->level == "admin")
+            <li><a href="{{url('/income')}}"><i class="fa fa-money"></i> รายรับประจำวัน</a></li>
+            @endif
           </ul>
         </li>
         <li class="active">
@@ -126,11 +128,8 @@
   @section('content') 
   @show
 </div>
-<!--     <script src="{{ asset('js/navbar1.js') }}"></script>
- -->    
-<!--     <script src="{{ asset('js/news.js') }}"></script>
- -->    
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+
+<!--     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script> -->
     
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.1.0-beta/js/bootstrap.min.js" integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1" crossorigin="anonymous"></script>
 

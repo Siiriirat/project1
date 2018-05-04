@@ -83,6 +83,9 @@ Route::get('/showstaff/{name}','Appoints\\AppointsController@showstaff');
 Route::get('change-password', function() {
     return view('appoint.change-password'); 
 });
+Route::get('/income','SearchController@income_show');
+Route::post('/income','SearchController@income');
+
 });
 /*Route::get('/home2', function () {
     return view('appoint.home2');
