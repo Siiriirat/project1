@@ -37,11 +37,11 @@
 				data: [{
 						type: "pie",
 						showInLegend: true,
-						toolTipContent: "<b>{name}</b>: จำนวน {y} รายการ (#percent%)",
+						toolTipContent: "<b>{name}</b>: จำนวน {y} รายการ ",
 						indexLabel: "{name}",
-						legendText: "{name} (#percent%)",
+						legendText: "{name} ",
 						indexLabelPlacement: "inside",
-						dataPoints: indexservice
+						dataPoints: indexservice 
 				}]
    };
 $("#chartContainer").CanvasJSChart(options);
