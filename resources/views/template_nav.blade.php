@@ -1,7 +1,9 @@
 <!DOCTYPE html>
 <html>
 <head>
+  <link rel="icon" href="/image/icon_1.png">
   <title> @yield('title') </title>
+
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.1.0-alpha/js/bootstrap.min.js"></script>
   <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.1.0-alpha/css/bootstrap.css" rel="stylesheet" />
