@@ -24,7 +24,7 @@ class SearchController extends Controller
                 $total+=$s->cost;
             }
         }
-        if($total != 0){
+        if($total > 0){
             return view('appoint.income')->with('appoints',$appoints)
                                          ->with('service',$service)
                                          ->with('date',$date)
@@ -55,7 +55,11 @@ class SearchController extends Controller
                                      ->with('total',$total);
         }
         else if($total == 0){
-            return back()->with('errors','วันที่ '.$request->date.' ไม่มีผู้ใช้บริการ ')->withInput($request->input());
+            return view('appoint.income')->with('errors','วันที่ '.$date.' ไม่มีผู้ใช้บริการ ')        ->withInput($request->input())
+                                        ->with('appoints',$appoints)
+                                        ->with('service',$service)
+                                        ->with('date',$date)
+                                        ->with('total',$total);
         }
         
     

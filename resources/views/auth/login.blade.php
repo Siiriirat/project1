@@ -77,9 +77,7 @@
                                 <button type="submit" class="btn btn-success btn btn-xs fs-15">
                                     เข้าสู่ระบบ
                                 </button>
-                                <a class="btn btn-danger btn btn-xs fs-15" href="{{ route('password.request') }}">
-                                    ลืมรหัสผ่าน ?
-                                </a>
+                               
                             </div>
                         
 
