@@ -48,17 +48,7 @@
                                 @endif
                             </div>
                         </div>
-                        <div class="form-group">
-                            <div class="col-md-6 col-md-offset-4">
-                                 <form class="was-validated">
-                                    <label class="custom-control custom-checkbox">
-                                    <input type="checkbox" name="remember" {{ old('remember') ? 'checked' : '' }} class="custom-control-input">
-                                    <span class="custom-control-indicator"></span>
-                                    <span class="custom-control-description">จดจำรหัสผ่าน</span>
-                                    </label>
-                            </div>
-                        </div> 
-                 
+                       
               
             </div>
             
