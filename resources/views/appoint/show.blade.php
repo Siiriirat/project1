@@ -52,7 +52,7 @@
                              <li><i class="fa fa-list"></i>บริการ : <?php echo (DB::table('services')->where('id_ser',$appoint->id_ser)->value('name_ser'));?></li>
 
                              <li><i class="fa fa-calendar"></i>วันและเวลาที่จอง : {{$appoint->date}} : {{$appoint->time}} - {{$appoint->time_e}} น. </li>
-                             <li><i class="fa fa-user"></i>ช่างผู้ให้บริการ : {{$appoint->staff}}</li>
+                             <li><i class="fa fa-user"></i> ช่างผู้ให้บริการ : {{$appoint->staff}}</li>
                              
                              @if ($appoint->detail == "NULL")
                              <li>
@@ -62,6 +62,13 @@
                              <li>
                              <i class="fa fa-list-ul"></i>รายละเอียดเพิ่มเติม : {{$appoint->detail}}
                              </li>
+                             @endif
+                             @if($appoint->status == 0)
+                             <li><i class="fa fa-calendar-check-o" aria-hidden="true"></i>สถานะการเข้าใช้บริการ : รอการยืนยันจากทางร้าน</li>
+                             @elseif($appoint->status == 1)
+                             <li><i class="fa fa-calendar-check-o" aria-hidden="true"></i>สถานะการเข้าใช้บริการ : ไม่สามารถเข้าใช้งานได้</li>
+                             @elseif($appoint->status == 2)
+                             <li><i class="fa fa-calendar-check-o" aria-hidden="true"></i>สถานะการเข้าใช้บริการ : สามารถเข้าใช้งานได้</li>
                              @endif
 
 

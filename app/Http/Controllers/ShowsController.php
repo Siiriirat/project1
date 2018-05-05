@@ -16,8 +16,8 @@ class ShowsController extends Controller
     	$NUM_PAGE = 8;
     	$page = $request->input('page');
         $page = ($page != null)?$page:1;
-    	$show = Appoint::where('user_id',Auth::user()->id)->orderby('staff','asc')
-    													  ->orderBy('created_at','desc')
+    	$show = Appoint::where('user_id',Auth::user()->id)->orderBy('status','asc')
+                                                          ->orderby('staff','asc')
                            								  ->orderBy('date','desc')
                                                           ->orderBy('time','desc')
                                                           ->paginate($NUM_PAGE);                                               
