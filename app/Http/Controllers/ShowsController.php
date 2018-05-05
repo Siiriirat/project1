@@ -13,7 +13,7 @@ class ShowsController extends Controller
 {
     public function show(Request $request)
     {
-    	$NUM_PAGE = 8;
+    	$NUM_PAGE = 6;
     	$page = $request->input('page');
         $page = ($page != null)?$page:1;
     	$show = Appoint::where('user_id',Auth::user()->id)->orderBy('status','asc')

@@ -126,6 +126,8 @@
                     </tbody>
                     @endforeach
                 </table>
+                <center>{{ $show->links() }}</center>
+
             </div>
         </div>
     </div>
@@ -151,6 +153,6 @@ function DisplayCurrentTime() {
   return time;
 };
 </script>
-{{ $show->links() }}
+
 
 @endsection
