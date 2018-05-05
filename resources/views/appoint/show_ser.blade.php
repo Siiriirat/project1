@@ -6,7 +6,7 @@
 <br><br><br><br>
 <div class="row">
   <div class="col-md-3">
-    <a href="/services" class="btn btn-success"><i class="fa fa-hand-o-left" ></i></a>
+    <a href="{{ URL::previous() }}" class="btn btn-success"><i class="fa fa-hand-o-left" ></i></a>
   </div>
   <div class="col-md-3"></div>
   <div class="col-md-3"></div>
