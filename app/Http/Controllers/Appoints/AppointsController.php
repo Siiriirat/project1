@@ -13,12 +13,15 @@ class AppointsController extends Controller
     private $access_token = 'vX8RdoW627FjtkoPEOK91cIrz97NS6QXKfeEiykD38I';
     public function index(Request $request)    {
         $NUM_PAGE = 6;
-        $appoints = Appoint::orderBy('created_at','desc')
-                           ->orderBy('time','asc')
+        $appoints = Appoint::orderBy('status','asc')
+                           ->orderBy('date','desc')
+                           ->orderBy('time','desc')
+                           ->orderBy('staff','asc')                           
                            ->get();
         $appointsall = Appoint::orderBy('status','asc')
-                            ->orderBy('date','desc')
-                            ->orderBy('time','desc')
+                           ->orderBy('date','desc')
+                           ->orderBy('time','desc')
+                           ->orderBy('staff','asc')  
                             ->paginate($NUM_PAGE);
         $name = "Sirirat";
         $page = $request->input('page');
@@ -451,12 +454,14 @@ class AppointsController extends Controller
     public function showstaff(Request $request, $name)    {
         $NUM_PAGE = 6;
         $appoints = Appoint::where('staff',$name)
-                           ->orderBy('created_at','desc')
-                           ->orderBy('time','asc')
+                           ->orderBy('status','asc')
+                           ->orderBy('date','desc')
+                           ->orderBy('time','desc')   
                            ->get();
         $appointsall = Appoint::where('staff',$name)
-                           ->orderBy('created_at','desc')
-                           ->orderBy('time','asc')
+                           ->orderBy('status','asc')
+                           ->orderBy('date','desc')
+                           ->orderBy('time','desc')  
                            ->paginate($NUM_PAGE);
         $page = $request->input('page');
         $page = ($page != null)?$page:1;

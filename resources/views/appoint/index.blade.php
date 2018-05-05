@@ -155,7 +155,7 @@
            </tr>
           </thead>
           <?php $count =0?>
-    @foreach( $appoints as  $index => $item )
+    @foreach( $appointsall as  $index => $item )
    
  <tbody>
         <tr> 
