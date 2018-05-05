@@ -8,13 +8,14 @@ use App\Service;
 
 class ServicesController extends Controller
 {
-    // public function __construct()
-    // {
-    //     $this->middleware('auth');
-    // }
     public function index(Request $request)    {
-        $services = Service::orderBy('id_ser','asc')->get();
-        return view('appoint.index_ser')->with('services',$services);
+        $NUM_PAGE = 9;
+        $services = Service::orderBy('id_ser','asc')->paginate($NUM_PAGE);
+        $page = $request->input('page');
+        $page = ($page != null)?$page:1;
+        return view('appoint.index_ser')->with('services',$services)
+                                        ->with('NUM_PAGE',$NUM_PAGE)
+                                        ->with('page',$page);
     }
     public function create()    {
         return view('appoint.service');

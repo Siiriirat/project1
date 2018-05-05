@@ -18,7 +18,9 @@
 </div>
 
 <br>
-
+<center>
+ {{ $services->links() }}   
+</center>
 @foreach( $services as  $index => $item )
 
     <div class="col-md-4">
