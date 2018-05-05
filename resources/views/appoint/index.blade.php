@@ -208,7 +208,8 @@
 
 
 @endif
-{{ $appointsall->links() }}
+<center>{{ $appointsall->links() }}</center>
+
 </div>
 
 @foreach($dates as $d)
