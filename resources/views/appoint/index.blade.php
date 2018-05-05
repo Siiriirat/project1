@@ -190,7 +190,7 @@
     @can('show',$item)
       <form method="post" action="/appoints/{{$item->id}}" class="form-inline">
         <td><a href="/appoints/{{$item->id}}" class="btn btn-info btn-sm"><i class="fa fa-eye"></i> แสดง</a>
-        @if($item->status == 0 || $item->status == 2)
+        @if($item->status == 0 )
         <a href="/appoints/{{$item->id}}/edit" class="btn btn-warning btn-sm"><i class="fa fa-edit"></i> แก้ไข</a>
         @endif
         <input type="hidden" name="_method" value="Delete">
@@ -275,7 +275,7 @@
     @can('show',$item)
       <form method="post" action="/appoints/{{$item->id}}" class="form-inline">
         <td><a href="/appoints/{{$item->id}}" class="btn btn-info btn-sm"><i class="fa fa-eye"></i> แสดง</a>
-        @if($item->status == 0 || $item->status == 2)
+        @if($item->status == 0)
         <a href="/appoints/{{$item->id}}/edit" class="btn btn-warning btn-sm"><i class="fa fa-edit"></i> แก้ไข</a>
         @endif
         <input type="hidden" name="_method" value="Delete">
@@ -349,7 +349,7 @@
     @can('show',$item)
       <form method="post" action="/appoints/{{$item->id}}" class="form-inline">
         <td><a href="/appoints/{{$item->id}}" class="btn btn-info btn-sm"><i class="fa fa-eye"></i> แสดง</a>
-        @if($item->status == 0 || $item->status == 2)
+        @if($item->status == 0 )
         <a href="/appoints/{{$item->id}}/edit" class="btn btn-warning btn-sm"><i class="fa fa-edit"></i> แก้ไข</a>
         @endif
         <input type="hidden" name="_method" value="Delete">
