@@ -47,7 +47,7 @@ class SearchController extends Controller
             $services = Service::where('id_ser',$a->id_ser)->select('cost')->get();
             foreach($services as $s){
                 $cost = $s->cost*$a->appointscount;
-                $total+=$s->cost;
+                $total+=$cost;
             }
         }
         if($total != 0){

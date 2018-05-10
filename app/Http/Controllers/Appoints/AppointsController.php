@@ -16,12 +16,12 @@ class AppointsController extends Controller
         $appoints = Appoint::orderBy('status','asc')
                            ->orderBy('date','desc')
                            ->orderBy('time','desc')
-                           ->orderBy('staff','asc')                           
+                           ->orderBy('staff','asc')
                            ->get();
         $appointsall = Appoint::orderBy('status','asc')
                            ->orderBy('date','desc')
                            ->orderBy('time','desc')
-                           ->orderBy('staff','asc')  
+                           ->orderBy('staff','asc')
                             ->paginate($NUM_PAGE);
         $name = "Sirirat";
         $page = $request->input('page');
@@ -33,7 +33,7 @@ class AppointsController extends Controller
                                     ->with('NUM_PAGE',$NUM_PAGE)
                                     ->with('name',$name)
                                     ->with('appointsall',$appointsall);
-                                    
+
     }
     public function selectdelete(Request $request)    {
             if(count($request->get('appointscheckbox')) == 0)
@@ -45,9 +45,9 @@ class AppointsController extends Controller
                             Appoint::destroy($value);
               }
             }
-            return back();                         
+            return back();
     }
-    public function selectconfirm(Request $request)    {  
+    public function selectconfirm(Request $request)    {
         foreach(DB::table('appoints')->get() as $item)
         {
             if($request->get('confirmcheckbox_'.$item->id)!=null)
@@ -61,7 +61,7 @@ class AppointsController extends Controller
 
         }
         return back();
-                                    
+
     }
     public function create()    {
         return view('appoint.appoint');
@@ -95,7 +95,7 @@ class AppointsController extends Controller
      $result = curl_exec($ch);
      // Check Error
      if(curl_error($ch)) {
-      $return_array = array( 'status' => '000: send fail', 'message' => curl_error($ch) ); 
+      $return_array = array( 'status' => '000: send fail', 'message' => curl_error($ch) );
      } else {
       $return_array = json_decode($result, true);
      }
@@ -103,7 +103,7 @@ class AppointsController extends Controller
      return $return_array;
     }
     public function store(Request $request)    {
-         
+
         $time_e =$request->get('time_e');
         $idser  = (int) $request->get('id_ser');
         $nser = DB::table('services')->where('id_ser',$idser)->get();
@@ -127,10 +127,14 @@ class AppointsController extends Controller
         $date_tz = strtotime($timezone_date);
 
         if($date_rs < $date_tz){
-        return back()->with('errors','วันที่และเวลา '.$reserve_date.' '.$request->time.' พ้นช่วงเวลานั้นมาแล้ว ขณะนี้วันและเวลา'.' '.$timezone_date .' '.$timezone_time)->withInput($request->input());
+        return back()->with('errors','วันที่และเวลา '.$reserve_date.' '.$request->time.
+                    ' พ้นช่วงเวลานั้นมาแล้ว ขณะนี้วันและเวลา'.' '.$timezone_date .' '.$timezone_time)
+                     ->withInput($request->input());
         }
         else if($ch_time <= $ch_timezone && $date_rs == $date_tz){
-        return back()->with('errors','วันที่และเวลา '.$reserve_date.' '.$request->time.' พ้นช่วงเวลานั้นมาแล้ว ขณะนี้วันและเวลา'.' '.$timezone_date .' '.$timezone_time)->withInput($request->input());
+        return back()->with('errors','วันที่และเวลา '.$reserve_date.' '.$request->time.
+                    ' พ้นช่วงเวลานั้นมาแล้ว ขณะนี้วันและเวลา'.' '.$timezone_date .' '.$timezone_time)
+                     ->withInput($request->input());
         }
         else
         {
@@ -138,7 +142,7 @@ class AppointsController extends Controller
           {
               $timee_h = $ctime1 + $cser1;
               $timee_m = $ctime2 + $cser2;
-          if ($timee_m >= 60 && $timee_h >=24) 
+          if ($timee_m >= 60 && $timee_h >=24)
           {
               $m1 = $timee_m/60;
               $cm1 = (int) $m1;
@@ -146,17 +150,17 @@ class AppointsController extends Controller
               $timee_h1 = 0 + ((int)($timee_h + $cm1)%24);
               $timee_m1 = 0 + $m2;
               if($timee_m1 <= 9 && $timee_h1 <= 9)
-              {   
+              {
                 $time_e = ('0'.(string) $timee_h1).':'.'0'. (string) $timee_m1;
               }
               elseif($timee_m1 <= 9 && $timee_h1 >= 9)
-              { 
+              {
                 $time_e = (string) $timee_h1.':'.'0'.(string) $timee_m1;
               }
               elseif($timee_m1 >= 9 && $timee_h1 <= 9)
-              { 
+              {
                 $time_e = '0'.(string) $timee_h1.':'.(string) $timee_m1;
-              }  
+              }
           }
           elseif($timee_m >= 60 && $timee_h < 24)
           {
@@ -167,40 +171,40 @@ class AppointsController extends Controller
               $timee_m = 0;
               $timee_m1 = $timee_m + $m2;
               if($timee_m1 <= 9 && $timee_h1 <= 9)
-              {   
-                $time_e = ('0'.(string) $timee_h1).':'.'0'. (string) $timee_m1; 
+              {
+                $time_e = ('0'.(string) $timee_h1).':'.'0'. (string) $timee_m1;
               }
               elseif($timee_m1 <= 9 && $timee_h1 >= 9)
-              { 
+              {
                 $time_e = (string) $timee_h1.':'.'0'.(string) $timee_m1;
               }
               elseif($timee_m1 >= 9 && $timee_h1 <= 9)
-              { 
+              {
                 $time_e = '0'.(string) $timee_h1.':'.(string) $timee_m1;
               }
               elseif($timee_m1 >= 9 && $timee_h1 >= 9)
-              { 
+              {
                 $time_e = (string) $timee_h1.':'.(string) $timee_m1;
-              } 
+              }
           }
-          elseif ($timee_m < 60 && $timee_h >=24) 
+          elseif ($timee_m < 60 && $timee_h >=24)
           {
               $timee_h1 = 0 + ((int)($timee_h)%24);
               if($timee_m >= 9 && $timee_h1 <= 9)
-              { 
+              {
                 $time_e = '0'.(string) $timee_h1.':'.(string) $timee_m;
-              }  
+              }
           }
-          elseif ($timee_m < 60 && $timee_h < 24) 
+          elseif ($timee_m < 60 && $timee_h < 24)
           {
               if($timee_m >= 9 && $timee_h <= 9)
-              { 
+              {
                 $time_e = '0'.(string) $timee_h.':'.(string) $timee_m;
-              }  
+              }
               elseif($timee_m >= 9 && $timee_h >= 9)
-              { 
+              {
                  $time_e = (string) $timee_h.':'.(string) $timee_m;
-              }    
+              }
           }
           $finds = DB::table('appoints')->get();
           foreach ($finds as $find) {
@@ -217,14 +221,16 @@ class AppointsController extends Controller
             //เวลาสิ้นสุดที่คำนวณค่าจากตอบรับแล้ว
             $sp_time1 = explode(':', $time_e);
 
-            $c_sp_time1 = ((int)  $sp_time1[0] * 60) + (int)  $sp_time1[1];    
-              
+            $c_sp_time1 = ((int)  $sp_time1[0] * 60) + (int)  $sp_time1[1];
+
             if( (($c_sp_find_b<=$c_sp_time0   &&   $c_sp_find_e >= $c_sp_time0)||
               ($c_sp_find_b<=$c_sp_time1   &&   $c_sp_find_e >= $c_sp_time1))&&
               ($request->get('date')==$find->date)&&
               ($request->get('staff')==$find->staff))
-            { 
-              return back()->with('errors','วันที่ '.$request->date.' เวลา '.$request->time.' - '.$find->time_e.' มีคนจองแล้วค่ะ '. 'กรุณาเลือกเวลาใหม่')->withInput($request->input());
+            {
+              return back()->with('errors','วันที่ '.$request->date.' เวลา '.$request->time.' - '
+                            .$find->time_e.' มีคนจองแล้วค่ะ '. 'กรุณาเลือกเวลาใหม่')
+                            ->withInput($request->input());
             }
           }
           $data = new Appoint;
@@ -240,20 +246,22 @@ class AppointsController extends Controller
           $data->ip = $request->get('ip');
           $data->comment = $request->get('comment');
           $data->save();
-         
+
           $this->check_Appointment($data->staff);
-         
+
           return redirect()->action('Appoints\\AppointsController@showstaff',['name'=>$data->staff]);
-          
+
           }
           elseif($ch_time > 1200)
           {
-              return back()->with('errors','เวลา '.$request->time.' ทางร้านปิดให้บริการแล้วคะ')->withInput($request->input());
+              return back()->with('errors','เวลา '.$request->time.' ทางร้านปิดให้บริการแล้วคะ')
+                           ->withInput($request->input());
           }
           elseif($ch_time > 0 && $ch_time < 600)
           {
-              return back()->with('errors','เวลา '.$request->time.' ทางร้านยังไม่เปิดให้บริการคะ')->withInput($request->input());
-          }  
+              return back()->with('errors','เวลา '.$request->time.' ทางร้านยังไม่เปิดให้บริการคะ')
+                           ->withInput($request->input());
+          }
         }
     }
     public function show($id)
@@ -268,9 +276,9 @@ class AppointsController extends Controller
                                    ->with('id',$id);
     }
     public function update(Request $request, $id)
-    {   
+    {
         $service = DB::table('services')->where('name_ser',$request->get('id_ser'))->get();
-        $appoint = Appoint::findOrFail($id);  
+        $appoint = Appoint::findOrFail($id);
         $ntime =  $request->time;
         $sptime = explode(':', $ntime);
         $ctime1 = (int) $sptime[0];
@@ -301,7 +309,7 @@ class AppointsController extends Controller
         {
         $timee_h = $ctime1 + $cser1;
         $timee_m = $ctime2 + $cser2;
-        if ($timee_m >= 60 && $timee_h >=24) 
+        if ($timee_m >= 60 && $timee_h >=24)
         {
             $m1 = $timee_m/60;
             $cm1 = (int) $m1;
@@ -309,17 +317,17 @@ class AppointsController extends Controller
             $timee_h1 = 0 + ((int)($timee_h + $cm1)%24);
             $timee_m1 = 0 + $m2;
             if($timee_m1 <= 9 && $timee_h1 <= 9)
-            {   
-              $time_e = ('0'.(string) $timee_h1).':'.'0'. (string) $timee_m1;  //dd($time_e);   
+            {
+              $time_e = ('0'.(string) $timee_h1).':'.'0'. (string) $timee_m1;  //dd($time_e);
             }
             elseif($timee_m1 <= 9 && $timee_h1 >= 9)
-            { 
-              $time_e = (string) $timee_h1.':'.'0'.(string) $timee_m1;//dd($time_e); 
+            {
+              $time_e = (string) $timee_h1.':'.'0'.(string) $timee_m1;//dd($time_e);
             }
             elseif($timee_m1 >= 9 && $timee_h1 <= 9)
-            { 
-              $time_e = '0'.(string) $timee_h1.':'.(string) $timee_m1;  //dd($time_e); 
-            }  
+            {
+              $time_e = '0'.(string) $timee_h1.':'.(string) $timee_m1;  //dd($time_e);
+            }
         }
         elseif($timee_m >= 60 && $timee_h < 24)
         {
@@ -330,56 +338,56 @@ class AppointsController extends Controller
             $timee_h1 = $timee_h + $cm1;
             $timee_m = 0;
             $timee_m1 = $timee_m + $m2;
-          
+
             if($timee_m1 <= 9 && $timee_h1 <= 9)
-            {   
-              $time_e = ('0'.(string) $timee_h1).':'.'0'. (string) $timee_m1; //dd($time_e); 
+            {
+              $time_e = ('0'.(string) $timee_h1).':'.'0'. (string) $timee_m1; //dd($time_e);
             }
             elseif($timee_m1 <= 9 && $timee_h1 >= 9)
-            { 
-              $time_e = (string) $timee_h1.':'.'0'.(string) $timee_m1;     //dd($time_e);       
+            {
+              $time_e = (string) $timee_h1.':'.'0'.(string) $timee_m1;     //dd($time_e);
             }
             elseif($timee_m1 >= 9 && $timee_h1 <= 9)
-            { 
-              $time_e = '0'.(string) $timee_h1.':'.(string) $timee_m1; //dd($time_e); 
+            {
+              $time_e = '0'.(string) $timee_h1.':'.(string) $timee_m1; //dd($time_e);
             }
             elseif($timee_m1 >= 9 && $timee_h1 >= 9)
-            { 
-              $time_e = (string) $timee_h1.':'.(string) $timee_m1;//dd($time_e); 
-            } 
+            {
+              $time_e = (string) $timee_h1.':'.(string) $timee_m1;//dd($time_e);
+            }
         }
-        elseif ($timee_m < 60 && $timee_h >=24) 
+        elseif ($timee_m < 60 && $timee_h >=24)
         {
 
             $timee_h1 = 0 + ((int)($timee_h)%24);
             if($timee_m >= 9 && $timee_h1 <= 9)
-            { 
-              $time_e = '0'.(string) $timee_h1.':'.(string) $timee_m; //dd($time_e); 
-            }  
-        
+            {
+              $time_e = '0'.(string) $timee_h1.':'.(string) $timee_m; //dd($time_e);
+            }
+
         }
-        elseif ($timee_m < 60 && $timee_h < 24) 
+        elseif ($timee_m < 60 && $timee_h < 24)
         {
             if($timee_m >= 9 && $timee_h <= 9)
-            { 
-              $time_e = '0'.(string) $timee_h.':'.(string) $timee_m; //dd($time_e); 
-            }  
+            {
+              $time_e = '0'.(string) $timee_h.':'.(string) $timee_m; //dd($time_e);
+            }
             elseif($timee_m >= 9 && $timee_h >= 9)
-            { 
-               $time_e = (string) $timee_h.':'.(string) $timee_m; //dd($time_e); 
-            }    
+            {
+               $time_e = (string) $timee_h.':'.(string) $timee_m; //dd($time_e);
+            }
         }
         $finds = DB::table('appoints')->get();
         foreach ($finds as $find) {
           $sp_find_b = explode(':', $find->time);
-          
+
           $c_sp_find_b = ((int)  $sp_find_b[0] * 60) + (int)  $sp_find_b[1];
 
           $sp_find_e = explode(':', $find->time_e);
           $c_sp_find_e = ((int)  $sp_find_e[0] * 60) + (int)  $sp_find_e[1];
-          
+
           $timeh = $request->get('time');
-          
+
           $sp_time = explode(':', $timeh);
           $date = $request->get('date');
           //เวลาเริ่มต้นที่รับเข้าา
@@ -387,19 +395,19 @@ class AppointsController extends Controller
           //เวลาสิ้นสุดที่คำนวณค่าจากตอบรับแล้ว
           $sp_time1 = explode(':', $time_e);
           //dd($sp_time1);
-          $c_sp_time1 = ((int)  $sp_time1[0] * 60) + (int)  $sp_time1[1]; 
+          $c_sp_time1 = ((int)  $sp_time1[0] * 60) + (int)  $sp_time1[1];
 
           if( (($c_sp_find_b<=$c_sp_time0   &&   $c_sp_find_e >= $c_sp_time0)||
             ($c_sp_find_b<=$c_sp_time1   &&   $c_sp_find_e >= $c_sp_time1))&&
             ($request->get('date')==$find->date)&&
             ($request->get('staff')==$find->staff) && ($find->id != $appoint->id))
-          { 
+          {
 
             return back()->with('errors','วันที่ '.$request->date.' เวลา '.$request->time.' - '.$find->time_e.' มีคนจองแล้วค่ะ '. 'กรุณาเลือกเวลาใหม่');
 
           }
         }
-        $users = DB::table('users')->where('id',$request->get('user_id'))->get();  
+        $users = DB::table('users')->where('id',$request->get('user_id'))->get();
 
         foreach ($users as $user){
                 $level = $user->level;
@@ -418,7 +426,7 @@ class AppointsController extends Controller
                         return redirect('appoints');
                 }
                 elseif($level == "user")
-                {    
+                {
                      $appoint->update(['tel'=>$request->get('tel'),
                         'gender' => $request->get('gender'),
                         'date' => $request->get('date'),
@@ -429,7 +437,7 @@ class AppointsController extends Controller
                         'id_ser' => $service[0]->id_ser,
                         'ip' => $request->get('ip'),
                         'status' => 0,
-                        'comment' =>$request->get('comment')]); 
+                        'comment' =>$request->get('comment')]);
                          $this->check_Appointment($appoint->staff);
                          return redirect()->action('Appoints\\AppointsController@showstaff',['name'=>$appoint->staff]);
                 }
@@ -456,12 +464,12 @@ class AppointsController extends Controller
         $appoints = Appoint::where('staff',$name)
                            ->orderBy('status','asc')
                            ->orderBy('date','desc')
-                           ->orderBy('time','desc')   
+                           ->orderBy('time','desc')
                            ->get();
         $appointsall = Appoint::where('staff',$name)
                            ->orderBy('status','asc')
                            ->orderBy('date','desc')
-                           ->orderBy('time','desc')  
+                           ->orderBy('time','desc')
                            ->paginate($NUM_PAGE);
         $page = $request->input('page');
         $page = ($page != null)?$page:1;
@@ -471,10 +479,10 @@ class AppointsController extends Controller
                                     ->with('services',$services)
                                     ->with('NUM_PAGE',$NUM_PAGE)
                                     ->with('name',$name)
-                                    ->with('appointsall',$appointsall);       
+                                    ->with('appointsall',$appointsall);
     }
 
 
-    
+
 
 }
